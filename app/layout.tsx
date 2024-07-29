@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.className} px-14 pt-16`}>{children}</body>
+      <body className={`${manrope.className} px-[14px] pt-4`}>{children}</body>
     </html>
   );
 }

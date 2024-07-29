@@ -4,10 +4,10 @@ export default function TechStack() {
   return (
     <div className="mt-20">
       <div className="inline-flex items-center w-full">
-        <span className="text-3xl">
+        <span className="text-3xl text-nowrap">
           Tech <span className="font-extrabold mr-4">Stack</span>
         </span>
-        <hr className="w-52 h-px my-8 border-[1px] border-gray-500" />
+        <hr className="w-72 h-px my-8 border-[1px] border-gray-500" />
       </div>
       <div className="grid grid-cols-4 place-items-center gap-y-6 mt-14">
         <Image src={"dart.svg"} alt="android" width={"40"} height={"40"} />

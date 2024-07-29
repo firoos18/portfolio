@@ -2,6 +2,7 @@ import {
   EnvelopeIcon,
   DocumentArrowDownIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -19,13 +20,24 @@ export default function About() {
           <div className="group">
             <div className="flex flex-row items-center border py-2 px-4 rounded-full  group-hover:bg-white">
               <EnvelopeIcon className="size-6 group-hover:text-black" />
-              <p className="ml-2 group-hover:text-black">Mail Me!</p>
+              <a
+                href="mailto:itsfiroos@gmail.com"
+                className="ml-2 group-hover:text-black"
+              >
+                Mail Me!
+              </a>
             </div>
           </div>
           <div className="group">
             <div className="flex flex-row items-center border py-2 px-4 rounded-full group-hover:bg-white">
               <DocumentArrowDownIcon className="size-6 group-hover:text-black" />
-              <p className="ml-2 group-hover:text-black">CV</p>
+              <Link
+                href={"/cv.pdf"}
+                download="cv"
+                className="ml-2 group-hover:text-black"
+              >
+                CV
+              </Link>
             </div>
           </div>
         </div>
