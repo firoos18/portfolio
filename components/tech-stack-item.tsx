@@ -67,7 +67,7 @@ export default function TechStackItem({
       <div
         ref={radialRef}
         className="radial-progress hidden group-hover/item:block text-violet-950 place-content-center"
-        style={{ "--value": 0, "--thickness": "5px" }}
+        style={{ "--value": 0, "--thickness": "5px" } as React.CSSProperties}
       />
     </div>
   );
