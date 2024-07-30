@@ -1,4 +1,4 @@
-import Image from "next/image";
+import TechStackItem from "@/components/tech-stack-item";
 
 export default function TechStack() {
   return (
@@ -7,22 +7,21 @@ export default function TechStack() {
         <span className="text-3xl text-nowrap">
           Tech <span className="font-extrabold mr-4">Stack</span>
         </span>
-        <hr className="w-72 h-px my-8 border-[1px] border-gray-500" />
+        <hr className="w-48 h-px my-8 border-[1px] border-gray-500" />
       </div>
-      <div className="grid grid-cols-4 place-items-center gap-y-6 mt-14">
-        <Image src={"dart.svg"} alt="android" width={"40"} height={"40"} />
-        <Image src={"flutter.svg"} alt="android" width={"40"} height={"40"} />
-        <Image src={"android.svg"} alt="android" width={"40"} height={"40"} />
-        <Image src={"kotlin.svg"} alt="android" width={"40"} height={"40"} />
-        <Image
-          src={"jetpack-compose.svg"}
-          alt="android"
-          width={"40"}
-          height={"40"}
+      <div className="grid grid-cols-4 place-items-center gap-y-10 mt-14">
+        <TechStackItem imageSrc="dart.svg" alt="dart" proficiency={80} />
+        <TechStackItem imageSrc="flutter.svg" alt="flutter" proficiency={80} />
+        <TechStackItem imageSrc="android.svg" alt="android" proficiency={60} />
+        <TechStackItem imageSrc="kotlin.svg" alt="kotlin" proficiency={60} />
+        <TechStackItem
+          imageSrc="jetpack-compose.svg"
+          alt="jetpack-compose"
+          proficiency={60}
         />
-        <Image src={"js.svg"} alt="android" width={"40"} height={"40"} />
-        <Image src={"nodejs.svg"} alt="android" width={"40"} height={"40"} />
-        <Image src={"python.svg"} alt="android" width={"40"} height={"40"} />
+        <TechStackItem imageSrc="js.svg" alt="javascript" proficiency={60} />
+        <TechStackItem imageSrc="nodejs.svg" alt="nodeJs" proficiency={60} />
+        <TechStackItem imageSrc="python.svg" alt="python" proficiency={60} />
       </div>
     </div>
   );
