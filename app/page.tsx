@@ -1,10 +1,7 @@
-import { Bars3Icon } from "@heroicons/react/24/outline";
-
 import Quotes from "./quotes";
 import About from "./about";
 import TechStack from "./tech-stack";
 import RecentWorks from "./recent-works";
-import Image from "next/image";
 import SocialMedia from "@/components/social-media";
 
 export default function Home() {

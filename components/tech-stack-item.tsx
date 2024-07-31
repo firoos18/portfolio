@@ -7,12 +7,14 @@ interface TechStackProps {
   imageSrc: string;
   alt: string;
   proficiency: number;
+  mastery: string;
 }
 
 export default function TechStackItem({
   imageSrc,
   alt,
   proficiency,
+  mastery,
 }: TechStackProps) {
   const radialRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +55,7 @@ export default function TechStackItem({
 
   return (
     <div
-      className="relative w-12 hover:w-20 h-12 hover:h-20 group/item group-hover/item:block stack items-center"
+      className="relative w-12 hover:w-20 h-20 hover:h-20 group/item group-hover/item:block stack items-center transition-all duration-200 ease-in-out"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -61,12 +63,15 @@ export default function TechStackItem({
         src={imageSrc}
         alt={alt}
         fill
-        objectFit="contain"
-        className="group-hover/item:block group-hover/item:scale-[40%] place-content-center"
+        style={{ objectFit: "contain" }}
+        className="group-hover/item:block group-hover/item:scale-[30%] place-content-center"
       />
+      <p className="hidden group-hover/item:block text-[10px] text-center group-hover/item:translate-y-6">
+        {mastery}
+      </p>
       <div
         ref={radialRef}
-        className="radial-progress hidden group-hover/item:block text-violet-950 place-content-center"
+        className="radial-progress hidden group-hover/item:block text-violet-700 place-content-center"
         style={{ "--value": 0, "--thickness": "5px" } as React.CSSProperties}
       />
     </div>
