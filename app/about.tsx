@@ -7,8 +7,11 @@ import Link from "next/link";
 export default function About() {
   return (
     <>
-      <div className="mt-20">
-        <p className="text-justify">
+      <div
+        className="mt-20 md:h-screen place-content-center justify-center flex flex-col items-center"
+        id="about"
+      >
+        <p className="text-justify md:text-xl md:text-center md:w-2/3 place-content-center">
           Specialize in mobile development with a focus on Flutter and native
           Android development using Kotlin and Jetpack Compose. My expertise
           lies in building high-performance, scalable applications that deliver
@@ -16,7 +19,7 @@ export default function About() {
           deep understanding of both cross-platform and native solutions, I am
           committed to contributing to innovative and efficient mobile projects.
         </p>
-        <div className="flex flex-row mt-8 mb-16 justify-evenly items-center ">
+        <div className="flex flex-row mt-8 mb-16 justify-evenly items-center md:justify-center gap-6">
           <div className="group">
             <div className="flex flex-row items-center border py-2 px-4 rounded-full  group-hover:bg-white">
               <EnvelopeIcon className="size-6 group-hover:text-black" />

@@ -2,14 +2,14 @@ import TechStackItem from "@/components/tech-stack-item";
 
 export default function TechStack() {
   return (
-    <div className="mt-20 w-full">
+    <div className="mt-20 w-full" id="tech-stack">
       <div className="flex items-center">
         <span className="text-3xl text-nowrap">
           Tech <span className="font-extrabold mr-4">Stack</span>
         </span>
         <hr className="flex-grow h-px my-8 border-[1px] border-gray-500" />
       </div>
-      <div className="grid grid-cols-4 place-items-center gap-y-10 mt-14">
+      <div className="grid grid-cols-4 md:flex md:flex-row md:place-items-center md:justify-between place-items-center gap-y-10 mt-14">
         <TechStackItem
           imageSrc="dart.svg"
           alt="dart"
