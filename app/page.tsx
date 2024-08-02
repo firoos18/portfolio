@@ -8,7 +8,7 @@ import RootLayout from "./layout";
 export default function Home() {
   return (
     <>
-      <main className="flex min-h-screen flex-col items-center mt-36">
+      <main className="mt-36 flex min-h-screen flex-col items-center">
         <Quotes />
         <About />
         <TechStack />

@@ -4,13 +4,13 @@ export default function RecentWorks() {
   return (
     <div className="mt-24 w-full">
       <div className="flex items-center">
-        <span className="text-3xl w-28 mr-2">
+        <span className="mr-2 w-28 text-3xl">
           Recent <span className="font-extrabold">Works</span>
         </span>
-        <hr className="flex-grow h-px border-[1px] border-gray-500" />
+        <hr className="h-px flex-grow border-[1px] border-gray-500" />
         <Link
           href={""}
-          className="font-light text-[14px] ml-2 text-nowrap hover:text-violet-700"
+          className="ml-2 text-nowrap text-[14px] font-light hover:text-violet-700"
         >
           see more
         </Link>

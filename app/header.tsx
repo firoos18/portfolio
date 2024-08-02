@@ -5,13 +5,13 @@ export default function Header() {
   return (
     <>
       <header>
-        <div className="flex flex-row justify-between px-[14px] h-14 text-3xl items-center">
+        <div className="flex h-14 flex-row items-center justify-between px-[14px] text-3xl">
           <div className="text-2xl">
             <p className="hidden md:block">naufal firoos</p>
             <p className="md:hidden">naufal</p>
             <p className="md:hidden">firoos</p>
           </div>
-          <div className="md:flex flex-row gap-[40px] hidden text-xl h-full items-center">
+          <div className="hidden h-full flex-row items-center gap-[40px] text-xl md:flex">
             <Link href={"#home"}>Home</Link>
             <Link href={"#about"}>About</Link>
             <Link href={"#tech-stack"}>Stack</Link>

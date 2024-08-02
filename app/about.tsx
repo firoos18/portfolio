@@ -8,10 +8,10 @@ export default function About() {
   return (
     <>
       <div
-        className="mt-20 md:h-screen place-content-center justify-center flex flex-col items-center"
+        className="mt-20 flex flex-col place-content-center items-center justify-center md:h-screen"
         id="about"
       >
-        <p className="text-justify md:text-xl md:text-center md:w-2/3 place-content-center">
+        <p className="place-content-center text-justify md:w-2/3 md:text-center md:text-xl">
           Specialize in mobile development with a focus on Flutter and native
           Android development using Kotlin and Jetpack Compose. My expertise
           lies in building high-performance, scalable applications that deliver
@@ -19,9 +19,9 @@ export default function About() {
           deep understanding of both cross-platform and native solutions, I am
           committed to contributing to innovative and efficient mobile projects.
         </p>
-        <div className="flex flex-row mt-8 mb-16 justify-evenly items-center md:justify-center gap-6">
+        <div className="mb-16 mt-8 flex flex-row items-center justify-evenly gap-6 md:justify-center">
           <div className="group">
-            <div className="flex flex-row items-center border py-2 px-4 rounded-full  group-hover:bg-white">
+            <div className="flex flex-row items-center rounded-full border px-4 py-2 group-hover:bg-white">
               <EnvelopeIcon className="size-6 group-hover:text-black" />
               <a
                 href="mailto:itsfiroos@gmail.com"
@@ -32,7 +32,7 @@ export default function About() {
             </div>
           </div>
           <div className="group">
-            <div className="flex flex-row items-center border py-2 px-4 rounded-full group-hover:bg-white">
+            <div className="flex flex-row items-center rounded-full border px-4 py-2 group-hover:bg-white">
               <DocumentArrowDownIcon className="size-6 group-hover:text-black" />
               <Link
                 href={"/cv.pdf"}

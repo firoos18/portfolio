@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function Quotes() {
   return (
     <div className="w-full md:h-screen" id="home">
-      <p className="relative text-[50px] lg:text-[100px] font-extralightlight md:mt-32">
+      <p className="font-extralightlight relative text-[50px] md:mt-32 lg:text-[100px]">
         <span className="font-extrabold text-violet-500">Clean code</span> is
         another word of{" "}
         <span className="font-extrabold text-violet-500">art</span>, while
@@ -18,9 +18,9 @@ export default function Quotes() {
         src={"hero-image.svg"}
         fill
         alt="hero image"
-        className="absolute lg:scale-[90%] mt-44 hidden md:block"
+        className="absolute mt-44 hidden md:block lg:scale-[90%]"
       />
-      <hr className="static flex-grow h-px mt-11 border-[1px] border-gray-500" />
+      <hr className="static mt-11 h-px flex-grow border-[1px] border-gray-500" />
     </div>
   );
 }

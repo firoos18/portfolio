@@ -4,12 +4,12 @@ export default function TechStack() {
   return (
     <div className="mt-20 w-full" id="tech-stack">
       <div className="flex items-center">
-        <span className="text-3xl text-nowrap">
-          Tech <span className="font-extrabold mr-4">Stack</span>
+        <span className="text-nowrap text-3xl">
+          Tech <span className="mr-4 font-extrabold">Stack</span>
         </span>
-        <hr className="flex-grow h-px my-8 border-[1px] border-gray-500" />
+        <hr className="my-8 h-px flex-grow border-[1px] border-gray-500" />
       </div>
-      <div className="grid grid-cols-4 md:flex md:flex-row md:place-items-center md:justify-between place-items-center gap-y-10 mt-14">
+      <div className="mt-14 grid grid-cols-4 place-items-center gap-y-10 md:flex md:flex-row md:place-items-center md:justify-between">
         <TechStackItem
           imageSrc="dart.svg"
           alt="dart"

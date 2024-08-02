@@ -55,7 +55,7 @@ export default function TechStackItem({
 
   return (
     <div
-      className="relative w-12 hover:w-20 h-20 hover:h-20 group/item group-hover/item:block stack items-center transition-all duration-200 ease-in-out"
+      className="group/item stack relative h-20 w-12 items-center transition-all duration-200 ease-in-out hover:h-20 hover:w-20 group-hover/item:block"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -64,14 +64,14 @@ export default function TechStackItem({
         alt={alt}
         fill
         style={{ objectFit: "contain" }}
-        className="group-hover/item:block group-hover/item:scale-[30%] place-content-center"
+        className="place-content-center group-hover/item:block group-hover/item:scale-[30%]"
       />
-      <p className="hidden group-hover/item:block text-[10px] text-center group-hover/item:translate-y-6">
+      <p className="hidden text-center text-[10px] group-hover/item:block group-hover/item:translate-y-6">
         {mastery}
       </p>
       <div
         ref={radialRef}
-        className="radial-progress hidden group-hover/item:block text-violet-700 place-content-center"
+        className="radial-progress hidden place-content-center text-violet-700 group-hover/item:block"
         style={{ "--value": 0, "--thickness": "5px" } as React.CSSProperties}
       />
     </div>
