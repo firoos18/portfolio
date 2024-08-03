@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { promises as fs } from "fs";
+import path from "path";
 
 export default async function WorksDetails({
   params,
@@ -11,7 +12,7 @@ export default async function WorksDetails({
   params: { slug: string };
 }) {
   const file = await fs.readFile(
-    process.cwd() + "/app/data/works.json",
+    path.join(process.cwd() + "/app/data/works.json"),
     "utf-8",
   );
   const data: WorksItemInterface[] = JSON.parse(file);
