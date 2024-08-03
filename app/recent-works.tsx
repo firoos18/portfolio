@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 
 export default async function RecentWorks() {
   const file = await fs.readFile(
-    process.cwd() + "/public/data/works.json",
+    process.cwd() + "/app/data/works.json",
     "utf-8",
   );
   const worksList: WorksItemInterface[] = JSON.parse(file);

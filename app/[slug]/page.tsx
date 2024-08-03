@@ -11,7 +11,7 @@ export default async function WorksDetails({
   params: { slug: string };
 }) {
   const file = await fs.readFile(
-    process.cwd() + "/public/data/works.json",
+    process.cwd() + "/app/data/works.json",
     "utf-8",
   );
   const data: WorksItemInterface[] = JSON.parse(file);
