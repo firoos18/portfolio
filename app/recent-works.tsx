@@ -1,8 +1,14 @@
 import Link from "next/link";
 import WorksItem from "@/components/works-items";
-import { worksList } from "@/data/works";
+import { promises as fs } from "fs";
 
-export default function RecentWorks() {
+export default async function RecentWorks() {
+  const file = await fs.readFile(
+    process.cwd() + "/public/data/works.json",
+    "utf-8",
+  );
+  const worksList: WorksItemInterface[] = JSON.parse(file);
+
   return (
     <div className="my-24 flex w-full flex-col" id="works">
       <div className="flex items-center">
@@ -29,6 +35,7 @@ export default function RecentWorks() {
               title={workItem.title}
               links={workItem.links}
               id={workItem.id}
+              slug={workItem.slug}
             />
           );
         })}

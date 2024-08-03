@@ -1,20 +1,22 @@
 import TechStackPills from "@/components/tech-stack-pills";
-import { worksList } from "@/data/works";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
+import { promises as fs } from "fs";
 
-interface Props {
-  params: {
-    worksId: string;
-  };
-}
+export default async function WorksDetails({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const file = await fs.readFile(
+    process.cwd() + "/public/data/works.json",
+    "utf-8",
+  );
+  const data: WorksItemInterface[] = JSON.parse(file);
 
-export default function WorksDetails({ params }: Props) {
-  const { worksId } = params;
-
-  const work = worksList.find((work) => work.id === worksId);
+  const work = data.find((work) => work.slug === params.slug);
 
   if (!work) {
     notFound();
