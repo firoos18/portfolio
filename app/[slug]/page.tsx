@@ -54,12 +54,14 @@ export default async function WorksDetails({
         </div>
         <div className="mb-2">
           <h1 className="text-sm font-bold text-gray-500">Link to Project</h1>
-          <Link href={work.links} className="group/links">
-            <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white p-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
-              <p>{work.title}</p>
-              <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
-            </div>
-          </Link>
+          <div className="w-0">
+            <Link href={work.links} className="group/links">
+              <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white p-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
+                <p>{work.title}</p>
+                <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
