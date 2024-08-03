@@ -24,7 +24,7 @@ export default async function WorksDetails({
   }
 
   return (
-    <div className="mt-6 flex h-screen w-full flex-row items-center">
+    <div className="mt-12 flex h-screen flex-col-reverse content-center justify-center md:mt-6 md:flex-row md:items-center">
       <div className="relative h-3/4 w-1/4">
         <Image
           src={work.image}
@@ -33,30 +33,51 @@ export default async function WorksDetails({
           style={{ objectFit: "contain" }}
         />
       </div>
-      <div className="w-1/2">
-        <div className="mb-2">
-          <h1 className="text-sm font-bold text-gray-500">Project Title</h1>
-          <p className="text-lg font-normal text-white">{work.title}</p>
+      <div className="flex flex-col gap-4">
+        <div className="mb-2 flex flex-row justify-between">
+          <div>
+            <h1 className="text-nowrap text-xs font-bold text-gray-500 md:text-sm">
+              Project Title
+            </h1>
+            <p className="text-lg font-normal text-white">{work.title}</p>
+          </div>
+          <div className="mb-2 flex w-full flex-col md:hidden">
+            <h1 className="text-end text-xs font-bold text-gray-500">
+              Link to Project
+            </h1>
+            <div className="flex w-1/2 translate-x-1/4 flex-row-reverse">
+              <div className="w-0">
+                <Link href={work.links} className="group/links w-full">
+                  <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white px-4 py-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
+                    <p>{work.title}</p>
+                    <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="mb-2">
-          <h1 className="text-sm font-bold text-gray-500">
+          <h1 className="text-xs font-bold text-gray-500 md:text-sm">
             Project Description
           </h1>
           <p className="text-lg font-normal text-white">{work.desc}</p>
         </div>
         <div className="mb-2">
-          <h1 className="text-sm font-bold text-gray-500">Technologies Used</h1>
+          <h1 className="text-xs font-bold text-gray-500 md:text-sm">
+            Technologies Used
+          </h1>
           <div className="flex flex-row gap-2 text-lg font-normal text-white">
             {work.stacks.map((stack) => {
               return <TechStackPills stack={stack} key={stack} />;
             })}
           </div>
         </div>
-        <div className="mb-2">
+        <div className="mb-2 hidden md:block">
           <h1 className="text-sm font-bold text-gray-500">Link to Project</h1>
           <div className="w-0">
             <Link href={work.links} className="group/links">
-              <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white p-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
+              <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white px-4 py-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
                 <p>{work.title}</p>
                 <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
               </div>

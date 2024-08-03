@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <>
       <header>
-        <div className="flex h-14 flex-row items-center justify-between px-[14px] text-3xl">
+        <div className="flex h-14 flex-row items-center justify-between text-3xl">
           <div className="text-2xl">
             <p className="hidden md:block">naufal firoos</p>
             <p className="md:hidden">naufal</p>

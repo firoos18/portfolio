@@ -1,6 +1,8 @@
 import Link from "next/link";
 import WorksItem from "@/components/works-items";
 import { promises as fs } from "fs";
+import Image from "next/image";
+import CarouselItem from "@/components/carousel-item";
 
 export default async function RecentWorks() {
   const file = await fs.readFile(
@@ -38,6 +40,11 @@ export default async function RecentWorks() {
               slug={workItem.slug}
             />
           );
+        })}
+      </div>
+      <div className="carousel w-full md:hidden">
+        {worksList.map((worksItem, i) => {
+          return <CarouselItem workItem={worksItem} index={i} key={i} />;
         })}
       </div>
     </div>
