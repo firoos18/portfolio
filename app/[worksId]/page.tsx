@@ -1,0 +1,64 @@
+import TechStackPills from "@/components/tech-stack-pills";
+import { worksList } from "@/data/works";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+
+interface Props {
+  params: {
+    worksId: string;
+  };
+}
+
+export default function WorksDetails({ params }: Props) {
+  const { worksId } = params;
+
+  const work = worksList.find((work) => work.id === worksId);
+
+  if (!work) {
+    notFound();
+  }
+
+  return (
+    <div className="mt-6 flex h-screen w-full flex-row items-center">
+      <div className="relative h-3/4 w-1/4">
+        <Image
+          src={work.image}
+          alt={work.title}
+          fill
+          style={{ objectFit: "contain" }}
+        />
+      </div>
+      <div className="w-1/2">
+        <div className="mb-2">
+          <h1 className="text-sm font-bold text-gray-500">Project Title</h1>
+          <p className="text-lg font-normal text-white">{work.title}</p>
+        </div>
+        <div className="mb-2">
+          <h1 className="text-sm font-bold text-gray-500">
+            Project Description
+          </h1>
+          <p className="text-lg font-normal text-white">{work.desc}</p>
+        </div>
+        <div className="mb-2">
+          <h1 className="text-sm font-bold text-gray-500">Technologies Used</h1>
+          <div className="flex flex-row gap-2 text-lg font-normal text-white">
+            {work.stacks.map((stack) => {
+              return <TechStackPills stack={stack} key={stack} />;
+            })}
+          </div>
+        </div>
+        <div className="mb-2">
+          <h1 className="text-sm font-bold text-gray-500">Link to Project</h1>
+          <Link href={work.links} className="group/links">
+            <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white p-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
+              <p>{work.title}</p>
+              <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+}

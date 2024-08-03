@@ -12,10 +12,10 @@ export default function Header() {
             <p className="md:hidden">firoos</p>
           </div>
           <div className="hidden h-full flex-row items-center gap-[40px] text-xl md:flex">
-            <Link href={"#home"}>Home</Link>
-            <Link href={"#about"}>About</Link>
-            <Link href={"#tech-stack"}>Stack</Link>
-            <p>Works</p>
+            <Link href={"/#home"}>Home</Link>
+            <Link href={"/#about"}>About</Link>
+            <Link href={"/#tech-stack"}>Stack</Link>
+            <Link href={"/#works"}>Projects</Link>
           </div>
           <div className="flex flex-row gap-2">
             <SocialMedia
