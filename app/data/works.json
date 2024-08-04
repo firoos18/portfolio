@@ -10,6 +10,15 @@
   },
   {
     "id": "2",
+    "title": "Teman Tanam",
+    "slug": "teman-tanam",
+    "image": "teman-tanam-1.svg",
+    "desc": "Farmer's assistant application that help's farmer to choose suitable corps for the current weather. Uses machine learning to decide what corps suitable to plant in the current weather by filling out forms. Can be used to detect some sort of corps disease that uses image recognition. Part of Bangkit 2023 Capstone Project",
+    "links": "https://github.com/firoos18/Capstone-Project",
+    "stacks": ["Kotlin", "Jetpack Compose", "TensorFlow Lite"]
+  },
+  {
+    "id": "3",
     "title": "Sehatin",
     "slug": "sehatin",
     "image": "sehatin.svg",
@@ -18,7 +27,7 @@
     "stacks": ["Flutter", "Firebase"]
   },
   {
-    "id": "3",
+    "id": "4",
     "title": "Rentzy",
     "slug": "rentzy",
     "image": "rentzy.svg",

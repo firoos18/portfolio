@@ -25,7 +25,10 @@ export default function CarouselItem({
           className="h-full"
           style={{ objectFit: "contain" }}
         />
-        <Link href={workItem.slug} className="group/item w-3/4 self-center">
+        <Link
+          href={workItem.slug}
+          className="group/item w-[200px] self-center md:w-3/4"
+        >
           <div className="mt-2 flex flex-row items-center justify-between gap-2 rounded-full border px-4 py-2 align-middle transition-all duration-500 group-hover/item:bg-violet-500">
             <p>{workItem.title}</p>
             <ArrowRightIcon className="size-4 transition-all duration-500 group-hover/item:-rotate-45" />

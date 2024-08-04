@@ -10,7 +10,7 @@ export default function WorksItem({ title, image, slug }: WorksItemInterface) {
         alt={title}
         className="transition-transform duration-700 md:group-hover/item:scale-75"
         fill
-        style={{ objectFit: "contain" }}
+        style={{ objectFit: "cover" }}
       />
       <div className="group/desc invisible absolute bottom-0 flex h-12 w-full flex-row place-content-center items-center align-middle text-[0px] font-semibold opacity-0 transition-all duration-700 group-hover/item:text-lg group-hover/item:opacity-100 md:group-hover/item:visible">
         <p className="">{title}</p>

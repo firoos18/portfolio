@@ -11,6 +11,8 @@ export default async function RecentWorks() {
   );
   const worksList: WorksItemInterface[] = JSON.parse(file);
 
+  console.log(worksList);
+
   return (
     <div className="my-24 flex w-full flex-col" id="works">
       <div className="flex items-center">
@@ -26,7 +28,7 @@ export default async function RecentWorks() {
         </Link>
       </div>
 
-      <div className="place-content-center-center hidden content-center items-center justify-evenly md:flex md:flex-row">
+      <div className="place-content-center-center hidden content-center items-center justify-evenly md:mt-6 md:flex md:flex-row">
         {worksList.map((workItem) => {
           return (
             <WorksItem

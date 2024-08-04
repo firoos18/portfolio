@@ -33,9 +33,9 @@ export default async function WorksDetails({
           style={{ objectFit: "contain" }}
         />
       </div>
-      <div className="flex flex-col gap-4 md:ml-2">
+      <div className="flex flex-col gap-4 md:ml-2 md:w-1/2">
         <div className="mb-2 flex flex-row justify-between">
-          <div>
+          <div className="w-1/2">
             <h1 className="text-nowrap text-xs font-bold text-gray-500 md:text-sm">
               Project Title
             </h1>
@@ -45,9 +45,9 @@ export default async function WorksDetails({
             <h1 className="text-end text-sm font-bold text-gray-500">
               Link to Project
             </h1>
-            <div className="w-[150px]">
+            <div className="w-[200px]">
               <Link href={work.links} className="group/links">
-                <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white px-4 py-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
+                <div className="mt-2 flex w-[200px] flex-row items-center justify-between rounded-full border border-white px-4 py-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
                   <p>{work.title}</p>
                   <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
                 </div>
@@ -55,13 +55,13 @@ export default async function WorksDetails({
             </div>
           </div>
         </div>
-        <div className="mb-2">
+        <div className="mb-2 md:w-4/6">
           <h1 className="text-xs font-bold text-gray-500 md:text-sm">
             Project Description
           </h1>
           <p className="text-lg font-normal text-white">{work.desc}</p>
         </div>
-        <div className="mb-2">
+        <div className="md:1/2 mb-2">
           <h1 className="text-xs font-bold text-gray-500 md:text-sm">
             Technologies Used
           </h1>
@@ -71,11 +71,11 @@ export default async function WorksDetails({
             })}
           </div>
         </div>
-        <div className="mb-2 hidden md:block">
+        <div className="mb-2 hidden md:block md:w-1/2">
           <h1 className="text-sm font-bold text-gray-500">Link to Project</h1>
-          <div className="w-[150px]">
+          <div className="w-[200px]">
             <Link href={work.links} className="group/links">
-              <div className="mt-2 flex w-[150px] flex-row items-center justify-between rounded-full border border-white px-4 py-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
+              <div className="mt-2 flex w-[200px] flex-row items-center justify-between rounded-full border border-white px-4 py-2 align-middle transition-all duration-500 group-hover/links:bg-violet-500 group-hover/links:text-white">
                 <p>{work.title}</p>
                 <ArrowRightIcon className="size-5 transition-all duration-500 group-hover/links:-rotate-45" />
               </div>

@@ -14,7 +14,7 @@ export default function TechStackPills({ stack }: TechStackPillsProps) {
     >
       <div className="relative mr-2 h-4 w-4">
         <Image
-          src={`${stack.toLowerCase()}.svg`}
+          src={`${stack.toLowerCase().replace(/\s+/g, "-").trim()}.svg`}
           alt={stack}
           fill
           style={{ objectFit: "contain" }}
