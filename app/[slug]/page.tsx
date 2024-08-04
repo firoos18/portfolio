@@ -5,6 +5,8 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { promises as fs } from "fs";
 import path from "path";
+import CarouselItem from "@/components/carousel-item";
+import CarouselProjectDetails from "@/components/carousel-project-details";
 
 export default async function WorksDetails({
   params,
@@ -24,14 +26,30 @@ export default async function WorksDetails({
   }
 
   return (
-    <div className="mt-12 flex h-screen flex-col-reverse content-center justify-center pt-4 md:mt-6 md:flex-row md:items-center md:pt-0">
+    <div className="mt-12 flex flex-col-reverse content-center justify-center pt-4 md:mt-6 md:h-screen md:flex-row md:items-center md:pt-0">
       <div className="relative mt-4 h-full w-full md:mt-0 md:h-3/4 md:w-1/4">
-        <Image
-          src={work.image}
-          alt={work.title}
-          fill
-          style={{ objectFit: "contain" }}
-        />
+        <div className="carousel hidden h-full md:flex">
+          {work.detailImages.map((_, i) => {
+            return (
+              <CarouselProjectDetails
+                index={i}
+                images={work.detailImages}
+                key={i}
+              />
+            );
+          })}
+        </div>
+        <div className="carousel carousel-center flex h-full space-x-2 p-2 md:hidden">
+          {work.detailImages.map((_, i) => {
+            return (
+              <CarouselProjectDetails
+                index={i}
+                images={work.detailImages}
+                key={i}
+              />
+            );
+          })}
+        </div>
       </div>
       <div className="flex flex-col gap-4 md:ml-2 md:w-1/2">
         <div className="mb-2 flex flex-row justify-between">

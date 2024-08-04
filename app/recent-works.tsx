@@ -1,7 +1,6 @@
 import Link from "next/link";
 import WorksItem from "@/components/works-items";
 import { promises as fs } from "fs";
-import Image from "next/image";
 import CarouselItem from "@/components/carousel-item";
 
 export default async function RecentWorks() {
@@ -10,8 +9,6 @@ export default async function RecentWorks() {
     "utf-8",
   );
   const worksList: WorksItemInterface[] = JSON.parse(file);
-
-  console.log(worksList);
 
   return (
     <div className="my-24 flex w-full flex-col" id="works">
@@ -40,11 +37,12 @@ export default async function RecentWorks() {
               links={workItem.links}
               id={workItem.id}
               slug={workItem.slug}
+              detailImages={workItem.detailImages}
             />
           );
         })}
       </div>
-      <div className="carousel w-full md:hidden">
+      <div className="carousel mt-4 w-full md:hidden">
         {worksList.map((worksItem, i) => {
           return <CarouselItem workItem={worksItem} index={i} key={i} />;
         })}

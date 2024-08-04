@@ -4,6 +4,7 @@
     "title": "SILAB",
     "slug": "silab",
     "image": "silab.svg",
+    "detailImages": ["silab-1.svg", "silab-2.svg", "silab-3.svg"],
     "desc": "Class Management application used in Information System's Laboratory",
     "links": "https://github.com/firoos18/silab",
     "stacks": ["Flutter", "NodeJS", "MongoDB"]
@@ -13,6 +14,13 @@
     "title": "Teman Tanam",
     "slug": "teman-tanam",
     "image": "teman-tanam-1.svg",
+    "detailImages": [
+      "teman-tanam-1.svg",
+      "teman-tanam-2.svg",
+      "teman-tanam-3.svg",
+      "teman-tanam-4.svg",
+      "teman-tanam-5.svg"
+    ],
     "desc": "Farmer's assistant application that help's farmer to choose suitable corps for the current weather. Uses machine learning to decide what corps suitable to plant in the current weather by filling out forms. Can be used to detect some sort of corps disease that uses image recognition. Part of Bangkit 2023 Capstone Project",
     "links": "https://github.com/firoos18/Capstone-Project",
     "stacks": ["Kotlin", "Jetpack Compose", "TensorFlow Lite"]
@@ -22,6 +30,13 @@
     "title": "Sehatin",
     "slug": "sehatin",
     "image": "sehatin.svg",
+    "detailImages": [
+      "sehatin-1.svg",
+      "sehatin-2.svg",
+      "sehatin-3.svg",
+      "sehatin-4.svg",
+      "sehatin-5.svg"
+    ],
     "desc": "Food Order application for diet enthusiast which provide various customs for fulfilling customer's diet plan",
     "links": "https://github.com/firoos18/sehatin",
     "stacks": ["Flutter", "Firebase"]
@@ -31,6 +46,14 @@
     "title": "Rentzy",
     "slug": "rentzy",
     "image": "rentzy.svg",
+    "detailImages": [
+      "rentzy-1.svg",
+      "rentzy-2.svg",
+      "rentzy-3.svg",
+      "rentzy-4.svg",
+      "rentzy-5.svg",
+      "rentzy-6.svg"
+    ],
     "desc": "Motorcycle Rental application",
     "links": "https://github.com/firoos18/Rentzy",
     "stacks": ["Flutter", "Firebase"]
