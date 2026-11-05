@@ -17,7 +17,9 @@ export function Shot({ shot, alt, kind, className = "", priority = false }: Prop
       width={shot.width}
       height={shot.height}
       alt={alt}
-      priority={priority}
+      preload={priority}
+      fetchPriority={priority ? "high" : undefined}
+      loading={priority ? undefined : "lazy"}
       sizes={kind === "mobile" ? "(min-width: 768px) 22vw, 60vw" : "(min-width: 768px) 60vw, 100vw"}
       className={`block h-auto w-full object-cover object-top ${
         kind === "mobile" ? "aspect-[390/844]" : "aspect-[16/10]"

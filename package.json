@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "npx --yes serve out",
-    "lint": "eslint"
+    "lint": "eslint",
+    "images": "node scripts/images.mjs"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.9.0",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^19.3.0",
     "eslint": "^10.14.0",
     "eslint-config-next": "16.4.5",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.4",
     "typescript": "^6.0.3"
   }

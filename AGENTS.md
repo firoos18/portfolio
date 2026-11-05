@@ -10,6 +10,7 @@ Project guide for the personal portfolio of Naufal Firoos Asy Syarif.
 - `npm run build` — produces `out/`
 - `npm run start` — serve the exported `out/` locally
 - TypeScript stays on 6.x until typescript-eslint supports TypeScript 7.
+- `npm run images` — after adding or replacing a WebP in `public/`, regenerate the 480/960 copies in `public/_v/` (served through `lib/image-loader.ts`). Commit them.
 - `npm run lint` — `tsc --noEmit` plus Next lint when configured
 
 ## Structure
@@ -37,6 +38,8 @@ content/articles/{en,id}/ Markdown articles, same slug in both locales
 lib/                      site URL + SEO helpers, article loader, share-image renderer
 docs/                     n8n article workflow (import JSON) and setup guide
 public/projects/<slug>/   real project screenshots (WebP); portrait goes in public/ and is set in content/types.ts
+public/_v/                generated responsive copies (npm run images)
+public/_redirects         Cloudflare: / → /en/ (301)
 PRODUCT.md                durable product truth (impeccable)
 DESIGN.md                 visual system and direction contract
 PLAN.md                   scope, phases, acceptance criteria

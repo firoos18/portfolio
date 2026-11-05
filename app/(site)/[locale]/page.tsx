@@ -130,7 +130,8 @@ function Hero({ locale }: { locale: Locale }) {
                   src={portrait.src}
                   fill
                   alt={hero.portraitAlt}
-                  priority
+                  preload
+                  fetchPriority="high"
                   sizes="(min-width: 768px) 40vw, 100vw"
                   className="object-cover object-[50%_12%]"
                 />
