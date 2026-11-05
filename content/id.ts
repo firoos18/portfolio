@@ -229,7 +229,7 @@ export const id: Dictionary = {
       name: "Infinity Gym",
       category: "Platform · API, admin, aplikasi member",
       summary: "Manajemen gym: API .NET, CMS admin, aplikasi member mobile-first, dan landing page dua bahasa.",
-      role: "Full-stack developer",
+      role: "Full-stack developer di drunkcode.dev",
       problem:
         "Sebuah gym mengelola membership, cuti membership, kelas, personal training, loker, pembayaran, dan check-in. Staf butuh satu permukaan admin untuk semuanya, dan member butuh satu aplikasi di ponsel, bukan meja resepsionis dan thread chat.",
       constraints: [
@@ -279,7 +279,7 @@ export const id: Dictionary = {
         },
       ],
       status:
-        "Dalam pengembangan. Auth, menu, dan member sudah berjalan di API; langganan, pembayaran, kehadiran, dan training ada sebagai entitas dan seed data; aplikasi member berjalan dengan layanan mock. Repositori privat.",
+        "Dibangun bersama tim drunkcode.dev; dalam pengembangan. Auth, menu, dan member sudah berjalan di API; langganan, pembayaran, kehadiran, dan training ada sebagai entitas dan seed data; aplikasi member berjalan dengan layanan mock. Repositori privat.",
       evidence: [{ label: "Repositori privat" }],
     },
     "dms-platform": {

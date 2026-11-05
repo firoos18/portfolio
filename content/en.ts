@@ -229,7 +229,7 @@ export const en: Dictionary = {
       name: "Infinity Gym",
       category: "Platform · API, admin, member app",
       summary: "Gym management: a .NET API, an admin CMS, a mobile-first member app, and a bilingual landing page.",
-      role: "Full-stack developer",
+      role: "Full-stack developer at drunkcode.dev",
       problem:
         "A gym runs memberships, freezes, classes, personal training, lockers, payments, and check-in. Staff need one admin surface for all of it, and members need one app on their phone instead of a front desk and a chat thread.",
       constraints: [
@@ -279,7 +279,7 @@ export const en: Dictionary = {
         },
       ],
       status:
-        "In development. Auth, menus, and members are live in the API; subscriptions, payments, attendance, and training exist as entities and seed data; the member app runs on mocked services. Private repositories.",
+        "Built with the drunkcode.dev team; in development. Auth, menus, and members are live in the API; subscriptions, payments, attendance, and training exist as entities and seed data; the member app runs on mocked services. Private repositories.",
       evidence: [{ label: "Private repositories" }],
     },
     "dms-platform": {
