@@ -14,6 +14,7 @@ export function Header({ locale, tone }: Props) {
     { href: `${home}/#work`, label: dict.nav.work },
     { href: `${home}/#about`, label: dict.nav.about },
     { href: `${home}/#process`, label: dict.nav.process },
+    { href: `${home}/articles/`, label: dict.nav.articles },
     { href: `${home}/#experience`, label: dict.nav.experience },
     { href: `${home}/#contact`, label: dict.nav.contact },
   ];

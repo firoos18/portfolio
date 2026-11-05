@@ -25,9 +25,16 @@ app/
     [locale]/
       layout.tsx          root layout: fonts, lang, header/footer, metadata
       page.tsx            home
-      work/[slug]/page.tsx  case study
+      work/[slug]/page.tsx  case study (+ og.png route)
+      articles/             article index and [slug] pages (+ og.png route)
+      feed.xml/route.ts     RSS per locale
+      og.png/route.ts       home share image
+  sitemap.ts, robots.ts   static SEO files
 components/               shared UI (server components unless marked "use client")
 content/                  typed dictionaries: profile, projects, experience, skills
+content/articles/{en,id}/ Markdown articles, same slug in both locales
+lib/                      site URL + SEO helpers, article loader, share-image renderer
+docs/                     n8n article workflow (import JSON) and setup guide
 public/projects/<slug>/   real project screenshots (WebP); portrait goes in public/ and is set in content/types.ts
 PRODUCT.md                durable product truth (impeccable)
 DESIGN.md                 visual system and direction contract
@@ -37,6 +44,7 @@ PLAN.md                   scope, phases, acceptance criteria
 ## Content rules
 
 - Every visible string exists in both `content/en.ts` and `content/id.ts`. Never ship a key in one locale only.
+- Articles ship in pairs (`content/articles/en/<slug>.md` and `id/<slug>.md`); the build fails otherwise, or if a `[CHECK: ...]` marker is left in a published post. Automated drafts arrive as pull requests and are merged only after review.
 - No invented employers, dates, clients, metrics, testimonials, or outcomes. If a fact is unconfirmed, omit it or label it `Pending confirmation` in the data file, never in the rendered page.
 - Project claims must be traceable to a repository under `~/Documents/Personal` or GitHub `firoos18`.
 - Public contact: `itsfiroos@gmail.com`, GitHub `firoos18`, LinkedIn `naufal-firoos-asy-syarif`. Do not publish a phone number.
@@ -66,7 +74,7 @@ For any interface change:
 - `/` redirects to `/en`.
 - Locales: `en`, `id`. `generateStaticParams` emits both for every route.
 - Language switch links to the same path in the other locale and preserves the current page.
-- `hreflang` alternate links for every route; `<html lang>` matches the locale.
+- `hreflang` alternate links and a canonical for every route; `<html lang>` matches the locale. Site origin comes from `NEXT_PUBLIC_SITE_URL` (default `https://byros.dev`).
 
 ## Verification
 

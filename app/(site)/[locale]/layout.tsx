@@ -3,6 +3,7 @@ import { Archivo, Big_Shoulders } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, locales } from "@/content";
 import { Footer } from "@/components/Footer";
+import { OWNER, SITE_URL, alternatesFor, ogLocale } from "@/lib/site";
 import "../../globals.css";
 
 const display = Big_Shoulders({
@@ -40,23 +41,34 @@ export async function generateMetadata({ params }: Omit<Props, "children">): Pro
   const dict = getDictionary(locale);
 
   return {
+    metadataBase: new URL(SITE_URL),
     title: {
       default: dict.meta.title,
-      template: `%s – Naufal Firoos`,
+      template: `%s – ${OWNER.shortName}`,
     },
     description: dict.meta.description,
+    applicationName: OWNER.shortName,
+    authors: [{ name: OWNER.name, url: `${SITE_URL}/${locale}/` }],
+    creator: OWNER.name,
     alternates: {
-      languages: {
-        en: "/en",
-        id: "/id",
-      },
+      ...alternatesFor(locale, "/"),
+      types: { "application/rss+xml": `/${locale}/feed.xml` },
     },
     openGraph: {
       title: dict.meta.title,
       description: dict.meta.description,
-      locale: locale === "en" ? "en_US" : "id_ID",
+      siteName: OWNER.shortName,
+      locale: ogLocale[locale],
+      alternateLocale: locale === "en" ? ["id_ID"] : ["en_US"],
       type: "website",
+      url: `/${locale}/`,
+      images: [{ url: `/${locale}/og.png`, width: 1200, height: 630, alt: dict.meta.title }],
     },
+    twitter: { card: "summary_large_image", images: [`/${locale}/og.png`] },
+    robots: { index: true, follow: true },
+    verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : undefined,
   };
 }
 

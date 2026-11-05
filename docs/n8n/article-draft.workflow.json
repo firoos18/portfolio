@@ -1,0 +1,365 @@
+{
+  "name": "Portfolio article draft (review-first)",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Draft a portfolio article",
+        "formDescription": "Claude drafts EN + ID from your notes and opens a draft pull request. Nothing is published until you merge it.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Topic",
+              "requiredField": true,
+              "placeholderText": "Why Redis owns the session in Infinity Gym"
+            },
+            {
+              "fieldLabel": "Facts and notes",
+              "fieldType": "textarea",
+              "requiredField": true,
+              "placeholderText": "The real details: code, decisions, tradeoffs, numbers you can stand behind."
+            },
+            {
+              "fieldLabel": "Source links",
+              "fieldType": "textarea",
+              "placeholderText": "Optional: repo paths, PRs, docs"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Article form",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "anthropic-beta",
+              "value": "server-side-fallback-2026-07-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'claude-opus-5-5', max_tokens: 16000, fallbacks: 'default', output_config: { effort: 'high', format: { type: 'json_schema', schema: {\"type\": \"object\", \"properties\": {\"slug\": {\"type\": \"string\"}, \"tags\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}}, \"en\": {\"type\": \"object\", \"properties\": {\"title\": {\"type\": \"string\"}, \"description\": {\"type\": \"string\"}, \"body\": {\"type\": \"string\"}}, \"required\": [\"title\", \"description\", \"body\"], \"additionalProperties\": false}, \"id\": {\"type\": \"object\", \"properties\": {\"title\": {\"type\": \"string\"}, \"description\": {\"type\": \"string\"}, \"body\": {\"type\": \"string\"}}, \"required\": [\"title\", \"description\", \"body\"], \"additionalProperties\": false}}, \"required\": [\"slug\", \"tags\", \"en\", \"id\"], \"additionalProperties\": false} } }, system: \"You draft articles for the portfolio of Naufal Firoos Asy Syarif, a full-stack developer in Yogyakarta (.NET, Next.js, PostgreSQL, Kubernetes homelab, mobile roots in Flutter and Kotlin). Every draft is reviewed and edited by Naufal before it is published.\\n\\nVoice: first person, direct, technical, calm. Short paragraphs. Explain the decision, what it costs, and what you would change. No hype words (seamless, powerful, game-changing, revolutionary, unlock, leverage). No em dashes; use commas, colons, or full stops.\\n\\nFacts: use only the facts, numbers, names, and code details given in the request. Never invent metrics, clients, employers, dates, quotes, or outcomes. If the notes are thin, write a shorter article rather than filling it in. Mark anything you are unsure of with [CHECK: ...] so the reviewer sees it.\\n\\nFormat: Markdown body without an H1 (the title is rendered separately). Use ## for sections, lists where they help, `code` for identifiers. 400 to 900 words.\\n\\nLanguages: write the English article, then an Indonesian article with exactly the same facts and structure (natural Indonesian, technical terms may stay in English).\\n\\nFields: slug is lowercase-kebab-case English, at most 60 characters. description is 120 to 160 characters in each language and works as a search snippet. tags are 2 to 5 lowercase single words or short hyphenated terms.\", messages: [{ role: 'user', content: 'Topic: ' + $json.Topic + '\\n\\nFacts and notes (use only these):\\n' + $json['Facts and notes'] + ($json['Source links'] ? '\\n\\nSources:\\n' + $json['Source links'] : '') }] }) }}",
+        "options": {
+          "timeout": 600000
+        }
+      },
+      "name": "Claude draft",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "Anthropic API key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const res = $input.first().json;\nif (res.stop_reason === 'refusal') {\n  throw new Error('Claude declined: ' + JSON.stringify(res.stop_details));\n}\nif (res.stop_reason === 'max_tokens') {\n  throw new Error('Draft hit max_tokens; narrow the topic and run again.');\n}\nconst text = (res.content || []).filter((b) => b.type === 'text').map((b) => b.text).join('');\nconst draft = JSON.parse(text);\n\nconst slug = String(draft.slug).toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);\nif (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error('Bad slug: ' + draft.slug);\n\nconst date = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jakarta' }).format(new Date());\nconst tags = (draft.tags || []).map((t) => String(t).toLowerCase().replace(/[^a-z0-9-]+/g, '-')).filter(Boolean).slice(0, 5);\nconst q = (s) => '\"' + String(s).replace(/\\\\/g, '\\\\\\\\').replace(/\"/g, '\\\\\"').replace(/\\r?\\n/g, ' ') + '\"';\nconst file = (a) => [\n  '---',\n  'title: ' + q(a.title),\n  'description: ' + q(a.description),\n  'date: ' + date,\n  'tags: [' + tags.join(', ') + ']',\n  '---',\n  '',\n  a.body.trim(),\n  '',\n].join('\\n');\n\nconst b64 = (s) => Buffer.from(s, 'utf8').toString('base64');\nconst branch = 'article/' + slug + '-' + Date.now().toString(36);\n\nreturn [{ json: {\n  slug,\n  branch,\n  title: draft.en.title,\n  enPath: 'content/articles/en/' + slug + '.md',\n  idPath: 'content/articles/id/' + slug + '.md',\n  enContent: b64(file(draft.en)),\n  idContent: b64(file(draft.id)),\n  checks: (text.match(/\\[CHECK:[^\\]]*\\]/g) || []),\n  usage: res.usage,\n  model: res.model,\n} }];"
+      },
+      "name": "Build files",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        480,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.github.com/repos/{{ $vars.PORTFOLIO_REPO || 'firoos18/portfolio' }}/git/ref/heads/main",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Get main",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub portfolio token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.github.com/repos/{{ $vars.PORTFOLIO_REPO || 'firoos18/portfolio' }}/git/refs",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ ref: 'refs/heads/' + $('Build files').first().json.branch, sha: $json.object.sha }) }}"
+      },
+      "name": "Create branch",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        960,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub portfolio token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/{{ $vars.PORTFOLIO_REPO || 'firoos18/portfolio' }}/contents/{{ $('Build files').first().json.enPath }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'content: draft article ' + $('Build files').first().json.slug + ' (en)', content: $('Build files').first().json.enContent, branch: $('Build files').first().json.branch }) }}"
+      },
+      "name": "Add EN file",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1200,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub portfolio token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://api.github.com/repos/{{ $vars.PORTFOLIO_REPO || 'firoos18/portfolio' }}/contents/{{ $('Build files').first().json.idPath }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: 'content: draft article ' + $('Build files').first().json.slug + ' (id)', content: $('Build files').first().json.idContent, branch: $('Build files').first().json.branch }) }}"
+      },
+      "name": "Add ID file",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1440,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub portfolio token"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.github.com/repos/{{ $vars.PORTFOLIO_REPO || 'firoos18/portfolio' }}/pulls",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github+json"
+            },
+            {
+              "name": "X-GitHub-Api-Version",
+              "value": "2022-11-28"
+            }
+          ]
+        },
+        "options": {},
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ title: 'Article: ' + $('Build files').first().json.title, head: $('Build files').first().json.branch, base: 'main', draft: true, body: 'Drafted by Claude (' + $('Build files').first().json.model + ') from the n8n article form.\\n\\nReview before merging:\\n- [ ] Every fact is true and mine to share\\n- [ ] EN and ID say the same thing\\n- [ ] Title and description read well in search results\\n- [ ] No [CHECK: ...] markers left' + ($('Build files').first().json.checks.length ? '\\n\\nMarkers to resolve:\\n- ' + $('Build files').first().json.checks.join('\\n- ') : '') }) }}"
+      },
+      "name": "Open draft PR",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1680,
+        0
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "GitHub portfolio token"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Article form": {
+      "main": [
+        [
+          {
+            "node": "Claude draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Claude draft": {
+      "main": [
+        [
+          {
+            "node": "Build files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build files": {
+      "main": [
+        [
+          {
+            "node": "Get main",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get main": {
+      "main": [
+        [
+          {
+            "node": "Create branch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create branch": {
+      "main": [
+        [
+          {
+            "node": "Add EN file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add EN file": {
+      "main": [
+        [
+          {
+            "node": "Add ID file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add ID file": {
+      "main": [
+        [
+          {
+            "node": "Open draft PR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

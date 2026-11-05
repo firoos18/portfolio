@@ -5,6 +5,7 @@ import { getDictionary, isLocale, locales, projects } from "@/content";
 import { Arrow } from "@/components/Arrow";
 import { Header } from "@/components/Header";
 import { Shot } from "@/components/Shot";
+import { OWNER, absoluteUrl, alternatesFor, jsonLd, ogLocale } from "@/lib/site";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -33,17 +34,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: copy.name,
     description: copy.summary,
-    alternates: {
-      languages: {
-        en: `/en/work/${project.slug}`,
-        id: `/id/work/${project.slug}`,
-      },
-    },
+    alternates: alternatesFor(locale, `/work/${project.slug}/`),
     openGraph: {
       title: copy.name,
       description: copy.summary,
+      locale: ogLocale[locale],
       type: "article",
+      url: `/${locale}/work/${project.slug}/`,
+      images: [{ url: `/${locale}/work/${project.slug}/og.png`, width: 1200, height: 630, alt: copy.name }],
     },
+    twitter: { card: "summary_large_image", images: [`/${locale}/work/${project.slug}/og.png`] },
   };
 }
 
@@ -68,8 +68,23 @@ export default async function CaseStudyPage({ params }: Props) {
   const nextCopy = dict.details[next.slug];
   const [cover, ...rest] = project.shots;
 
+  const structured = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: copy.name,
+    description: copy.summary,
+    url: absoluteUrl(`/${locale}/work/${project.slug}/`),
+    inLanguage: locale,
+    dateCreated: project.year.slice(0, 4),
+    keywords: project.stack.join(", "),
+    image: project.shots.map((shot) => absoluteUrl(shot.src)),
+    creator: { "@type": "Person", name: OWNER.name, url: absoluteUrl(`/${locale}/`) },
+    ...(project.liveUrl ? { sameAs: project.liveUrl } : {}),
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structured) }} />
       <div className="bg-ink pt-3">
         <div className={frame}>
           <Header locale={locale} tone="dark" />

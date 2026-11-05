@@ -30,12 +30,12 @@ The portfolio is read in a browser, often in a tab next to a CV or LinkedIn prof
 
 ## Capabilities and Constraints
 
-- Sections: hero, about, selected work (case studies), earlier work, process, experience, skills, languages, contact.
+- Sections: hero, about, selected work (case studies), earlier work, process, experience, skills, languages, writing, contact.
 - Languages: Indonesian (native), English (limited working), German (A1). German A1 is required content.
 - Every case study states the problem, the constraints, the decisions, and the stack. No invented metrics, employers, clients, or outcomes.
 - Experience is confirmed from the owner's LinkedIn profile export (`/Users/firoos/Downloads/Profile.pdf`): Full Stack Developer at Berijalan Technocenter, Feb 2025 — Present; IDCamp, Oct 2023 — Apr 2024; Bangkit Academy, Feb 2023 — Jul 2023. Education: Bachelor's degree, Information Systems, Universitas Ahmad Dahlan, Aug 2020 — Dec 2024. Do not invent dates or employers.
 - Public contact: email `itsfiroos@gmail.com`, GitHub `firoos18`, LinkedIn `naufal-firoos-asy-syarif`. Phone number is intentionally omitted.
-- No blog, testimonials, pricing, or newsletter in v1.
+- Articles: Markdown in `content/articles/{en,id}/`, drafted through n8n as pull requests and published only after review (`docs/n8n-articles.md`). No testimonials, pricing, or newsletter.
 
 ## Brand Commitments
 

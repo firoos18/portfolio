@@ -30,7 +30,12 @@ Home sections, in order (redesign, Nov 2026):
 3. **Selected work** (ink) — three stacked sticky cards with real screenshots: Infinity Gym, DMS Platform, Tempo. Earlier mobile work as a compact list.
 4. **How I work** (paper) — four steps: Model, Contract, Interface, Ship.
 5. **Experience** (ink) — three dated roles plus education, then skills and languages.
-6. **Contact** (volt) — "Let's work together", email, GitHub, LinkedIn.
+6. **Writing** (paper) — latest three articles, link to the index.
+7. **Contact** (volt) — "Let's work together", email, GitHub, LinkedIn.
+
+Articles: `/<locale>/articles/` and `/<locale>/articles/<slug>/`, RSS at `/<locale>/feed.xml`. Drafts come from the n8n form as pull requests (`docs/n8n-articles.md`).
+
+SEO: canonical + hreflang on every page, `sitemap.xml`, `robots.txt`, JSON-LD (Person, WebSite, CreativeWork per case study, BlogPosting per article), generated 1200×630 share images at `.../og.png`.
 
 Case study template:
 
@@ -104,7 +109,7 @@ Do not invent metrics, clients, or outcomes. Bericuan is testnet with one live s
 
 - CV: no current file; link is removed rather than shipping the 2024 version.
 - Photography: no portrait; the design works without one. A portrait can be added later as a tipped-in plate.
-- Custom domain and deploy target: not chosen.
+- Domain: `byros.dev`. Deploy target: not chosen yet (Vercel or Cloudflare Pages; see `docs/n8n-articles.md`).
 
 ## 8. Verification run (redesign, 2026-11-05)
 

@@ -165,6 +165,7 @@ export type Dictionary = {
     work: string;
     about: string;
     process: string;
+    articles: string;
     experience: string;
     contact: string;
     skip: string;
@@ -215,6 +216,22 @@ export type Dictionary = {
     body: string;
     email: string;
     links: { label: string; href: string }[];
+  };
+  articles: {
+    heading: string;
+    intro: string;
+    latest: string;
+    all: string;
+    read: string;
+    back: string;
+    published: string;
+    updated: string;
+    minutes: string;
+    tags: string;
+    feed: string;
+    empty: string;
+    metaTitle: string;
+    metaDescription: string;
   };
   footer: { note: string; backToTop: string };
   caseStudy: {

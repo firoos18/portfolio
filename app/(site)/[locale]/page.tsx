@@ -6,7 +6,10 @@ import { Arrow } from "@/components/Arrow";
 import { Header } from "@/components/Header";
 import { LocalTime } from "@/components/LocalTime";
 import { RiseText } from "@/components/RiseText";
+import { ArticleList } from "@/components/ArticleList";
 import { Shot } from "@/components/Shot";
+import { getArticles } from "@/lib/articles";
+import { OWNER, absoluteUrl, jsonLd } from "@/lib/site";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -28,14 +31,45 @@ export default async function Home({ params }: Props) {
 
   const locale: Locale = raw;
 
+  const dict = getDictionary(locale);
+  const structured = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "@id": absoluteUrl("/#person"),
+      name: OWNER.name,
+      alternateName: OWNER.shortName,
+      jobTitle: dict.hero.role,
+      email: `mailto:${OWNER.email}`,
+      url: absoluteUrl(`/${locale}/`),
+      image: portrait ? absoluteUrl(portrait.src) : undefined,
+      sameAs: OWNER.sameAs,
+      address: { "@type": "PostalAddress", addressLocality: "Yogyakarta", addressCountry: "ID" },
+      worksFor: { "@type": "Organization", name: "Berijalan Technocenter" },
+      alumniOf: { "@type": "CollegeOrUniversity", name: "Universitas Ahmad Dahlan" },
+      knowsLanguage: ["id", "en", "de"],
+      knowsAbout: dict.skills.groups.flatMap((group) => group.items),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: OWNER.shortName,
+      url: absoluteUrl(`/${locale}/`),
+      inLanguage: locale,
+      author: { "@id": absoluteUrl("/#person") },
+    },
+  ];
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structured) }} />
       <Hero locale={locale} />
       <main id="main">
         <About locale={locale} />
         <Work locale={locale} />
         <Process locale={locale} />
         <Experience locale={locale} />
+        <Writing locale={locale} />
         <Contact locale={locale} />
       </main>
     </>
@@ -365,6 +399,38 @@ function Experience({ locale }: { locale: Locale }) {
               ))}
             </dl>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Writing({ locale }: { locale: Locale }) {
+  const { articles } = getDictionary(locale);
+  const latest = getArticles(locale).slice(0, 3);
+
+  if (latest.length === 0) return null;
+
+  return (
+    <section aria-labelledby="writing-title" className={`bg-paper text-on-light ${sectionSpace}`}>
+      <div className={frame}>
+        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+          <h2 id="writing-title" className="display text-[clamp(4rem,12vw,11rem)] md:col-span-8">
+            {articles.heading}
+          </h2>
+          <div className="md:col-span-4">
+            <p className="max-w-[44ch] text-on-light-soft">{articles.intro}</p>
+            <Link
+              href={`/${locale}/articles/`}
+              className="label mt-4 inline-flex min-h-12 items-center gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2"
+            >
+              {articles.all}
+              <Arrow />
+            </Link>
+          </div>
+        </div>
+        <div className="mt-[clamp(40px,6vw,80px)]">
+          <ArticleList locale={locale} articles={latest} labels={articles} tone="light" />
         </div>
       </div>
     </section>
