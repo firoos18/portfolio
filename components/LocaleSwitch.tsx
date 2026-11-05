@@ -7,32 +7,38 @@ import { locales, type Locale } from "@/content";
 type Props = {
   locale: Locale;
   label: string;
+  tone: "orange" | "dark" | "light";
 };
 
-export function LocaleSwitch({ locale, label }: Props) {
+const tones = {
+  orange: { current: "text-on-orange", other: "text-on-orange-soft hover:text-on-orange" },
+  dark: { current: "text-on-dark", other: "text-on-dark-soft hover:text-accent-on-dark" },
+  light: { current: "text-on-light", other: "text-on-light-soft hover:text-accent-on-light" },
+};
+
+export function LocaleSwitch({ locale, label, tone }: Props) {
   const pathname = usePathname() ?? `/${locale}`;
   const rest = pathname.replace(new RegExp(`^/${locale}(?=/|$)`), "") || "";
+  const colors = tones[tone];
 
   return (
-    <div className="flex items-center gap-2" aria-label={label} role="group">
+    <div className="flex items-center gap-1" aria-label={label} role="group">
       {locales.map((candidate, index) => {
         const current = candidate === locale;
 
         return (
-          <span key={candidate} className="flex items-center gap-2">
+          <span key={candidate} className="flex items-center gap-1">
             {index > 0 ? (
-              <span aria-hidden="true" className="text-ink-soft">
+              <span aria-hidden="true" className={colors.other}>
                 /
               </span>
             ) : null}
             <Link
               href={`/${candidate}${rest}`}
               hrefLang={candidate}
-              aria-current={current ? "true" : undefined}
-              className={`label inline-flex min-h-11 min-w-11 items-center justify-center py-3 text-center transition-colors duration-200 ${
-                current
-                  ? "text-ink"
-                  : "text-ink-soft hover:text-accent"
+              aria-current={current ? "page" : undefined}
+              className={`label inline-flex min-h-11 min-w-9 items-center justify-center transition-colors duration-200 ${
+                current ? colors.current : colors.other
               }`}
             >
               {candidate.toUpperCase()}

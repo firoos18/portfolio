@@ -30,7 +30,7 @@ The portfolio is read in a browser, often in a tab next to a CV or LinkedIn prof
 
 ## Capabilities and Constraints
 
-- Sections: hero, about, selected work (case studies), earlier work, experience, skills, languages, contact.
+- Sections: hero, about, selected work (case studies), earlier work, process, experience, skills, languages, contact.
 - Languages: Indonesian (native), English (limited working), German (A1). German A1 is required content.
 - Every case study states the problem, the constraints, the decisions, and the stack. No invented metrics, employers, clients, or outcomes.
 - Experience is confirmed from the owner's LinkedIn profile export (`/Users/firoos/Downloads/Profile.pdf`): Full Stack Developer at Berijalan Technocenter, Feb 2025 — Present; IDCamp, Oct 2023 — Apr 2024; Bangkit Academy, Feb 2023 — Jul 2023. Education: Bachelor's degree, Information Systems, Universitas Ahmad Dahlan, Aug 2020 — Dec 2024. Do not invent dates or employers.
@@ -47,7 +47,7 @@ The portfolio is read in a browser, often in a tab next to a CV or LinkedIn prof
 ## Evidence on Hand
 
 - LinkedIn profile export: `/Users/firoos/Downloads/Profile.pdf` (experience, education, languages, top skills).
-- Repositories on this machine: `tempo/` (.NET 10 API + Next.js 15), `DMS/` (Next.js 16 web/CMS/LMS + .NET 10 API), `rsi-bot/` (Python engine + Next.js 15 dashboard), `homelab-gitops/` (k3s, Argo CD, Traefik, Helm, Kustomize), `project-planner/`, plus earlier Flutter/Kotlin apps in GitHub `firoos18`.
+- Repositories on this machine: `~/Documents/Infinity/` (gym platform: .NET 10 API, Next.js admin CMS, member app, landing page), `tempo/` (.NET 10 API + Next.js 15), `DMS/` (Next.js 16 web/CMS/LMS + .NET 10 API), `rsi-bot/` (Python engine + Next.js 15 dashboard), `homelab-gitops/` (k3s, Argo CD, Traefik, Helm, Kustomize), `project-planner/`, plus earlier Flutter/Kotlin apps in GitHub `firoos18`.
 - GitHub profile: 57 public repos; oldest work is mobile (Flutter, Kotlin, Jetpack Compose).
 - Absent: client names, production metrics, testimonials, and a current CV file. Do not fabricate them.
 

@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #e2e3d6;
-  --paper-2: #d5d7c7;
-  --ink: #1b211c;
-  --ink-soft: #4a544a;
-  --line: #9ba492;
-  --line-strong: #6f7a6d;
-  --accent: #a93b17;
-  --accent-ink: #fff8f0;
+  --ink: #0d0e10;
+  --ink-2: #18191c;
+  --ink-line: #34363b;
+  --paper: #ece8e2;
+  --paper-2: #dfd9d0;
+  --paper-line: #b9b1a6;
+  --orange: #ee5f28;
+  --orange-line: #b8441a;
+
+  --on-dark: #f3efe9;
+  --on-dark-soft: #a39d95;
+  --on-light: #0d0e10;
+  --on-light-soft: #5a544d;
+  --on-orange: #0d0e10;
+  --on-orange-soft: #3b1607;
+
+  --accent-on-dark: #ee5f28;
+  --accent-on-light: #ad3c0c;
 }
 
 @theme inline {
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-line: var(--ink-line);
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
-  --color-ink: var(--ink);
-  --color-ink-soft: var(--ink-soft);
-  --color-line: var(--line);
-  --color-line-strong: var(--line-strong);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --font-serif: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  --color-paper-line: var(--paper-line);
+  --color-orange: var(--orange);
+  --color-orange-line: var(--orange-line);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-soft: var(--on-dark-soft);
+  --color-on-light: var(--on-light);
+  --color-on-light-soft: var(--on-light-soft);
+  --color-on-orange: var(--on-orange);
+  --color-on-orange-soft: var(--on-orange-soft);
+  --color-accent-on-dark: var(--accent-on-dark);
+  --color-accent-on-light: var(--accent-on-light);
+  --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
   --font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
 }
 
@@ -28,41 +46,43 @@
   html {
     color-scheme: light;
     scroll-behavior: smooth;
+    scrollbar-color: var(--on-dark-soft) var(--ink);
   }
 
   body {
-    background: var(--paper);
-    color: var(--ink);
+    background: var(--ink);
+    color: var(--on-dark);
     font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
     font-size: 1.0625rem;
-    line-height: 1.65;
+    line-height: 1.6;
     text-rendering: optimizeLegibility;
+    caret-color: var(--orange);
+    overflow-x: clip;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--accent-ink);
+    background: var(--orange);
+    color: var(--ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid currentColor;
     outline-offset: 3px;
   }
 
   h1,
   h2,
   h3 {
-    font-family: var(--font-source-serif), Georgia, serif;
-    font-weight: 400;
     text-wrap: balance;
   }
 
   a {
     color: inherit;
+    text-underline-offset: 0.22em;
   }
 
   [id] {
-    scroll-margin-top: 5rem;
+    scroll-margin-top: 1.5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -81,26 +101,21 @@
 }
 
 @layer components {
+  .display {
+    font-family: var(--font-big-shoulders), "Arial Narrow", sans-serif;
+    font-variation-settings: "opsz" 72;
+    font-weight: 800;
+    line-height: 0.84;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+  }
+
   .label {
-    font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
     font-size: 0.75rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.08em;
     line-height: 1.4;
     text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-
-  .sheet-frame {
-    border: 1px solid var(--line-strong);
-  }
-
-  .sheet-rule {
-    border-top: 1px solid var(--line);
-  }
-
-  .sheet-rule-strong {
-    border-top: 1px solid var(--line-strong);
   }
 
   .tabnum {
@@ -111,9 +126,9 @@
     position: absolute;
     left: 1rem;
     top: -4rem;
-    z-index: 50;
-    background: var(--ink);
-    color: var(--paper);
+    z-index: 60;
+    background: var(--on-dark);
+    color: var(--ink);
     padding: 0.75rem 1rem;
     transition: top 120ms ease-out;
   }
@@ -122,54 +137,43 @@
     top: 1rem;
   }
 
-  .texture-rule {
-    background-image: repeating-linear-gradient(
-      to bottom,
-      var(--line) 0,
-      var(--line) 1px,
-      transparent 1px,
-      transparent 6px
-    );
+  /* Hero name: letters rise out of a clipped line once, on load. */
+  .rise-line {
+    display: block;
+    overflow: hidden;
+    padding-block: 0.04em;
+  }
+
+  .rise-letter {
+    display: inline-block;
+    transform: translateY(105%);
+    animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(80ms + var(--i) * 45ms);
+  }
+
+  /* Work cards stack as the visitor scrolls past them. */
+  .stack-card {
+    position: sticky;
+    top: calc(1rem + var(--i) * 1.25rem);
+  }
+
+  @media (max-width: 767px) {
+    .stack-card {
+      position: relative;
+      top: auto;
+    }
   }
 }
 
-@keyframes traverse-draw {
-  from {
-    stroke-dashoffset: 1;
-  }
+@keyframes rise {
   to {
-    stroke-dashoffset: 0;
+    transform: translateY(0);
   }
-}
-
-@keyframes station-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.traverse-path {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: traverse-draw 900ms cubic-bezier(0.16, 1, 0.3, 1) 120ms forwards;
-}
-
-.station-mark {
-  opacity: 0;
-  animation: station-in 400ms ease-out forwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .traverse-path {
-    stroke-dashoffset: 0;
-    animation: none;
-  }
-
-  .station-mark {
-    opacity: 1;
+  .rise-letter {
+    transform: none;
     animation: none;
   }
 }

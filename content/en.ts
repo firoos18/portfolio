@@ -2,50 +2,52 @@ import type { Dictionary } from "./types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Naufal Firoos – Full-stack engineer",
+    title: "Naufal Firoos – Full-stack developer",
     description:
-      "Full-stack engineer in Yogyakarta. Interface, API, data, and infrastructure: five systems built end to end.",
-    ogAlt: "Naufal Firoos, full-stack engineer – survey sheet portfolio",
+      "Full-stack developer in Yogyakarta. Interfaces, APIs, data, and the infrastructure under them: a gym platform, a training platform, and a time-tracking tool built end to end.",
   },
   nav: {
     work: "Work",
     about: "About",
+    process: "Process",
     experience: "Experience",
     contact: "Contact",
     skip: "Skip to content",
     home: "Home",
     primary: "Primary",
     language: "Language",
+    menu: "Menu",
+    close: "Close",
   },
   hero: {
+    firstName: "Naufal",
+    lastName: "Firoos",
     name: "Naufal Firoos Asy Syarif",
-    role: "Full-stack engineer",
+    role: "Full-stack developer",
+    basedLabel: "Based in",
     location: "Yogyakarta, Indonesia",
-    datumLabel: "Datum",
-    datumValue: "Information Systems, Universitas Ahmad Dahlan",
-    sheetLabel: "Sheet",
-    sheetValue: "Portfolio / 2026",
+    timeLabel: "Local time",
+    disciplinesLabel: "Disciplines",
+    disciplines: ["Interface", "API", "Data", "Infrastructure", "Mobile"],
     statement:
-      "I build systems from the interface down to the cluster they run on, and I document the decisions that hold them together.",
-    availability: "Full-stack and platform work, from interface to cluster.",
-    primary: "Read the survey",
-    links: [
-      { label: "Email", href: "mailto:itsfiroos@gmail.com" },
-      { label: "GitHub", href: "https://github.com/firoos18", external: true },
-      {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/in/naufal-firoos-asy-syarif/",
-        external: true,
-      },
+      "I build systems from the interface down to the cluster they run on, and I write down the decisions that hold them together.",
+    cta: "Email me",
+    portraitAlt: "Portrait of Naufal Firoos",
+  },
+  about: {
+    heading: "About",
+    lead: "Software where the interface, the API, and the data model have to agree, carried from the first schema to the deploy.",
+    paragraphs: [
+      "I build software where the interface, the API, and the data model have to agree. At Berijalan Technocenter that is a digital e-signature platform: contract signing end to end, identity verification, company SSO and MFA, and a React Native app for field surveyors who capture photos and locations on site.",
+      "Before that I trained as a mobile developer: Flutter and Kotlin at Bangkit Academy and IDCamp. Mobile taught me to treat an interface as a sequence of states a person moves through, not a set of components placed on a page. That habit carried into Next.js and React.",
+      "Outside work I build the rest of the stack: .NET and PostgreSQL services, Python trading tools, and a k3s homelab managed by Argo CD. The case studies below are about the seams between those parts: how a state machine becomes a row on screen, how a failed email becomes a retry, how a deploy becomes a commit.",
     ],
-    traverseCaption: "Five stations, one traverse: interface, API, data, infrastructure.",
   },
   work: {
     heading: "Selected work",
     intro:
-      "Five systems, each carried end to end. Open a sheet for the constraints, the decisions, and what is deliberately unfinished.",
-    open: "Open sheet",
-    stackLabel: "Stack",
+      "Three systems carried end to end. Each case study covers the constraints, the decisions, and what is deliberately unfinished.",
+    open: "Read case study",
     earlierHeading: "Earlier work",
     earlier: [
       {
@@ -70,17 +72,30 @@ export const en: Dictionary = {
       },
     ],
   },
-  about: {
-    heading: "About",
-    paragraphs: [
-      "I build software where the interface, the API, and the data model have to agree. At Berijalan Technocenter that is a digital e-signature platform: contract signing end to end, identity verification, company SSO and MFA, and a React Native app for field surveyors who capture photos and locations on site.",
-      "Before that I trained as a mobile developer: Flutter and Kotlin at Bangkit Academy and IDCamp. Mobile taught me to treat an interface as a sequence of states a person moves through, not a set of components placed on a page. That habit carried into Next.js and React.",
-      "Outside work I build the rest of the stack: .NET and PostgreSQL services, Python trading tools, and a k3s homelab managed by Argo CD. The case studies below are about the seams between those parts: how a state machine becomes a row on screen, how a failed email becomes a retry, how a deploy becomes a commit.",
+  process: {
+    heading: "How I work",
+    intro: "The same order on every project, whether the first screen exists yet or not.",
+    steps: [
+      {
+        title: "Model",
+        body: "Start with the data and the states it moves through. Memberships, timesheets, and courses are state machines before they are screens.",
+      },
+      {
+        title: "Contract",
+        body: "Fix the API shape early: one response envelope, typed errors, permissions checked on the server for every request.",
+      },
+      {
+        title: "Interface",
+        body: "Build screens against that contract. When the API lags, the client runs on mocked services with the same shapes, so swapping them is a body change.",
+      },
+      {
+        title: "Ship",
+        body: "Containers from the first commit, migrations that run on deploy, and a cluster that takes its state from Git.",
+      },
     ],
   },
   experience: {
     heading: "Experience",
-    intro: "Roles that matter for the work above, newest first.",
     roles: [
       {
         period: "Feb 2025 – Present",
@@ -111,7 +126,6 @@ export const en: Dictionary = {
   },
   skills: {
     heading: "Skills",
-    intro: "Grouped by where the evidence sits, not by logo.",
     groups: [
       {
         label: "Interface",
@@ -178,20 +192,16 @@ export const en: Dictionary = {
     ],
   },
   contact: {
-    heading: "Contact",
+    heading: ["Let's work", "together"],
     body: "Email is the fastest way to reach me. Send the problem, the constraints, and the timeline; I will reply with what I can do.",
-    emailLabel: "itsfiroos@gmail.com",
+    email: "itsfiroos@gmail.com",
     links: [
       { label: "GitHub", href: "https://github.com/firoos18" },
-      {
-        label: "LinkedIn",
-        href: "https://www.linkedin.com/in/naufal-firoos-asy-syarif/",
-      },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/naufal-firoos-asy-syarif/" },
     ],
   },
   footer: {
-    note: "Portfolio of Naufal Firoos Asy Syarif.",
-    built: "Built with Next.js. Content lives in version control, not a CMS.",
+    note: "Built with Next.js. Content lives in version control.",
     backToTop: "Back to top",
   },
   caseStudy: {
@@ -203,75 +213,127 @@ export const en: Dictionary = {
     tradeoff: "Tradeoff",
     evidence: "Evidence",
     status: "Status",
-    previous: "Previous station",
-    next: "Next station",
+    screens: "Screens",
+    previous: "Previous",
+    next: "Next project",
     stack: "Stack",
     role: "Role",
     year: "Year",
+    type: "Type",
   },
   details: {
-    "e-signature": {
-      name: "E-signature platform",
-      summary: "Contract signing end to end, from identity check to a signed document.",
+    "infinity-gym": {
+      name: "Infinity Gym",
+      category: "Platform · API, admin, member app",
+      summary: "Gym management: a .NET API, an admin CMS, a mobile-first member app, and a bilingual landing page.",
       role: "Full-stack developer",
       problem:
-        "Contract signing moved between paper, email, and storage. The platform makes the flow digital: prepare a contract, verify the signer, capture a signature, and keep an auditable record, on the web and in the field.",
+        "A gym runs memberships, freezes, classes, personal training, lockers, payments, and check-in. Staff need one admin surface for all of it, and members need one app on their phone instead of a front desk and a chat thread.",
       constraints: [
-        "Company-managed SSO and MFA, plus a third-party identity-verification provider.",
-        "Signatures are drawn in the browser and must work with a mouse, trackpad, and touch.",
-        "The field-survey app needs photo capture, geolocation, and push notifications.",
-        "Existing identity providers had to integrate without creating a second login.",
+        "One domain model for members, subscriptions, payments, attendance, and training, even where the API does not expose it yet.",
+        "Sessions must be revocable: signing out or changing a password ends access everywhere, not when a token expires.",
+        "The admin menu is driven by permissions, so staff only see what their role allows.",
+        "The member app had to cover every flow in the design before the API existed for it.",
       ],
       system: [
         {
-          title: "Web",
-          body: "Next.js on the client, Express.js on the API, PostgreSQL for contracts and signatures, Docker for identical environments.",
+          title: "API",
+          body: ".NET 10 modular monolith with Admin and Members modules over one shared domain and one PostgreSQL DbContext. Thin controllers, concrete services, typed exceptions mapped by a global handler.",
         },
         {
-          title: "Identity",
-          body: "Third-party identity verification sits beside company SSO and MFA. Authentication is centralized; the signing flow never owns a password.",
+          title: "Auth",
+          body: "JWT access and refresh tokens in HttpOnly cookies, with the session truth in Redis: active sessions, hashed refresh tokens, and a blacklist of revoked token IDs. Permissions are string policies checked per endpoint.",
         },
         {
-          title: "Signature capture",
-          body: "An HTML Canvas surface records the drawn signature and submits it with the contract, so the signer never uploads a scan.",
+          title: "Admin CMS",
+          body: "Next.js 16 and React 19 with its own token-based design system. Each backend module maps to a vertical slice: page, organism, hook, TanStack Query wrapper, and a server-side API service.",
         },
         {
-          title: "Field app",
-          body: "React Native for surveyors, NestJS for its API. Photos, geolocation, and Firebase Cloud Messaging keep field work and the office in the same record.",
+          title: "Member app and landing",
+          body: "A mobile-first Next.js member app covering onboarding, check-in QR, classes, personal training, lockers, and membership payment, built on mocked services with the API's shapes. The landing page is Next.js with next-intl, Indonesian first.",
         },
       ],
       decisions: [
         {
-          title: "Draw the signature, do not upload it",
-          body: "Canvas capture keeps the signature tied to the signing session and removes a file-upload step.",
-          tradeoff: "Input handling across pointer, touch, and stylus needs its own testing.",
+          title: "Modular monolith, one database",
+          body: "Two modules, one host, one DbContext. Modules never reference each other; they meet only in the shared domain.",
+          tradeoff: "Boundaries are kept by project references and review, not by the network.",
         },
         {
-          title: "Central identity, no local accounts",
-          body: "SSO and MFA stay with the company identity provider; the platform only consumes the result.",
-          tradeoff: "The platform inherits every outage and policy change of that provider.",
+          title: "Redis owns the session",
+          body: "Tokens prove identity; Redis decides whether the session still exists. Revocation is a key delete, not a wait for expiry.",
+          tradeoff: "Every authenticated request depends on Redis being up.",
         },
         {
-          title: "One API for web and field",
-          body: "NestJS serves the mobile app while Express.js keeps the existing web API contract.",
-          tradeoff: "Two Node frameworks in one product; the boundary has to stay deliberate.",
+          title: "One slice per backend module",
+          body: "The CMS mirrors the API: one folder per module with the same three service files. A new endpoint has an obvious home.",
+          tradeoff: "More files per feature, and the shape has to be kept even for small screens.",
         },
         {
-          title: "Docker from the first commit",
-          body: "Every service runs in the same container shape locally and in deployment.",
-          tradeoff: "Image builds add a step to every dependency change.",
+          title: "Mock first, same shapes",
+          body: "The member app's services return the API's response shapes from a shared in-browser store, so screens and states can be finished before the endpoints exist.",
+          tradeoff: "Nothing persists yet; the integration work is still ahead.",
         },
       ],
-      status: "Platform at Berijalan Technocenter. Private codebase.",
-      evidence: [
+      status:
+        "In development. Auth, menus, and members are live in the API; subscriptions, payments, attendance, and training exist as entities and seed data; the member app runs on mocked services. Private repositories.",
+      evidence: [{ label: "Private repositories" }],
+    },
+    "dms-platform": {
+      name: "DMS Platform",
+      category: "Platform · Public site, CMS, LMS",
+      summary: "A public site, CMS, and learning platform for a training business.",
+      role: "Design and build",
+      problem:
+        "A training business ran its public site, course catalogue, and learner records in separate places. The platform joins them: one public site, one CMS for editors, and a learning dashboard for participants.",
+      constraints: [
+        "Three roles with different visibility: editor, reviewer, and administrator.",
+        "Rich text is stored as TipTap JSON and sanitized on save and on render.",
+        "Indonesian and English content from the same records.",
+        "Payments were out of scope for the first release; the data model had to leave room for them.",
+      ],
+      system: [
         {
-          label: "LinkedIn profile",
-          href: "https://www.linkedin.com/in/naufal-firoos-asy-syarif/",
+          title: "API",
+          body: ".NET 10 modular monolith with Identity, Content, Catalog, and Learning modules. ASP.NET Identity with short-lived JWTs and rotating refresh tokens; FluentValidation on every input.",
+        },
+        {
+          title: "Content",
+          body: "PostgreSQL 17 for structured content, MinIO for media with presigned URLs. Landing sections, banners, articles, and course records share one audit trail.",
+        },
+        {
+          title: "Clients",
+          body: "Next.js 16 for the public site, the admin CMS, and the learner dashboard. shadcn/ui primitives with an atomic component structure; security headers set in the Next config.",
         },
       ],
+      decisions: [
+        {
+          title: "Modular monolith, not services",
+          body: "One deployable with explicit module boundaries. Content and Learning can be extracted later without changing the API contract.",
+          tradeoff: "Module discipline is enforced by review, not the network.",
+        },
+        {
+          title: "Sanitize twice",
+          body: "TipTap JSON is sanitized when saved and again when rendered. Stored content is never trusted.",
+          tradeoff: "Rendering costs more; a poisoned record cannot reach a reader.",
+        },
+        {
+          title: "Admin is desktop-only",
+          body: "The CMS assumes a 1440px workspace and collapses its rail to icons. The public site and learner dashboard are responsive.",
+          tradeoff: "Editors cannot publish from a phone; the editing surface stays legible.",
+        },
+        {
+          title: "DTOs only",
+          body: "No entity ever crosses the HTTP boundary. Overposting is impossible by construction.",
+          tradeoff: "More mapping code per feature.",
+        },
+      ],
+      status: "MVP in progress. Private repositories.",
+      evidence: [{ label: "Private repositories" }],
     },
     tempo: {
       name: "Tempo",
+      category: "Product · API and web app",
       summary: "Time tracking, approvals, and invoicing for small studios, in one workspace.",
       role: "Design and build",
       problem:
@@ -323,158 +385,6 @@ export const en: Dictionary = {
         { label: "Private repository" },
         { label: "GitHub profile", href: "https://github.com/firoos18" },
       ],
-    },
-    "dms-platform": {
-      name: "DMS Platform",
-      summary: "A public site, CMS, and learning platform for a training business.",
-      role: "Design and build",
-      problem:
-        "A training business ran its public site, course catalogue, and learner records in separate places. The platform joins them: one public site, one CMS for editors, and a learning dashboard for participants.",
-      constraints: [
-        "Three roles with different visibility: editor, reviewer, and administrator.",
-        "Rich text is stored as TipTap JSON and sanitized on save and on render.",
-        "Indonesian and English content from the same records.",
-        "Payments were out of scope for the first release; the data model had to leave room for them.",
-      ],
-      system: [
-        {
-          title: "API",
-          body: ".NET 10 modular monolith with Identity, Content, Catalog, and Learning modules. ASP.NET Identity with short-lived JWTs and rotating refresh tokens; FluentValidation on every input.",
-        },
-        {
-          title: "Content",
-          body: "PostgreSQL 17 for structured content, MinIO for media with presigned URLs. Landing sections, banners, articles, and course records share one audit trail.",
-        },
-        {
-          title: "Clients",
-          body: "Next.js 16 for the public site, the admin CMS, and the learner dashboard. shadcn/ui primitives with an atomic component structure; security headers set in the Next config.",
-        },
-      ],
-      decisions: [
-        {
-          title: "Modular monolith, not services",
-          body: "One deployable with explicit module boundaries. Content and Learning can be extracted later without changing the API contract.",
-          tradeoff: "Module discipline is enforced by review, not the network.",
-        },
-        {
-          title: "Sanitize twice",
-          body: "TipTap JSON is sanitized when saved and again when rendered. Stored content is never trusted.",
-          tradeoff: "Rendering costs more; a poisoned record cannot reach a reader.",
-        },
-        {
-          title: "Admin is desktop-only",
-          body: "The CMS assumes a 1440px workspace and collapses its rail to icons. The public site and learner dashboard are responsive.",
-          tradeoff: "Editors cannot publish from a phone; the editing surface stays legible.",
-        },
-        {
-          title: "DTOs only",
-          body: "No entity ever crosses the HTTP boundary. Overposting is impossible by construction.",
-          tradeoff: "More mapping code per feature.",
-        },
-      ],
-      status: "MVP in progress. Private repositories.",
-      evidence: [{ label: "Private repositories" }],
-    },
-    bericuan: {
-      name: "Bericuan",
-      summary: "A multi-strategy crypto futures engine with a monitoring dashboard.",
-      role: "Design and build",
-      problem:
-        "Run several Binance USDT-M futures strategies on one host, with risk controls that act before a strategy does, and a dashboard that shows what the engine is doing without a second backend.",
-      constraints: [
-        "Python standard library only: no requests, pandas, or numpy.",
-        "One host process with an in-process event bus.",
-        "Testnet by default; a strategy cannot place orders before it passes a validity gate.",
-        "Documentation lives only in docs/, with a folder-local index rule.",
-      ],
-      system: [
-        {
-          title: "Engine",
-          body: "An event bus connects the screener, open-interest tracker, strategies, executor, and risk manager. Signals, entries, exits, rejects, and errors are separate events with exception boundaries.",
-        },
-        {
-          title: "Venue",
-          body: "Signed and unsigned REST calls to Binance Futures, with Cloudflare DNS-over-HTTPS and direct IP pinning to survive ISP DNS interference. Kline streams reconnect with exponential backoff.",
-        },
-        {
-          title: "Risk and execution",
-          body: "Circuit breakers on drawdown, position caps, a global single-position constraint, cooldowns, and volatility-parity sizing. Orders are place-first reduceOnly stop-loss and take-profit, with rollback on failure.",
-        },
-        {
-          title: "Dashboard",
-          body: "Next.js 15 App Router for multi-user Binance API login, positions, signals, and engine health. The engine stays the only source of truth.",
-        },
-      ],
-      decisions: [
-        {
-          title: "Standard library over pandas",
-          body: "Indicators and sizing are written directly against lists and dicts. The dependency surface stays small and deployable on any Python host.",
-          tradeoff: "More code to own; slower research iteration.",
-        },
-        {
-          title: "A validity gate before promotion",
-          body: "A strategy must pass six layers of the research gate before it enters the live strategy list.",
-          tradeoff: "Most ideas never ship; the ones that do are measurable.",
-        },
-        {
-          title: "One live strategy",
-          body: "The engine can run several, but only one is enabled on testnet. The others are closed empirically and kept for evidence.",
-          tradeoff: "Less impressive surface area, more honest operations.",
-        },
-      ],
-      status: "Testnet, one live strategy. Private repository.",
-      evidence: [
-        { label: "Private repository" },
-        {
-          label: "Public dashboard subset",
-          href: "https://github.com/firoos18/signaldash",
-        },
-      ],
-    },
-    "homelab-gitops": {
-      name: "Homelab GitOps",
-      summary: "GitOps for the cluster that runs the rest of the work.",
-      role: "Design and operate",
-      problem:
-        "The projects needed a place to run that behaved like production: reproducible deploys, ingress, secrets outside the repository, and a rollback path that did not depend on memory.",
-      constraints: [
-        "One k3s cluster on home hardware.",
-        "No secrets in Git.",
-        "Every application deployable from a commit, not a terminal session.",
-      ],
-      system: [
-        {
-          title: "Cluster",
-          body: "k3s with Traefik as the ingress controller. Namespaces separate platform services from applications.",
-        },
-        {
-          title: "Delivery",
-          body: "Argo CD watches the repository. Helm charts for third-party services, Kustomize overlays for per-application configuration.",
-        },
-        {
-          title: "Bootstrap",
-          body: "A bootstrap directory installs Argo CD and hands the cluster to Git. After that, changes arrive as commits.",
-        },
-      ],
-      decisions: [
-        {
-          title: "Git as the only source of truth",
-          body: "Manual kubectl edits are treated as drift. Argo CD reconciles them away.",
-          tradeoff: "A bad commit reaches the cluster quickly; review is the gate.",
-        },
-        {
-          title: "Helm for upstream, Kustomize for ours",
-          body: "Third-party charts stay close to upstream. Application overlays stay small and readable.",
-          tradeoff: "Two templating tools to know.",
-        },
-        {
-          title: "One ingress, many hosts",
-          body: "Applications share Traefik and are separated by host and namespace.",
-          tradeoff: "A single ingress misconfiguration affects everything.",
-        },
-      ],
-      status: "Homelab cluster managed through Argo CD. Private repository.",
-      evidence: [{ label: "Private repository" }],
     },
   },
 };

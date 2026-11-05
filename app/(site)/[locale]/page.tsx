@@ -1,291 +1,403 @@
+import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getDictionary, isLocale, projects, locales } from "@/content";
-import { Traverse } from "@/components/Traverse";
-import { StationRow } from "@/components/StationRow";
+import { getDictionary, isLocale, locales, portrait, projects, type Locale } from "@/content";
+import { Arrow } from "@/components/Arrow";
+import { Header } from "@/components/Header";
+import { LocalTime } from "@/components/LocalTime";
+import { RiseText } from "@/components/RiseText";
+import { Shot } from "@/components/Shot";
 
-type Props = { params: Promise<{ locale: string }> };
+type Props = {
+  params: Promise<{ locale: string }>;
+};
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export default async function HomePage({ params }: Props) {
-  const { locale } = await params;
+const frame = "mx-auto w-full max-w-[1440px] px-[clamp(16px,4vw,56px)]";
+const sectionSpace = "py-[clamp(80px,12vw,176px)]";
 
-  if (!isLocale(locale)) {
+export default async function Home({ params }: Props) {
+  const { locale: raw } = await params;
+
+  if (!isLocale(raw)) {
     notFound();
   }
 
-  const dict = getDictionary(locale);
-  const home = `/${locale}`;
+  const locale: Locale = raw;
 
   return (
-    <main id="main" className="mx-auto max-w-[1200px] px-[clamp(20px,5vw,72px)]">
-      <section className="pt-8 lg:pt-12" aria-labelledby="hero-name">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-5">
-            <div className="sheet-frame">
-              <div className="border-b border-line p-5 sm:p-6">
-                <h1
-                  id="hero-name"
-                  className="font-serif text-[clamp(2.5rem,5vw,3.9rem)] leading-[0.98] tracking-[-0.03em]"
-                >
-                  {dict.hero.name}
-                </h1>
-                <p className="mt-4 text-ink-soft">
-                  {dict.hero.role} · {dict.hero.location}
-                </p>
-              </div>
+    <>
+      <Hero locale={locale} />
+      <main id="main">
+        <About locale={locale} />
+        <Work locale={locale} />
+        <Process locale={locale} />
+        <Experience locale={locale} />
+        <Contact locale={locale} />
+      </main>
+    </>
+  );
+}
 
-              <dl className="grid grid-cols-1 border-b border-line sm:grid-cols-2 sm:divide-x sm:divide-line">
-                <div className="border-b border-line p-4 sm:border-b-0">
-                  <dt className="label">{dict.hero.datumLabel}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed">{dict.hero.datumValue}</dd>
-                </div>
-                <div className="p-4">
-                  <dt className="label">{dict.hero.sheetLabel}</dt>
-                  <dd className="mt-1 text-sm leading-relaxed">{dict.hero.sheetValue}</dd>
-                </div>
-              </dl>
+function Hero({ locale }: { locale: Locale }) {
+  const { hero } = getDictionary(locale);
 
-              <div className="flex flex-wrap gap-x-5 gap-y-1 p-4">
-                {dict.hero.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    {...(link.external
-                      ? { target: "_blank", rel: "noreferrer" }
-                      : {})}
-                    className="label inline-flex min-h-11 items-center border-b border-line transition-colors duration-200 hover:border-accent hover:text-accent"
-                  >
-                    {link.label}
-                    {link.external ? (
-                      <span aria-hidden="true" className="ml-1">
-                        ↗
-                      </span>
-                    ) : null}
-                  </a>
-                ))}
-              </div>
-            </div>
+  return (
+    <section className="relative isolate overflow-hidden bg-orange text-on-orange">
+      {portrait ? (
+        <Image
+          src={portrait.src}
+          width={portrait.width}
+          height={portrait.height}
+          alt={hero.portraitAlt}
+          priority
+          sizes="(min-width: 768px) 50vw, 100vw"
+          className="absolute inset-y-0 right-0 -z-10 h-full w-full object-cover object-top opacity-90 mix-blend-multiply md:w-[56%]"
+        />
+      ) : null}
 
-            <p className="label mt-4">{dict.hero.availability}</p>
+      <div className={`${frame} flex min-h-dvh flex-col pb-[clamp(20px,3vw,40px)] pt-3`}>
+        <Header locale={locale} tone="orange" />
+
+        <dl className="mt-6 grid grid-cols-2 gap-4 sm:max-w-md">
+          <div>
+            <dt className="label text-on-orange-soft">{hero.basedLabel}</dt>
+            <dd className="mt-1 font-medium">{hero.location}</dd>
+          </div>
+          <div>
+            <dt className="label text-on-orange-soft">{hero.timeLabel}</dt>
+            <dd className="mt-1 font-medium">
+              <LocalTime />
+            </dd>
+          </div>
+        </dl>
+
+        <div className="flex flex-1 flex-col justify-center py-10">
+          <h1 className="display text-[clamp(4.5rem,26vw,14rem)]">
+            <RiseText lines={[hero.firstName, hero.lastName]} />
+          </h1>
+          <p className="display mt-4 text-[clamp(1.5rem,3vw,2.5rem)] leading-none">{hero.role}</p>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-12 md:items-end">
+          <p className="max-w-[36ch] text-lg font-medium leading-snug md:col-span-5">{hero.statement}</p>
+
+          <div className="md:col-span-4 md:col-start-7">
+            <p className="label text-on-orange-soft">{hero.disciplinesLabel}</p>
+            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-medium md:flex-col md:gap-0">
+              {hero.disciplines.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </div>
 
-          <div className="lg:col-span-7">
-            <p className="font-serif text-[clamp(1.6rem,2.7vw,2.5rem)] leading-[1.14] tracking-[-0.02em]">
-              {dict.hero.statement}
-            </p>
+          <a
+            href="mailto:itsfiroos@gmail.com"
+            className="label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2 md:col-span-2 md:col-start-11"
+          >
+            {hero.cta}
+            <Arrow direction="up-right" className="text-accent-on-dark" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
 
-            <div className="mt-8">
-              <Traverse locale={locale} />
-            </div>
+function About({ locale }: { locale: Locale }) {
+  const { about } = getDictionary(locale);
 
-            <p className="label mt-3">{dict.hero.traverseCaption}</p>
-
-            <a
-              href={`${home}/#work`}
-              className="mt-6 inline-flex min-h-11 items-center gap-2 border-b border-accent pb-1 font-serif text-xl text-accent transition-colors duration-200 hover:text-ink"
-            >
-              {dict.hero.primary}
-              <span aria-hidden="true">↓</span>
-            </a>
+  return (
+    <section id="about" aria-labelledby="about-title" className={`bg-paper text-on-light ${sectionSpace}`}>
+      <div className={`${frame} grid gap-10 md:grid-cols-12`}>
+        <h2 id="about-title" className="display text-[clamp(3rem,7vw,6rem)] md:col-span-4">
+          {about.heading}
+        </h2>
+        <div className="md:col-span-8">
+          <p className="text-[clamp(1.6rem,3.2vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.015em]">
+            {about.lead}
+          </p>
+          <div className="mt-12 grid gap-6 text-on-light-soft md:grid-cols-2 md:gap-x-10">
+            {about.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className="max-w-[60ch]">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      <section id="work" className="mt-[clamp(64px,9vw,128px)]" aria-labelledby="work-heading">
-        <div className="border-t border-line-strong pt-4">
-          <h2 id="work-heading" className="text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05]">
-            {dict.work.heading}
+function Work({ locale }: { locale: Locale }) {
+  const dict = getDictionary(locale);
+  const { work, caseStudy } = dict;
+
+  return (
+    <section id="work" aria-labelledby="work-title" className={`bg-ink text-on-dark ${sectionSpace}`}>
+      <div className={frame}>
+        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+          <h2 id="work-title" className="display text-[clamp(4rem,12vw,11rem)] md:col-span-8">
+            {work.heading}
           </h2>
-          <p className="mt-3 max-w-[62ch] text-ink-soft">{dict.work.intro}</p>
+          <p className="max-w-[44ch] text-on-dark-soft md:col-span-4">{work.intro}</p>
         </div>
 
-        <div className="mt-8 border-t border-line-strong">
-          {projects.map((project) => (
-            <StationRow
-              key={project.slug}
-              locale={locale}
-              project={project}
-              copy={dict.details[project.slug]}
-            />
-          ))}
-        </div>
+        <ol className="mt-[clamp(48px,7vw,96px)] flex flex-col gap-6 md:gap-10">
+          {projects.map((project, index) => {
+            const copy = dict.details[project.slug];
+            const href = `/${locale}/work/${project.slug}`;
+            const shots = project.kind === "mobile" ? project.shots.slice(0, 2) : project.shots.slice(0, 1);
 
-        <div className="mt-10">
-          <h3 className="label">{dict.work.earlierHeading}</h3>
-          <ul className="mt-2 grid gap-x-8 sm:grid-cols-2">
-            {dict.work.earlier.map((item) => (
-              <li key={item.name} className="border-b border-line">
+            return (
+              <li
+                key={project.slug}
+                className="stack-card border border-ink-line bg-ink-2"
+                style={{ "--i": index } as React.CSSProperties}
+              >
+                <article className="grid gap-8 p-[clamp(20px,3vw,40px)] md:min-h-[78vh] md:grid-cols-12">
+                  <div className="flex flex-col md:col-span-5">
+                    <p className="label text-accent-on-dark">{copy.category}</p>
+                    <h3 className="display mt-3 text-[clamp(3rem,7vw,6.5rem)]">
+                      <Link href={href} className="transition-colors duration-200 hover:text-accent-on-dark">
+                        {copy.name}
+                      </Link>
+                    </h3>
+                    <p className="mt-5 max-w-[42ch] text-lg">{copy.summary}</p>
+
+                    <dl className="mt-8 grid grid-cols-2 gap-4 border-t border-ink-line pt-4 text-sm">
+                      <div>
+                        <dt className="label text-on-dark-soft">{caseStudy.year}</dt>
+                        <dd className="tabnum mt-1">{project.year}</dd>
+                      </div>
+                      <div>
+                        <dt className="label text-on-dark-soft">{caseStudy.role}</dt>
+                        <dd className="mt-1">{copy.role}</dd>
+                      </div>
+                      <div className="col-span-2">
+                        <dt className="label text-on-dark-soft">{caseStudy.stack}</dt>
+                        <dd className="mt-1 text-on-dark-soft">{project.stack.join(" · ")}</dd>
+                      </div>
+                    </dl>
+
+                    <Link
+                      href={href}
+                      className="label mt-8 inline-flex min-h-12 w-fit items-center gap-4 bg-on-dark px-5 text-ink transition-colors duration-200 hover:bg-orange md:mt-auto"
+                    >
+                      {work.open}
+                      <span className="sr-only">: {copy.name}</span>
+                      <Arrow />
+                    </Link>
+                  </div>
+
+                  <div className="md:col-span-7">
+                    {shots.length === 0 ? (
+                      <DecisionPanel decisions={copy.decisions.map((d) => d.title)} label={caseStudy.decisions} />
+                    ) : project.kind === "mobile" ? (
+                      <div className="grid h-full grid-cols-2 items-center gap-4 bg-ink p-[clamp(12px,3vw,40px)]">
+                        {shots.map((shot, i) => (
+                          <Shot
+                            key={shot.src}
+                            shot={shot}
+                            kind="mobile"
+                            alt={shot.alt[locale]}
+                            className={i === 1 ? "md:translate-y-10" : "md:-translate-y-6"}
+                          />
+                        ))}
+                      </div>
+                    ) : (
+                      <div className="flex h-full items-center bg-ink p-[clamp(12px,3vw,40px)]">
+                        <Shot shot={shots[0]} kind="web" alt={shots[0].alt[locale]} />
+                      </div>
+                    )}
+                  </div>
+                </article>
+              </li>
+            );
+          })}
+        </ol>
+
+        <div className="mt-[clamp(64px,9vw,128px)] grid gap-6 border-t border-ink-line pt-6 md:grid-cols-12">
+          <h3 className="label text-on-dark-soft md:col-span-3">{work.earlierHeading}</h3>
+          <ul className="grid gap-x-10 sm:grid-cols-2 md:col-span-9">
+            {work.earlier.map((item) => (
+              <li key={item.name} className="border-b border-ink-line">
                 <a
                   href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group flex min-h-11 flex-wrap items-baseline gap-x-3 py-3 transition-colors duration-200 hover:text-accent"
+                  className="group flex min-h-14 items-center justify-between gap-4 py-3 transition-colors duration-200 hover:text-accent-on-dark"
                 >
-                  <span className="font-serif text-lg">{item.name}</span>
-                  <span className="text-sm text-ink-soft group-hover:text-accent">
-                    {item.note}
+                  <span>
+                    <span className="font-semibold">{item.name}</span>
+                    <span className="block text-sm text-on-dark-soft">{item.note}</span>
                   </span>
-                  <span aria-hidden="true" className="ml-auto">
-                    ↗
-                  </span>
+                  <Arrow direction="up-right" />
                 </a>
               </li>
             ))}
           </ul>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+}
 
-      <section id="about" className="mt-[clamp(64px,9vw,128px)]" aria-labelledby="about-heading">
-        <div className="grid gap-6 border-t border-line-strong pt-4 lg:grid-cols-12 lg:gap-8">
-          <h2 id="about-heading" className="text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05] lg:col-span-3">
-            {dict.about.heading}
-          </h2>
-          <div className="max-w-[66ch] space-y-5 text-[1.05rem] leading-[1.7] lg:col-span-8 lg:col-start-5">
-            {dict.about.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="experience"
-        className="mt-[clamp(64px,9vw,128px)]"
-        aria-labelledby="experience-heading"
-      >
-        <div className="border-t border-line-strong pt-4">
-          <h2
-            id="experience-heading"
-            className="text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05]"
+function DecisionPanel({ decisions, label }: { decisions: string[]; label: string }) {
+  return (
+    <div className="flex h-full flex-col justify-end bg-ink p-[clamp(20px,3vw,40px)]">
+      <p className="label text-on-dark-soft">{label}</p>
+      <ul className="mt-4">
+        {decisions.map((decision) => (
+          <li
+            key={decision}
+            className="display border-t border-ink-line py-3 text-[clamp(1.75rem,3.4vw,3rem)] leading-[0.95] text-on-dark-soft"
           >
-            {dict.experience.heading}
+            {decision}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function Process({ locale }: { locale: Locale }) {
+  const { process } = getDictionary(locale);
+
+  return (
+    <section id="process" aria-labelledby="process-title" className={`bg-paper text-on-light ${sectionSpace}`}>
+      <div className={frame}>
+        <div className="grid gap-6 md:grid-cols-12 md:items-end">
+          <h2 id="process-title" className="display text-[clamp(4rem,10vw,9rem)] md:col-span-7">
+            {process.heading}
           </h2>
-          <p className="mt-3 text-ink-soft">{dict.experience.intro}</p>
+          <p className="max-w-[40ch] text-on-light-soft md:col-span-4 md:col-start-9">{process.intro}</p>
         </div>
 
-        <ol className="mt-8 border-t border-line-strong">
-          {dict.experience.roles.map((role) => (
+        <ol className="mt-[clamp(48px,7vw,96px)] grid border-t border-on-light md:grid-cols-4">
+          {process.steps.map((step, index) => (
             <li
-              key={`${role.period}-${role.title}`}
-              className="grid gap-2 border-b border-line py-5 md:grid-cols-12 md:gap-4"
+              key={step.title}
+              className="border-b border-paper-line py-6 md:border-b-0 md:border-l md:px-6 md:first:border-l-0 md:first:pl-0"
             >
-              <span className="label tabnum md:col-span-3">{role.period}</span>
-              <div className="md:col-span-8">
-                <h3 className="font-serif text-xl leading-snug">{role.title}</h3>
-                <p className="label mt-1">{role.org}</p>
-                <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-ink-soft">
-                  {role.note}
-                </p>
-              </div>
+              <p className="display tabnum text-[clamp(3rem,5vw,4.5rem)] text-accent-on-light">{index + 1}.</p>
+              <h3 className="display mt-6 text-3xl">{step.title}</h3>
+              <p className="mt-3 max-w-[40ch] text-on-light-soft">{step.body}</p>
             </li>
           ))}
         </ol>
+      </div>
+    </section>
+  );
+}
 
-        <div className="mt-8 grid gap-2 border-b border-line py-5 md:grid-cols-12 md:gap-4">
-          <span className="label tabnum md:col-span-3">{dict.experience.education.period}</span>
+function Experience({ locale }: { locale: Locale }) {
+  const { experience, skills, languages } = getDictionary(locale);
+  const rows = [
+    ...experience.roles,
+    { ...experience.education, educationLabel: experience.educationLabel },
+  ];
+
+  return (
+    <section id="experience" aria-labelledby="experience-title" className={`bg-ink text-on-dark ${sectionSpace}`}>
+      <div className={frame}>
+        <h2 id="experience-title" className="display text-[clamp(4rem,12vw,11rem)]">
+          {experience.heading}
+        </h2>
+
+        <ul className="mt-[clamp(40px,6vw,80px)] border-t border-on-dark">
+          {rows.map((row) => (
+            <li key={row.org} className="grid gap-3 border-b border-ink-line py-6 md:grid-cols-12 md:gap-6">
+              <p className="label tabnum text-on-dark-soft md:col-span-3 md:pt-2">
+                {"educationLabel" in row ? `${row.educationLabel} · ` : null}
+                {row.period}
+              </p>
+              <div className="md:col-span-4">
+                <h3 className="display text-[clamp(1.75rem,3vw,2.5rem)] leading-[0.95]">{row.title}</h3>
+                <p className="mt-1 text-accent-on-dark">{row.org}</p>
+              </div>
+              {row.note ? <p className="max-w-[60ch] text-on-dark-soft md:col-span-5">{row.note}</p> : null}
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-[clamp(64px,9vw,128px)] grid gap-12 md:grid-cols-12">
           <div className="md:col-span-8">
-            <p className="label">{dict.experience.educationLabel}</p>
-            <h3 className="mt-1 font-serif text-xl leading-snug">
-              {dict.experience.education.title}
-            </h3>
-            <p className="label mt-1">{dict.experience.education.org}</p>
-            <p className="mt-2 max-w-[62ch] text-sm leading-relaxed text-ink-soft">
-              {dict.experience.education.note}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" className="mt-[clamp(64px,9vw,128px)]" aria-labelledby="skills-heading">
-        <div className="grid gap-6 border-t border-line-strong pt-4 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-3">
-            <h2 id="skills-heading" className="text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05]">
-              {dict.skills.heading}
-            </h2>
-            <p className="mt-3 text-sm text-ink-soft">{dict.skills.intro}</p>
-          </div>
-
-          <dl className="grid gap-x-10 gap-y-6 sm:grid-cols-2 lg:col-span-8 lg:col-start-5">
-            {dict.skills.groups.map((group) => (
-              <div key={group.label} className="border-t border-line pt-2">
-                <dt className="label">{group.label}</dt>
-                <dd className="mt-2 text-sm leading-relaxed">
-                  {group.items.join(" · ")}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section
-        id="languages"
-        className="mt-[clamp(64px,9vw,128px)]"
-        aria-labelledby="languages-heading"
-      >
-        <div className="grid gap-6 border-t border-line-strong pt-4 lg:grid-cols-12 lg:gap-8">
-          <h2
-            id="languages-heading"
-            className="text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05] lg:col-span-3"
-          >
-            {dict.languages.heading}
-          </h2>
-          <dl className="grid gap-x-10 gap-y-3 sm:grid-cols-3 lg:col-span-8 lg:col-start-5">
-            {dict.languages.items.map((language) => (
-              <div key={language.name} className="flex items-baseline justify-between gap-4 border-t border-line pt-2">
-                <dt className="font-serif text-lg">{language.name}</dt>
-                <dd className="label">{language.level}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
-
-      <section
-        id="contact"
-        className="mt-[clamp(64px,9vw,128px)]"
-        aria-labelledby="contact-heading"
-      >
-        <div className="grid gap-6 border-t border-line-strong pt-4 lg:grid-cols-12 lg:gap-8">
-          <h2
-            id="contact-heading"
-            className="text-[clamp(1.9rem,3.4vw,3rem)] leading-[1.05] lg:col-span-3"
-          >
-            {dict.contact.heading}
-          </h2>
-
-          <div className="lg:col-span-8 lg:col-start-5">
-            <p className="max-w-[60ch] text-ink-soft">{dict.contact.body}</p>
-
-            <a
-              href={`mailto:${dict.contact.emailLabel}`}
-              className="mt-6 inline-block font-serif text-[clamp(1.5rem,4vw,2.8rem)] leading-tight tracking-[-0.02em] underline decoration-1 underline-offset-[0.2em] transition-colors duration-200 hover:text-accent"
-            >
-              {dict.contact.emailLabel}
-            </a>
-
-            <div className="mt-6 flex flex-wrap gap-x-6">
-              {dict.contact.links.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="label inline-flex min-h-11 items-center border-b border-line transition-colors duration-200 hover:border-accent hover:text-accent"
-                >
-                  {link.label}
-                  <span aria-hidden="true" className="ml-1">
-                    ↗
-                  </span>
-                </a>
+            <h2 className="display text-[clamp(2.5rem,5vw,4rem)]">{skills.heading}</h2>
+            <dl className="mt-6 grid gap-6 sm:grid-cols-2">
+              {skills.groups.map((group) => (
+                <div key={group.label} className="border-t border-ink-line pt-3">
+                  <dt className="label text-on-dark-soft">{group.label}</dt>
+                  <dd className="mt-2">{group.items.join(", ")}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
+          </div>
+          <div className="md:col-span-4">
+            <h2 className="display text-[clamp(2.5rem,5vw,4rem)]">{languages.heading}</h2>
+            <dl className="mt-6">
+              {languages.items.map((item) => (
+                <div key={item.name} className="flex items-baseline justify-between gap-4 border-t border-ink-line py-3">
+                  <dt>{item.name}</dt>
+                  <dd className="label text-on-dark-soft">{item.level}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+  );
+}
+
+function Contact({ locale }: { locale: Locale }) {
+  const { contact, hero } = getDictionary(locale);
+
+  return (
+    <section id="contact" aria-labelledby="contact-title" className="bg-orange text-on-orange">
+      <div className={`${frame} ${sectionSpace}`}>
+        <h2 id="contact-title" className="display text-[clamp(4.5rem,15vw,15rem)]">
+          {contact.heading.map((line) => (
+            <span key={line} className="block">
+              {line}
+            </span>
+          ))}
+        </h2>
+
+        <div className="mt-[clamp(40px,6vw,80px)] grid gap-10 md:grid-cols-12 md:items-end">
+          <p className="max-w-[44ch] text-lg font-medium md:col-span-5">{contact.body}</p>
+
+          <div className="md:col-span-7 md:justify-self-end">
+            <a
+              href={`mailto:${contact.email}`}
+              className="group inline-flex max-w-full items-center gap-4 border-b-2 border-on-orange pb-2 text-[clamp(1.5rem,4vw,3.25rem)] font-semibold leading-none tracking-[-0.02em] transition-colors duration-200 hover:border-ink hover:text-ink"
+            >
+              <span className="break-all">{contact.email}</span>
+              <Arrow direction="up-right" className="transition-transform duration-200 group-hover:translate-x-1" />
+            </a>
+            <ul className="mt-6 flex flex-wrap gap-6">
+              {contact.links.map((link) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="label inline-flex min-h-11 items-center gap-2 underline decoration-on-orange-soft underline-offset-4 transition-colors duration-200 hover:decoration-on-orange"
+                  >
+                    {link.label}
+                    <Arrow direction="up-right" />
+                  </a>
+                </li>
+              ))}
+              <li className="label inline-flex min-h-11 items-center text-on-orange-soft">
+                {hero.location}
+                {" · "}
+                <LocalTime />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

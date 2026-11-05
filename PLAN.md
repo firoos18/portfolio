@@ -17,32 +17,26 @@ Turn a cold visit into a qualified conversation. A visitor should understand the
 ```
 /                     language choice → /en
 /en                   home
-/en/work/e-signature  case study
-/en/work/tempo
+/en/work/infinity-gym  case study
 /en/work/dms-platform
-/en/work/bericuan
-/en/work/homelab-gitops
+/en/work/tempo
 /id/...               same routes, Indonesian
 ```
 
-Home sections, in order:
+Home sections, in order (redesign, Nov 2026):
 
-1. **Title block / hero** — name, role, location, availability, primary links, traverse diagram of the five stations.
-2. **Selected work** — five ruled sheets: station code, name, one-line problem, stack, year, case study link.
-3. **About** — three short paragraphs: current platform work, mobile roots, the rest of the stack.
-4. **Experience** — three dated roles plus education.
-5. **Skills** — grouped by evidence: Interface, API & data, Infrastructure, Practice.
-6. **Languages** — Indonesian native, English limited working, German A1.
-7. **Contact** — email, GitHub, LinkedIn.
+1. **Hero** (orange) — name at poster scale, role, based-in, live local time, statement, disciplines, "Email me". Portrait slot, empty until the owner provides a photo.
+2. **About** (paper) — one large lead sentence, three short paragraphs.
+3. **Selected work** (ink) — three stacked sticky cards with real screenshots: Infinity Gym, DMS Platform, Tempo. Earlier mobile work as a compact list.
+4. **How I work** (paper) — four steps: Model, Contract, Interface, Ship.
+5. **Experience** (ink) — three dated roles plus education, then skills and languages.
+6. **Contact** (orange) — "Let's work together", email, GitHub, LinkedIn.
 
 Case study template:
 
-- Sheet header: station code, project name, period, role, stack.
-- Problem and constraints.
-- System: how the pieces connect.
-- Decisions worth defending: three to five, each with the tradeoff.
-- Evidence: repository link or honest note, running status.
-- Previous / next station.
+- Header: name, summary, year, role, type, stack.
+- Screenshot band, then problem, constraints, system, decisions with tradeoffs, remaining screens, status and evidence.
+- "Next project" band.
 
 ## 4. Content inventory
 
@@ -53,11 +47,10 @@ Case study template:
 | Berijalan Technocenter, Full Stack Developer, Feb 2025 — Present | Confirmed | LinkedIn export |
 | IDCamp, Oct 2023 — Apr 2024 | Confirmed | LinkedIn export |
 | Bangkit Academy, Feb 2023 — Jul 2023 | Confirmed | LinkedIn export |
-| E-signature platform case study | Confirmed | LinkedIn export |
+| E-signature platform | Confirmed; covered in Experience, no longer a case study | LinkedIn export |
 | Tempo case study | Confirmed | `~/Documents/Personal/tempo` |
 | DMS Platform case study | Confirmed | `~/Documents/Personal/DMS` |
-| Bericuan case study | Confirmed | `~/Documents/Personal/rsi-bot` |
-| Homelab GitOps case study | Confirmed | `~/Documents/Personal/homelab-gitops` |
+| Infinity Gym case study | Confirmed from repos; owner to confirm role on the member app and client relationship | `~/Documents/Infinity` (drunkcode-dev org) |
 | Earlier mobile work (SILAB, Teman Tanam, Sehatin, Rentzy) | Confirmed | old `works.json`, GitHub |
 | German A1 | Confirmed by request | user |
 | Current CV file | **Absent**; link removed until a current file exists | — |
@@ -113,15 +106,11 @@ Do not invent metrics, clients, or outcomes. Bericuan is testnet with one live s
 - Photography: no portrait; the design works without one. A portrait can be added later as a tipped-in plate.
 - Custom domain and deploy target: not chosen.
 
-## 8. Verification run
+## 8. Verification run (redesign, 2026-11-05)
 
-- `npm run lint` passes; `npm run build` emits 16 static routes into `out/`.
-- Served `out/` on `:4173`; `/en/`, `/id/`, five EN case studies, and `/id/work/e-signature/` return 200.
-- `/` meta-refreshes to `/en/`; `/en` language switch lands on `/id/` and keeps the case-study route.
-- No horizontal overflow at 320, 390, 768, 1024, or 1440 on home or case-study pages.
-- Contrast audit over rendered text: 0 failures at AA thresholds.
-- Keyboard: skip link appears on first Tab, focus ring 2px, station rows and prev/next links navigate.
-- Reduced motion: traverse animation `none`, dash offset `0`, scroll behavior `auto`.
-- `impeccable detect --json` returns no findings; no em dash remains in rendered HTML.
-- Click-through: nav anchors, station row, next-station link, locale switch, and external GitHub links verified.
-
+- `npx tsc --noEmit` and `npm run lint` pass; `npm run build` emits 12 static routes (2 homes, 6 case studies, redirect, 404, icon).
+- Served `out/` on `:4173`; home and every case study render in EN and ID.
+- No horizontal overflow at 320 or 390 on any of the 8 locale routes.
+- Contrast of every text/ground pairing ≥ 4.8:1 (see DESIGN.md).
+- Skip link is first in tab order; mobile menu opens without JS; language switch keeps the route.
+- `impeccable detect --json app components` returns no findings.

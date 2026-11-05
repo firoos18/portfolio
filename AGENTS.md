@@ -9,6 +9,7 @@ Project guide for the personal portfolio of Naufal Firoos Asy Syarif.
 - `npm run dev` — local dev at http://localhost:3000
 - `npm run build` — produces `out/`
 - `npm run start` — serve the exported `out/` locally
+- TypeScript stays on 6.x until typescript-eslint supports TypeScript 7.
 - `npm run lint` — `tsc --noEmit` plus Next lint when configured
 
 ## Structure
@@ -16,7 +17,7 @@ Project guide for the personal portfolio of Naufal Firoos Asy Syarif.
 ```
 app/
   globals.css             tokens, base styles, motion
-  icon.svg                placeholder survey mark
+  icon.svg                placeholder mark
   (redirect)/
     layout.tsx            root layout for the language chooser
     page.tsx              meta refresh to /en
@@ -27,7 +28,7 @@ app/
       work/[slug]/page.tsx  case study
 components/               shared UI (server components unless marked "use client")
 content/                  typed dictionaries: profile, projects, experience, skills
-public/                   empty until real assets arrive
+public/projects/<slug>/   real project screenshots (WebP); portrait goes in public/ and is set in content/types.ts
 PRODUCT.md                durable product truth (impeccable)
 DESIGN.md                 visual system and direction contract
 PLAN.md                   scope, phases, acceptance criteria
@@ -53,10 +54,11 @@ For any interface change:
 ## Design constraints
 
 - Mode: Experience. Work leads; chrome recedes.
-- Visual world: surveyor's field book (see `DESIGN.md`). Keep it. Do not add a second visual language.
-- 1px rules, square corners, no shadows; depth comes from rules.
-- Light theme only in v1; `color-scheme: light`. No theme toggle.
-- Motion: one authored moment (traverse draw). Everything else is instant or a 200ms state change, opacity/transform only. Honor `prefers-reduced-motion`. Use the installed `animation-micro-interaction-pack` for new motion; do not add a Framer Motion dependency for what CSS already does.
+- Visual world: poster-scale type on orange / ink / paper bands, inspired by the "Matteo" template on jiro.build (see `DESIGN.md`). Keep it. Do not add a second visual language.
+- 1px rules, square corners, no shadows, no gradients; depth comes from the band colours.
+- One fixed palette, no theme toggle; `color-scheme: light` for form controls.
+- Motion: one authored moment (hero letter rise). Sticky work cards are layout, not animation. Everything else is instant or a 200ms state change. Honor `prefers-reduced-motion`. Do not add a Framer Motion dependency for what CSS already does.
+- No testimonials, awards, or statistics, even though the reference template has them.
 - WCAG 2.2 AA. Body text ≥ 4.5:1, large text ≥ 3:1. Keyboard reachable, visible focus, semantic landmarks.
 
 ## Bilingual routing

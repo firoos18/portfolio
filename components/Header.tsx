@@ -2,44 +2,65 @@ import Link from "next/link";
 import { getDictionary, type Locale } from "@/content";
 import { LocaleSwitch } from "./LocaleSwitch";
 
-type Props = { locale: Locale };
+type Props = {
+  locale: Locale;
+  tone: "orange" | "dark";
+};
 
-export function Header({ locale }: Props) {
+export function Header({ locale, tone }: Props) {
   const dict = getDictionary(locale);
   const home = `/${locale}`;
+  const items = [
+    { href: `${home}/#work`, label: dict.nav.work },
+    { href: `${home}/#about`, label: dict.nav.about },
+    { href: `${home}/#process`, label: dict.nav.process },
+    { href: `${home}/#experience`, label: dict.nav.experience },
+    { href: `${home}/#contact`, label: dict.nav.contact },
+  ];
+  const soft = tone === "orange" ? "text-on-orange-soft" : "text-on-dark-soft";
+  const hover = tone === "orange" ? "hover:text-on-orange" : "hover:text-accent-on-dark";
+  const panel = tone === "orange" ? "bg-ink text-on-dark" : "bg-on-dark text-ink";
 
   return (
-    <header className="mx-auto w-full max-w-[1200px] px-[clamp(20px,5vw,72px)] pt-4">
-      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-line-strong pb-1">
-        <Link
-          href={home}
-          className="inline-flex min-h-11 items-center font-serif text-lg transition-colors duration-200 hover:text-accent"
-        >
-          Naufal Firoos
-        </Link>
+    <header className="relative z-20 flex items-center justify-between gap-6">
+      <Link href={home} className="display inline-flex min-h-11 items-center text-2xl">
+        {dict.hero.firstName} {dict.hero.lastName}
+      </Link>
 
+      <nav aria-label={dict.nav.primary} className="hidden items-center gap-6 md:flex">
+        {items.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className={`label inline-flex min-h-11 items-center transition-colors duration-200 ${soft} ${hover}`}
+          >
+            {item.label}
+          </a>
+        ))}
+        <LocaleSwitch locale={locale} label={dict.nav.language} tone={tone} />
+      </nav>
+
+      <details className="group relative md:hidden">
+        <summary
+          className={`label flex min-h-11 cursor-pointer list-none items-center px-4 [&::-webkit-details-marker]:hidden ${panel}`}
+        >
+          <span className="group-open:hidden">{dict.nav.menu}</span>
+          <span className="hidden group-open:inline">{dict.nav.close}</span>
+        </summary>
         <nav
           aria-label={dict.nav.primary}
-          className="order-3 flex w-full flex-wrap items-center gap-3 border-t border-line pt-1 sm:order-2 sm:w-auto sm:gap-6 sm:border-t-0 sm:pt-0"
+          className={`absolute right-0 top-full mt-2 flex w-56 flex-col p-4 ${panel}`}
         >
-          <a href={`${home}/#work`} className="label inline-flex min-h-11 items-center transition-colors duration-200 hover:text-accent">
-            {dict.nav.work}
-          </a>
-          <a href={`${home}/#about`} className="label inline-flex min-h-11 items-center transition-colors duration-200 hover:text-accent">
-            {dict.nav.about}
-          </a>
-          <a href={`${home}/#experience`} className="label inline-flex min-h-11 items-center transition-colors duration-200 hover:text-accent">
-            {dict.nav.experience}
-          </a>
-          <a href={`${home}/#contact`} className="label inline-flex min-h-11 items-center transition-colors duration-200 hover:text-accent">
-            {dict.nav.contact}
-          </a>
+          {items.map((item) => (
+            <a key={item.href} href={item.href} className="display flex min-h-11 items-center text-3xl">
+              {item.label}
+            </a>
+          ))}
+          <div className="mt-3 border-t border-current/20 pt-2">
+            <LocaleSwitch locale={locale} label={dict.nav.language} tone={tone === "orange" ? "dark" : "light"} />
+          </div>
         </nav>
-
-        <div className="order-2 sm:order-3">
-          <LocaleSwitch locale={locale} label={dict.nav.language} />
-        </div>
-      </div>
+      </details>
     </header>
   );
 }

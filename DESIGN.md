@@ -1,110 +1,86 @@
 # DESIGN
 
-Visual system and direction contract for the portfolio. `PRODUCT.md` owns product truth; this file owns durable visual decisions. Surface: home and case studies.
+Visual system and direction contract for the portfolio. `PRODUCT.md` owns product truth; this file owns durable visual decisions. Surfaces: home and case studies.
 
 ## Design Read
 
-- Audience: hiring managers and engineering leads screening a full-stack engineer, plus clients checking whether one person can carry a system end to end.
-- Mechanism: five shipped systems plotted as one traverse, each with constraints and decisions, not a gallery of screenshots.
-- Cultural home: the surveyor's field book. Measured sheets, station codes, a title block, one traverse line, annotations in the margin.
-- Scene: a desk in daylight, a printed sheet next to a browser tab. Light ground, ink, one survey-orange mark.
+- Audience: hiring managers, engineering leads, and clients deciding in under two minutes whether one person can carry a system end to end.
+- Mechanism: a loud, poster-scale first impression, then three real systems shown with their actual screens, constraints, and decisions.
+- Reference: the owner's chosen inspiration, the "Matteo" motion-artist portfolio template on jiro.build (orange field, giant condensed uppercase type, dark and light bands, stacked work cards, big closing call to action). This site borrows the structure and attitude, not the template's assets, copy, or code.
+- Scene: a recruiter's laptop or phone, between other tabs. The page has to be recognisable at a glance and readable at speed.
 
-Dials: **ENERGY 4/5** (confident, not loud), **RHYTHM 4/5** (title block, ruled rows, two-column prose, tables, inline lists), **MOTION 3/5** (one authored traverse draw, quiet state changes).
+Dials: **ENERGY 5/5** (poster-scale type, saturated orange), **RHYTHM 4/5** (orange / paper / ink bands alternate), **MOTION 2/5** (one authored letter rise, sticky card stack, 200ms state changes).
 
 ## Direction contract
 
-**THESIS.** The portfolio is a surveyor's field book: the work is plotted, measured, and annotated, and the visitor reads the traverse of a career rather than a stack of cards. It refuses the category default of a dark hero, a logo wall, and identical project cards.
+**THESIS.** Big type, one hot colour, real work. The name fills the first screen; the work is shown as actual screenshots in stacked cards; everything else is set small and precise so the display type can be loud.
 
-**OWN-WORLD.** Lichen field paper, ink, and one burnt survey-orange used only for the active station and measured marks. 1px rules and double rules form the sheet; a title block carries the owner's details the way a survey sheet carries its datum. Source Serif 4 sets names and prose; Archivo sets labels, navigation, and tabular data. No shadows, no rounded cards, no textures or faux paper.
+**OWN-WORLD.** Three grounds: orange `#EE5F28` for the hero, contact, and "next project" bands; ink `#0D0E10` for work, experience, and decisions; warm paper `#ECE8E2` for reading sections. Big Shoulders (variable, opsz) sets every display line in uppercase at weight 800; Archivo sets body, labels, and data. Square corners, 1px rules, no shadows, no gradients, no glass.
 
-**STORY.** The visitor sees five stations on a traverse, each a shipped system, then opens the sheet for the one that matches their need. They leave knowing the range — interface, API, data, infrastructure, mobile roots — and with a direct way to make contact.
+**FIRST VIEWPORT.** Orange field. Top: name mark, navigation, language switch. Below it: "Based in" and a live local clock (WIB). Centre: first and last name at poster scale with the letter rise, role underneath. Bottom row: one-sentence statement, disciplines list, and an "Email me" block in ink. A portrait sits behind the type on the right when `portrait` is set in `content/types.ts`; until then the hero is type-only.
 
-**FIRST VIEWPORT.** A full-height survey sheet. Top-left title block: name, role, location, datum line, and contact links. Centre-right: the traverse with five labelled stations and measured segments. A short serif statement sits beside it, not as a centred hero. The primary action opens the work index; every station is named in the first viewport, so the work leads before any scrolling.
+**STORY.** Hero → About (paper) → Selected work (ink, stacked sticky cards with screenshots) → How I work (paper, four numbered steps) → Experience, skills, languages (ink) → "Let's work together" (orange) → footer.
 
-**FORM.** Code-led, not comp-led. The world is carried by layout, rules, type, and one SVG traverse; no painted poster, no image dependency. Seed: `seed:525959a689b0164e`. Risk: a survey motif can become costume; every mark must encode a real project, date, or link.
+**FORM.** Code-led. Imagery is limited to real screenshots of the owner's projects and, later, the owner's own portrait. No stock photography, no invented testimonials, awards, or statistics, even though the reference template has them.
 
 ## Palette
 
 | Token | Value | Use |
 |---|---|---|
-| `--paper` | `#E2E3D6` | Page ground |
-| `--paper-2` | `#D5D7C7` | Hover wash, inset fields |
-| `--ink` | `#1B211C` | Headings, body |
-| `--ink-soft` | `#4A544A` | Secondary text, metadata |
-| `--line` | `#9BA492` | Rules, decorative only, never body text |
-| `--line-strong` | `#6F7A6D` | Frame and table rules where contrast matters |
-| `--accent` | `#A93B17` | Active station, focus, links, measured marks |
-| `--accent-ink` | `#FFF8F0` | Text on accent fills (rare) |
+| `--ink` | `#0D0E10` | Dark ground, text on orange and paper |
+| `--ink-2` | `#18191C` | Raised dark surface (work cards) |
+| `--ink-line` | `#34363B` | Rules on dark, decorative only |
+| `--paper` | `#ECE8E2` | Light reading ground |
+| `--paper-line` | `#B9B1A6` | Rules on paper, decorative only |
+| `--orange` | `#EE5F28` | Hero, contact, next-project bands; hover fill |
+| `--on-dark` / `--on-dark-soft` | `#F3EFE9` / `#A39D95` | Text on ink |
+| `--on-light` / `--on-light-soft` | `#0D0E10` / `#5A544D` | Text on paper |
+| `--on-orange` / `--on-orange-soft` | `#0D0E10` / `#3B1607` | Text on orange |
+| `--accent-on-dark` | `#EE5F28` | Labels, links, numerals on ink |
+| `--accent-on-light` | `#AD3C0C` | Numerals and accents on paper (orange fails there) |
 
-Contrast: ink/paper 12.8:1, ink-soft/paper 6.0:1, accent/paper 4.9:1. Line colors are never used for text.
+Measured contrast: on-dark/ink 16.9, on-dark-soft/ink 7.2, on-dark-soft/ink-2 6.5, accent/ink 5.8, accent/ink-2 5.3, on-light/paper 15.8, on-light-soft/paper 6.1, accent-on-light/paper 5.0, on-orange/orange 5.8, on-orange-soft/orange 4.8. Line tokens are never used for text.
 
 ## Type
 
-- Display and prose: **Source Serif 4** (400, 600, italic 400). Loaded via `next/font/google`, subsets `latin`, `latin-ext`.
-- Labels, navigation, data: **Archivo** (400, 500, 600). Uppercase labels at `.75rem`, tracking `.08em`.
-- Scale:
-  - display `clamp(2.75rem, 6.4vw, 5.5rem)` / line-height `.96` / tracking `-0.03em`
-  - h2 `clamp(1.9rem, 3.4vw, 3rem)` / `1.05`
-  - h3 `1.35rem` / `1.25`
-  - body `1.0625rem` / `1.65`, measure `66ch`
-  - small `0.875rem` / `1.5`
-- Numerals: `font-variant-numeric: tabular-nums` for dates, station codes, measurements.
-- No monospace anywhere except literal code identifiers in case studies.
+- Display: **Big Shoulders** variable, `opsz 72`, weight 800, uppercase, line-height `.84`. Class `.display`.
+- Text: **Archivo** 400 / 500 / 600. Body `1.0625rem / 1.6`, measure ≤ 60ch.
+- Labels: Archivo 600, `.75rem`, tracking `.08em`, uppercase. Class `.label`. Labels name data fields and lists; they never sit above a heading as an eyebrow.
+- Scale (display): hero name `clamp(4.5rem, 26vw, 14rem)`; section titles `clamp(4rem, 12vw, 11rem)`; case-study title `clamp(4.5rem, 15vw, 14rem)`; contact `clamp(4.5rem, 15vw, 15rem)`; project names in cards `clamp(3rem, 7vw, 6.5rem)`. Poster-scale type is the brief, so it overrides the usual 6rem ceiling.
+- Numerals: `tabular-nums` for dates, years, and step numbers.
 
-## Grid and spacing
+## Layout
 
-- Max width `1200px`; outer margin `clamp(20px, 5vw, 72px)`.
-- 12 columns, `24px` gutter; content may span 7–9 columns, annotations sit in the outer 3.
-- Spacing scale `4, 8, 12, 16, 24, 32, 48, 64, 96, 128`.
-- More space above a heading than below. Sections separated by a `1px` rule plus `clamp(64px, 9vw, 128px)` padding.
+- Max width `1440px`; side padding `clamp(16px, 4vw, 56px)`; 12-column grid from `md`.
+- Section padding `clamp(80px, 12vw, 176px)`. More space above a heading than below.
+- Bands run full-bleed; content sits in the frame.
 
 ## Components
 
-- **Title block** — `1px` frame, internal rules, fields: name, role, location, datum, sheet. No rounded corners.
-- **Station marker** — 9px ring with crosshair; accent for the current station. Always paired with a text label.
-- **Traverse** — single SVG path connecting five stations with measured segments. Decorative (`aria-hidden`); the real navigation is the station list.
-- **Station row** — full-width ruled row: code, name, one-line problem, stack, year, arrow. Hover washes `--paper-2` and thickens the bottom rule to `2px` accent. No card container, no shadow.
-- **Experience table** — ruled rows; dates in Archivo tabular, role in serif, organization in soft ink.
-- **Skill ledger** — definition list with four groups; comma-separated, not logo tiles.
-- **Language switch** — `EN / ID` text links; current locale `aria-current="page"`, other locale in soft ink.
-- **Primary action** — text link with `→`, accent underline offset `0.25em`. No filled pill buttons.
-- **Footer** — repeat of the title block fields plus year and source link.
-
-## States
-
-- Hover: `--paper-2` wash or accent underline; `200ms` ease-out.
-- Focus-visible: `2px` accent ring, `3px` offset, on all links and the skip link.
-- Active/pressed: accent text, no transform.
-- Selection: accent background, `--accent-ink` text.
-- Caret and scrollbar: ink on paper; themed where practical.
+- **Header** — name mark, inline nav and `EN / ID` from `md`; below `md` a `<details>` menu (no JS) with a solid panel. Tone follows the band it sits on (`orange` on home, `dark` on case studies).
+- **Hero clock** — `LocalTime` client component, Asia/Jakarta, renders `--:--:--` until hydrated.
+- **Primary action** — solid rectangle (ink on orange, on-dark on ink), uppercase label, authored arrow SVG. No pills, no radius.
+- **Work card** — `li.stack-card` with `--i` index; sticky from `md` so cards stack while scrolling, normal flow on phones. Left: category label, name, summary, year/role/stack, "Read case study". Right: two phone screens (mobile projects), one desktop window (web), or the decision titles when no screenshots exist.
+- **Shot** — `next/image`, unoptimised, phone `390/844`, desktop `16/10`, `object-top`.
+- **Process** — four steps, numbered because the order is the content.
+- **Experience** — ruled rows: period, role (display), org (accent), note.
+- **Case study** — dark header with meta row, orange screenshot band, paper reading section (problem, constraints, system), dark decisions list, remaining screens, status and evidence, orange "Next project" band.
+- **Arrow** — one authored SVG, rotated for direction. No Unicode arrows.
 
 ## Motion
 
-One authored moment: the traverse path draws once on first load (`900ms`, `cubic-bezier(.16,1,.3,1)`), stations fade in with a `90ms` stagger. Under `prefers-reduced-motion: reduce`, everything renders in its final state and smooth scrolling is off. All other transitions are `200ms` state changes; only opacity and transform animate. Motion follows `animation-micro-interaction-pack`: purpose, GPU-safe properties, reduced-motion fallback.
+- One authored moment: the hero name's letters rise out of a clipped line on load (`.rise-letter`, 900ms, expo-out, 45ms stagger). Screen readers get the plain name.
+- Sticky card stacking is layout, not animation.
+- Everything else: colour or transform changes at 200ms.
+- `prefers-reduced-motion`: letters render in place, smooth scrolling off, transitions near-instant.
 
-## Responsive
+## States
 
-- `≥1024px`: title block left, traverse right, margin annotations visible.
-- `768–1023px`: single column; traverse above the station rows; annotations fold into the body.
-- `<768px`: title block full width, statement, then a vertical route list. The SVG is hidden; the route list carries the same labels and links. No horizontal scroll at `320px`.
-- Touch targets ≥ `44px` for rows and links.
+- Focus-visible: 2px `currentColor` outline, 3px offset, on every interactive element; skip link first in tab order.
+- Hover: colour change or orange fill on dark buttons; no transforms on text.
+- Selection: orange background, ink text. Caret orange. Scrollbar themed from on-dark-soft over ink.
 
-## Purpose notes
+## Assets
 
-- Uppercase tracked labels are the sheet's metadata voice, not decoration: they carry station codes, dates, and stack names.
-- Arrows are wayfinding, not ornament. `→` marks a traversable row, `↗` marks an external destination, `←`/`→` move between stations, `↓` moves to the work index. They are the only repeated glyph and always pair with a real link.
-- `app/icon.svg` is a placeholder survey mark. Replace it with a personal mark before launch; it is not a finished identity asset.
-- No background grid: the traverse and rules carry the survey language, so graph paper would be redundant texture.
-
-## Rules
-
-- No eyebrows/kickers above headings.
-- No gradient text, decorative glass, glow, or icon+heading+text card grids.
-- No shadows; depth comes from rules.
-- No section numbers unless the sequence is meaningful; station codes are content and stay.
-- No fake paper texture, torn edges, compass roses, or stock surveyor imagery.
-- Do not add a portrait as a background; if one arrives, treat it as a tipped-in plate with a caption.
-
-## Content voice
-
-First person, declarative, no adjectives that cannot be evidenced. Case studies state the problem, the constraints, the decisions and their tradeoffs, and what is deliberately unfinished. Labels name their action.
+- `public/projects/<slug>/*.webp` — real screenshots, each under 60 KB. Infinity Gym: member app (captured from the mocked local build at 390×844 @2x). DMS: CMS screens from `dms-platform-cms/reports/rebuild-shots`. Tempo: none yet.
+- Portrait: not provided yet. Set `portrait` in `content/types.ts` when it arrives.

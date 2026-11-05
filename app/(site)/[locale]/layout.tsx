@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Archivo, Source_Serif_4 } from "next/font/google";
+import { Archivo, Big_Shoulders } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, locales } from "@/content";
-import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import "../../globals.css";
 
-const serif = Source_Serif_4({
-  variable: "--font-source-serif",
+const display = Big_Shoulders({
+  variable: "--font-big-shoulders",
   subsets: ["latin"],
-  weight: ["400", "600"],
-  style: ["normal", "italic"],
+  weight: "variable",
+  axes: ["opsz"],
+  adjustFontFallback: false,
   display: "swap",
 });
 
@@ -68,13 +68,12 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} className={`${serif.variable} ${sans.variable}`}>
+    <html lang={locale} className={`${display.variable} ${sans.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <a href="#main" className="skip-link">
           {getDictionary(locale).nav.skip}
         </a>
         <div id="top" />
-        <Header locale={locale} />
         <div className="flex-1">{children}</div>
         <Footer locale={locale} />
       </body>

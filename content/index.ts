@@ -8,7 +8,7 @@ export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];
 }
 
-export { projects } from "./types";
+export { portrait, projects } from "./types";
 export {
   defaultLocale,
   isLocale,
@@ -16,4 +16,4 @@ export {
   locales,
   otherLocale,
 } from "./types";
-export type { CaseStudyCopy, Dictionary, Locale, ProjectFacts } from "./types";
+export type { CaseStudyCopy, Dictionary, Locale, ProjectFacts, ProjectShot } from "./types";
