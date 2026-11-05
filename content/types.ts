@@ -234,7 +234,7 @@ export type Dictionary = {
     metaTitle: string;
     metaDescription: string;
   };
-  footer: { note: string; backToTop: string };
+  footer: { backToTop: string };
   caseStudy: {
     back: string;
     problem: string;

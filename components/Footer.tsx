@@ -10,7 +10,7 @@ export function Footer({ locale }: Props) {
     <footer className="bg-ink text-on-dark-soft">
       <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-2 px-[clamp(16px,4vw,56px)] py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {year} {dict.hero.name}. {dict.footer.note}
+          © {year} {dict.hero.name}
         </p>
         <a
           href="#top"

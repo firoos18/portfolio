@@ -230,7 +230,6 @@ export const id: Dictionary = {
     metaDescription: "Artikel Naufal Firoos tentang membangun sistem full-stack: .NET, Next.js, PostgreSQL, infrastruktur, dan me-review kode yang ditulis AI.",
   },
   footer: {
-    note: "Dibangun dengan Next.js. Konten ada di version control.",
     backToTop: "Kembali ke atas",
   },
   caseStudy: {

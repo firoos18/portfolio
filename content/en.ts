@@ -230,7 +230,6 @@ export const en: Dictionary = {
     metaDescription: "Articles by Naufal Firoos on building full-stack systems: .NET, Next.js, PostgreSQL, infrastructure, and reviewing AI-written code.",
   },
   footer: {
-    note: "Built with Next.js. Content lives in version control.",
     backToTop: "Back to top",
   },
   caseStudy: {
