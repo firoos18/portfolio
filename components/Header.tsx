@@ -4,7 +4,7 @@ import { LocaleSwitch } from "./LocaleSwitch";
 
 type Props = {
   locale: Locale;
-  tone: "orange" | "dark";
+  tone: "volt" | "dark";
 };
 
 export function Header({ locale, tone }: Props) {
@@ -17,9 +17,9 @@ export function Header({ locale, tone }: Props) {
     { href: `${home}/#experience`, label: dict.nav.experience },
     { href: `${home}/#contact`, label: dict.nav.contact },
   ];
-  const soft = tone === "orange" ? "text-on-orange-soft" : "text-on-dark-soft";
-  const hover = tone === "orange" ? "hover:text-on-orange" : "hover:text-accent-on-dark";
-  const panel = tone === "orange" ? "bg-ink text-on-dark" : "bg-on-dark text-ink";
+  const soft = tone === "volt" ? "text-on-volt-soft" : "text-on-dark-soft";
+  const hover = tone === "volt" ? "hover:text-on-volt" : "hover:text-accent-on-dark";
+  const panel = tone === "volt" ? "bg-ink text-on-dark" : "bg-on-dark text-ink";
 
   return (
     <header className="relative z-20 flex items-center justify-between gap-6">
@@ -57,7 +57,7 @@ export function Header({ locale, tone }: Props) {
             </a>
           ))}
           <div className="mt-3 border-t border-current/20 pt-2">
-            <LocaleSwitch locale={locale} label={dict.nav.language} tone={tone === "orange" ? "dark" : "light"} />
+            <LocaleSwitch locale={locale} label={dict.nav.language} tone={tone === "volt" ? "dark" : "light"} />
           </div>
         </nav>
       </details>

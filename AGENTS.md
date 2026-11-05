@@ -54,7 +54,7 @@ For any interface change:
 ## Design constraints
 
 - Mode: Experience. Work leads; chrome recedes.
-- Visual world: poster-scale type on orange / ink / paper bands, inspired by the "Matteo" template on jiro.build (see `DESIGN.md`). Keep it. Do not add a second visual language.
+- Visual world: poster-scale type on volt / ink / paper bands, inspired by the "Matteo" template on jiro.build (see `DESIGN.md`). Keep it. Do not add a second visual language.
 - 1px rules, square corners, no shadows, no gradients; depth comes from the band colours.
 - One fixed palette, no theme toggle; `color-scheme: light` for form controls.
 - Motion: one authored moment (hero letter rise). Sticky work cards are layout, not animation. Everything else is instant or a 200ms state change. Honor `prefers-reduced-motion`. Do not add a Framer Motion dependency for what CSS already does.

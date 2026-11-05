@@ -18,7 +18,11 @@ export function localePath(locale: Locale, path = ""): string {
  * Owner portrait for the hero. Drop the file in `public/` and set the path;
  * leave it null and the hero runs type-only.
  */
-export const portrait: { src: string; width: number; height: number } | null = null;
+export const portrait: { src: string; width: number; height: number } | null = {
+  src: "/portrait.webp",
+  width: 898,
+  height: 1600,
+};
 
 export type ProjectShot = {
   src: string;
@@ -33,6 +37,8 @@ export type ProjectFacts = {
   /** Screenshot frame: phone screens or desktop windows. */
   kind: "mobile" | "web";
   stack: string[];
+  /** Deployed instance, if one is public. */
+  liveUrl?: string;
   shots: ProjectShot[];
 };
 
@@ -81,7 +87,16 @@ export const projects: ProjectFacts[] = [
     year: "2026",
     kind: "web",
     stack: ["Next.js 16", ".NET 10", "PostgreSQL 17", "MinIO", "TipTap"],
+    liveUrl: "https://dev-dms.byros.dev",
     shots: [
+      {
+        src: "/projects/dms-platform/landing.webp",
+        ...desktop,
+        alt: {
+          en: "Public site landing page with service paths for businesses and learners",
+          id: "Landing page situs publik dengan jalur layanan untuk bisnis dan peserta",
+        },
+      },
       {
         src: "/projects/dms-platform/course-editor.webp",
         ...desktop,
@@ -91,19 +106,14 @@ export const projects: ProjectFacts[] = [
         },
       },
       {
-        src: "/projects/dms-platform/courses-list.webp",
+        src: "/projects/dms-platform/courses.webp",
         ...desktop,
-        alt: { en: "CMS course list", id: "Daftar kursus di CMS" },
+        alt: { en: "Self-paced course catalogue with prices", id: "Katalog kursus mandiri dengan harga" },
       },
       {
-        src: "/projects/dms-platform/article-editor.webp",
+        src: "/projects/dms-platform/articles.webp",
         ...desktop,
-        alt: { en: "CMS article editor", id: "Editor artikel di CMS" },
-      },
-      {
-        src: "/projects/dms-platform/section-editor.webp",
-        ...desktop,
-        alt: { en: "CMS landing-section editor", id: "Editor section landing di CMS" },
+        alt: { en: "Articles index on the public site", id: "Indeks artikel di situs publik" },
       },
     ],
   },
@@ -112,7 +122,27 @@ export const projects: ProjectFacts[] = [
     year: "2026",
     kind: "web",
     stack: [".NET 10", "PostgreSQL", "Next.js 15", "React 19", "Tailwind v4", "Kubernetes"],
-    shots: [],
+    liveUrl: "https://dev-tempo.byros.dev",
+    shots: [
+      {
+        src: "/projects/tempo/dashboard.webp",
+        ...desktop,
+        alt: {
+          en: "Overview with weekly hours by client, utilization, and unbilled value (demo data)",
+          id: "Ringkasan dengan jam mingguan per klien, utilisasi, dan nilai belum ditagih (data demo)",
+        },
+      },
+      {
+        src: "/projects/tempo/timesheet.webp",
+        ...desktop,
+        alt: { en: "Weekly timesheet grouped by day (demo data)", id: "Timesheet mingguan per hari (data demo)" },
+      },
+      {
+        src: "/projects/tempo/tasks.webp",
+        ...desktop,
+        alt: { en: "To-do list with per-task timers (demo data)", id: "Daftar tugas dengan timer per tugas (data demo)" },
+      },
+    ],
   },
 ];
 
@@ -163,6 +193,7 @@ export type Dictionary = {
     heading: string;
     intro: string;
     open: string;
+    live: string;
     earlierHeading: string;
     earlier: { name: string; note: string; href: string }[];
   };

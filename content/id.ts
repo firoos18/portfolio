@@ -36,11 +36,12 @@ export const id: Dictionary = {
   },
   about: {
     heading: "Tentang",
-    lead: "Perangkat lunak ketika antarmuka, API, dan model data harus sepakat, dikerjakan dari skema pertama sampai deploy.",
+    lead: "Saya membangun sistem ketika antarmuka, API, dan model data harus sepakat. Belakangan saya juga me-review apa yang ditulis agen AI sebelum ada yang dirilis.",
     paragraphs: [
-      "Saya membangun perangkat lunak ketika antarmuka, API, dan model data harus sepakat. Di Berijalan Technocenter itu berarti platform tanda tangan digital: alur penandatanganan kontrak dari awal sampai akhir, verifikasi identitas, SSO dan MFA perusahaan, serta aplikasi React Native untuk surveyor lapangan yang mengambil foto dan lokasi di lokasi kerja.",
+      "Di Berijalan Technocenter saya mengerjakan platform tanda tangan digital: alur penandatanganan kontrak dari awal sampai akhir, verifikasi identitas, SSO dan MFA perusahaan, serta aplikasi React Native untuk surveyor lapangan yang mengambil foto dan lokasi di lokasi kerja.",
+      "Saat ini saya sedang melakukan R&D tentang alur kerja pengembangan berbasis AI. Agen menyusun kode, test, dan screenshot; saya menulis brief, menetapkan batasan, membaca setiap diff, dan memutuskan apa yang di-merge. Tujuannya bukan mengetik lebih sedikit, melainkan menjaga standar arsitektur, keamanan, dan aksesibilitas yang sama ketika jumlah kode terus bertambah. Portofolio ini termasuk bagian dari pekerjaan itu.",
       "Sebelumnya saya menempuh jalur mobile: Flutter dan Kotlin di Bangkit Academy dan IDCamp. Mobile mengajarkan saya memperlakukan antarmuka sebagai rangkaian keadaan yang dilalui seseorang, bukan kumpulan komponen yang ditempel di halaman. Kebiasaan itu terbawa ke Next.js dan React.",
-      "Di luar pekerjaan saya membangun sisa stack-nya: layanan .NET dan PostgreSQL, alat trading Python, dan homelab k3s yang dikelola Argo CD. Studi kasus di bawah adalah tentang sambungan antar bagian itu: bagaimana state machine menjadi baris di layar, bagaimana email gagal menjadi percobaan ulang, bagaimana deploy menjadi sebuah commit.",
+      "Di luar pekerjaan saya membangun sisa stack-nya: layanan .NET dan PostgreSQL, alat trading Python, dan homelab k3s yang dikelola Argo CD. Studi kasus di bawah adalah tentang sambungan antar bagian itu: bagaimana membership menjadi state machine, bagaimana email gagal menjadi percobaan ulang, bagaimana deploy menjadi sebuah commit.",
     ],
   },
   work: {
@@ -48,6 +49,7 @@ export const id: Dictionary = {
     intro:
       "Tiga sistem yang dikerjakan dari ujung ke ujung. Setiap studi kasus membahas batasan, keputusan, dan bagian yang sengaja belum selesai.",
     open: "Baca studi kasus",
+    live: "Deployment dev",
     earlierHeading: "Karya sebelumnya",
     earlier: [
       {
@@ -179,6 +181,7 @@ export const id: Dictionary = {
           "Playwright",
           "GitOps",
           "Aksesibilitas",
+          "Pengembangan dan review berbantuan AI",
         ],
       },
     ],
@@ -328,8 +331,11 @@ export const id: Dictionary = {
           tradeoff: "Lebih banyak kode mapping per fitur.",
         },
       ],
-      status: "MVP dalam pengerjaan. Repositori privat.",
-      evidence: [{ label: "Repositori privat" }],
+      status: "MVP dalam pengerjaan, berjalan di deployment dev. Repositori privat.",
+      evidence: [
+        { label: "Deployment dev: dev-dms.byros.dev", href: "https://dev-dms.byros.dev" },
+        { label: "Repositori privat" },
+      ],
     },
     tempo: {
       name: "Tempo",
@@ -380,8 +386,9 @@ export const id: Dictionary = {
           tradeoff: "Migrasi yang buruk menjatuhkan API; lock hanya mencegah balapan.",
         },
       ],
-      status: "Target deployment: klaster k3s homelab. Repositori privat.",
+      status: "Berjalan di deployment dev dari klaster k3s homelab. Screenshot memakai workspace demo. Repositori privat.",
       evidence: [
+        { label: "Deployment dev: dev-tempo.byros.dev (perlu masuk)", href: "https://dev-tempo.byros.dev" },
         { label: "Repositori privat" },
         { label: "Profil GitHub", href: "https://github.com/firoos18" },
       ],

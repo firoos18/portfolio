@@ -6,20 +6,20 @@ Visual system and direction contract for the portfolio. `PRODUCT.md` owns produc
 
 - Audience: hiring managers, engineering leads, and clients deciding in under two minutes whether one person can carry a system end to end.
 - Mechanism: a loud, poster-scale first impression, then three real systems shown with their actual screens, constraints, and decisions.
-- Reference: the owner's chosen inspiration, the "Matteo" motion-artist portfolio template on jiro.build (orange field, giant condensed uppercase type, dark and light bands, stacked work cards, big closing call to action). This site borrows the structure and attitude, not the template's assets, copy, or code.
+- Reference: the owner's chosen inspiration, the "Matteo" motion-artist portfolio template on jiro.build (giant condensed uppercase type, dark and light bands, stacked work cards, big closing call to action). This site borrows the structure and attitude, not the template's orange, assets, copy, or code. The palette was moved to volt lime on purpose so the site does not read as the template.
 - Scene: a recruiter's laptop or phone, between other tabs. The page has to be recognisable at a glance and readable at speed.
 
-Dials: **ENERGY 5/5** (poster-scale type, saturated orange), **RHYTHM 4/5** (orange / paper / ink bands alternate), **MOTION 2/5** (one authored letter rise, sticky card stack, 200ms state changes).
+Dials: **ENERGY 5/5** (poster-scale type, saturated volt lime), **RHYTHM 4/5** (volt / paper / ink bands alternate), **MOTION 2/5** (one authored letter rise, sticky card stack, 200ms state changes).
 
 ## Direction contract
 
-**THESIS.** Big type, one hot colour, real work. The name fills the first screen; the work is shown as actual screenshots in stacked cards; everything else is set small and precise so the display type can be loud.
+**THESIS.** Big type, one hot colour, a black-and-white portrait, real work. The name fills the first screen; the work is shown as actual screenshots in stacked cards; everything else is set small and precise so the display type can be loud.
 
-**OWN-WORLD.** Three grounds: orange `#EE5F28` for the hero, contact, and "next project" bands; ink `#0D0E10` for work, experience, and decisions; warm paper `#ECE8E2` for reading sections. Big Shoulders (variable, opsz) sets every display line in uppercase at weight 800; Archivo sets body, labels, and data. Square corners, 1px rules, no shadows, no gradients, no glass.
+**OWN-WORLD.** Three grounds: volt `#C6F432` for the hero, contact, and "next project" bands; ink `#0D0E10` for work, experience, and decisions; warm paper `#ECE8E2` for reading sections. Big Shoulders (variable, opsz) sets every display line in uppercase at weight 800; Archivo sets body, labels, and data. Square corners, 1px rules, no shadows, no gradients, no glass.
 
-**FIRST VIEWPORT.** Orange field. Top: name mark, navigation, language switch. Below it: "Based in" and a live local clock (WIB). Centre: first and last name at poster scale with the letter rise, role underneath. Bottom row: one-sentence statement, disciplines list, and an "Email me" block in ink. A portrait sits behind the type on the right when `portrait` is set in `content/types.ts`; until then the hero is type-only.
+**FIRST VIEWPORT.** Volt field, exactly one screen tall on desktop. Header across the top. Left seven columns: "Based in" and a live local clock (WIB), first and last name at poster scale with the letter rise, role, then the statement and disciplines. Right five columns: the owner's black-and-white portrait filling the height, with the "Email me" block in ink beneath it. On phones the portrait follows the text at 4:5.
 
-**STORY.** Hero → About (paper) → Selected work (ink, stacked sticky cards with screenshots) → How I work (paper, four numbered steps) → Experience, skills, languages (ink) → "Let's work together" (orange) → footer.
+**STORY.** Hero → About (paper) → Selected work (ink, stacked sticky cards with screenshots) → How I work (paper, four numbered steps) → Experience, skills, languages (ink) → "Let's work together" (volt) → footer.
 
 **FORM.** Code-led. Imagery is limited to real screenshots of the owner's projects and, later, the owner's own portrait. No stock photography, no invented testimonials, awards, or statistics, even though the reference template has them.
 
@@ -27,19 +27,19 @@ Dials: **ENERGY 5/5** (poster-scale type, saturated orange), **RHYTHM 4/5** (ora
 
 | Token | Value | Use |
 |---|---|---|
-| `--ink` | `#0D0E10` | Dark ground, text on orange and paper |
+| `--ink` | `#0D0E10` | Dark ground, text on volt and paper |
 | `--ink-2` | `#18191C` | Raised dark surface (work cards) |
 | `--ink-line` | `#34363B` | Rules on dark, decorative only |
 | `--paper` | `#ECE8E2` | Light reading ground |
 | `--paper-line` | `#B9B1A6` | Rules on paper, decorative only |
-| `--orange` | `#EE5F28` | Hero, contact, next-project bands; hover fill |
+| `--volt` | `#C6F432` | Hero, contact, next-project bands; hover fill |
 | `--on-dark` / `--on-dark-soft` | `#F3EFE9` / `#A39D95` | Text on ink |
 | `--on-light` / `--on-light-soft` | `#0D0E10` / `#5A544D` | Text on paper |
-| `--on-orange` / `--on-orange-soft` | `#0D0E10` / `#3B1607` | Text on orange |
-| `--accent-on-dark` | `#EE5F28` | Labels, links, numerals on ink |
-| `--accent-on-light` | `#AD3C0C` | Numerals and accents on paper (orange fails there) |
+| `--on-volt` / `--on-volt-soft` | `#0D0E10` / `#3A4A00` | Text on volt |
+| `--accent-on-dark` | `#C6F432` | Labels, links, numerals on ink |
+| `--accent-on-light` | `#4F6B00` | Numerals and accents on paper (volt fails there) |
 
-Measured contrast: on-dark/ink 16.9, on-dark-soft/ink 7.2, on-dark-soft/ink-2 6.5, accent/ink 5.8, accent/ink-2 5.3, on-light/paper 15.8, on-light-soft/paper 6.1, accent-on-light/paper 5.0, on-orange/orange 5.8, on-orange-soft/orange 4.8. Line tokens are never used for text.
+Measured contrast: on-dark/ink 16.9, on-dark-soft/ink 7.2, on-dark-soft/ink-2 6.5, volt/ink 15.1, volt/ink-2 13.7, on-light/paper 15.8, on-light-soft/paper 6.1, accent-on-light/paper 5.0, on-volt/volt 15.1, on-volt-soft/volt 7.6. Line tokens are never used for text.
 
 ## Type
 
@@ -57,14 +57,14 @@ Measured contrast: on-dark/ink 16.9, on-dark-soft/ink 7.2, on-dark-soft/ink-2 6.
 
 ## Components
 
-- **Header** — name mark, inline nav and `EN / ID` from `md`; below `md` a `<details>` menu (no JS) with a solid panel. Tone follows the band it sits on (`orange` on home, `dark` on case studies).
+- **Header** — name mark, inline nav and `EN / ID` from `md`; below `md` a `<details>` menu (no JS) with a solid panel. Tone follows the band it sits on (`volt` on home, `dark` on case studies).
 - **Hero clock** — `LocalTime` client component, Asia/Jakarta, renders `--:--:--` until hydrated.
-- **Primary action** — solid rectangle (ink on orange, on-dark on ink), uppercase label, authored arrow SVG. No pills, no radius.
+- **Primary action** — solid rectangle (ink on volt, on-dark on ink), uppercase label, authored arrow SVG. No pills, no radius.
 - **Work card** — `li.stack-card` with `--i` index; sticky from `md` so cards stack while scrolling, normal flow on phones. Left: category label, name, summary, year/role/stack, "Read case study". Right: two phone screens (mobile projects), one desktop window (web), or the decision titles when no screenshots exist.
 - **Shot** — `next/image`, unoptimised, phone `390/844`, desktop `16/10`, `object-top`.
 - **Process** — four steps, numbered because the order is the content.
 - **Experience** — ruled rows: period, role (display), org (accent), note.
-- **Case study** — dark header with meta row, orange screenshot band, paper reading section (problem, constraints, system), dark decisions list, remaining screens, status and evidence, orange "Next project" band.
+- **Case study** — dark header with meta row, volt screenshot band, paper reading section (problem, constraints, system), dark decisions list, remaining screens, status and evidence, volt "Next project" band. Work cards and evidence link to the dev deployments when a project has `liveUrl`.
 - **Arrow** — one authored SVG, rotated for direction. No Unicode arrows.
 
 ## Motion
@@ -77,10 +77,13 @@ Measured contrast: on-dark/ink 16.9, on-dark-soft/ink 7.2, on-dark-soft/ink-2 6.
 ## States
 
 - Focus-visible: 2px `currentColor` outline, 3px offset, on every interactive element; skip link first in tab order.
-- Hover: colour change or orange fill on dark buttons; no transforms on text.
-- Selection: orange background, ink text. Caret orange. Scrollbar themed from on-dark-soft over ink.
+- Hover: colour change or volt fill on dark buttons; no transforms on text.
+- Selection: volt background, ink text. Caret volt. Scrollbar themed from on-dark-soft over ink.
 
 ## Assets
 
-- `public/projects/<slug>/*.webp` — real screenshots, each under 60 KB. Infinity Gym: member app (captured from the mocked local build at 390×844 @2x). DMS: CMS screens from `dms-platform-cms/reports/rebuild-shots`. Tempo: none yet.
-- Portrait: not provided yet. Set `portrait` in `content/types.ts` when it arrives.
+- `public/portrait.webp` — the owner's black-and-white portrait (898×1600), set in `content/types.ts`.
+- `public/projects/<slug>/*.webp` — real screenshots, each under 61 KB.
+  - Infinity Gym: member app, captured from the mocked local build at 390×844 @2x.
+  - DMS: public site from `https://dev-dms.byros.dev` plus one CMS screen from `dms-platform-cms/reports/rebuild-shots`.
+  - Tempo: `https://dev-tempo.byros.dev`, signed in to a throwaway `portfolio-demo_*@e2e.test` workspace with generic demo data ("Demo Client A/B").

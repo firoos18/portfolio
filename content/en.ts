@@ -36,11 +36,12 @@ export const en: Dictionary = {
   },
   about: {
     heading: "About",
-    lead: "Software where the interface, the API, and the data model have to agree, carried from the first schema to the deploy.",
+    lead: "I build systems where the interface, the API, and the data model have to agree. Lately I also review what AI agents write before any of it ships.",
     paragraphs: [
-      "I build software where the interface, the API, and the data model have to agree. At Berijalan Technocenter that is a digital e-signature platform: contract signing end to end, identity verification, company SSO and MFA, and a React Native app for field surveyors who capture photos and locations on site.",
+      "At Berijalan Technocenter I work on a digital e-signature platform: contract signing end to end, identity verification, company SSO and MFA, and a React Native app for field surveyors who capture photos and locations on site.",
+      "Right now I am doing R&D on an AI-driven development workflow. Agents draft the code, the tests, and the screenshots; I write the brief, set the constraints, read every diff, and decide what merges. The point is not to type less. It is to keep the same bar for architecture, security, and accessibility while the amount of code keeps going up. This portfolio is part of that work.",
       "Before that I trained as a mobile developer: Flutter and Kotlin at Bangkit Academy and IDCamp. Mobile taught me to treat an interface as a sequence of states a person moves through, not a set of components placed on a page. That habit carried into Next.js and React.",
-      "Outside work I build the rest of the stack: .NET and PostgreSQL services, Python trading tools, and a k3s homelab managed by Argo CD. The case studies below are about the seams between those parts: how a state machine becomes a row on screen, how a failed email becomes a retry, how a deploy becomes a commit.",
+      "Outside work I build the rest of the stack: .NET and PostgreSQL services, Python trading tools, and a k3s homelab managed by Argo CD. The case studies below are about the seams between those parts: how a membership becomes a state machine, how a failed email becomes a retry, how a deploy becomes a commit.",
     ],
   },
   work: {
@@ -48,6 +49,7 @@ export const en: Dictionary = {
     intro:
       "Three systems carried end to end. Each case study covers the constraints, the decisions, and what is deliberately unfinished.",
     open: "Read case study",
+    live: "Dev deployment",
     earlierHeading: "Earlier work",
     earlier: [
       {
@@ -179,6 +181,7 @@ export const en: Dictionary = {
           "Playwright",
           "GitOps",
           "Accessibility",
+          "AI-assisted development and review",
         ],
       },
     ],
@@ -328,8 +331,11 @@ export const en: Dictionary = {
           tradeoff: "More mapping code per feature.",
         },
       ],
-      status: "MVP in progress. Private repositories.",
-      evidence: [{ label: "Private repositories" }],
+      status: "MVP in progress, running on a dev deployment. Private repositories.",
+      evidence: [
+        { label: "Dev deployment: dev-dms.byros.dev", href: "https://dev-dms.byros.dev" },
+        { label: "Private repositories" },
+      ],
     },
     tempo: {
       name: "Tempo",
@@ -380,8 +386,9 @@ export const en: Dictionary = {
           tradeoff: "A bad migration takes the API down with it; the lock only prevents races.",
         },
       ],
-      status: "Deployment target: homelab k3s cluster. Private repository.",
+      status: "Running on a dev deployment from the homelab k3s cluster. Screenshots use a demo workspace. Private repository.",
       evidence: [
+        { label: "Dev deployment: dev-tempo.byros.dev (sign-in required)", href: "https://dev-tempo.byros.dev" },
         { label: "Private repository" },
         { label: "GitHub profile", href: "https://github.com/firoos18" },
       ],

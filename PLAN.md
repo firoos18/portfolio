@@ -25,12 +25,12 @@ Turn a cold visit into a qualified conversation. A visitor should understand the
 
 Home sections, in order (redesign, Nov 2026):
 
-1. **Hero** (orange) — name at poster scale, role, based-in, live local time, statement, disciplines, "Email me". Portrait slot, empty until the owner provides a photo.
-2. **About** (paper) — one large lead sentence, three short paragraphs.
+1. **Hero** (volt) — name at poster scale, role, based-in, live local time, statement, disciplines, black-and-white portrait, "Email me".
+2. **About** (paper) — one large lead, four short paragraphs: Berijalan, AI-driven workflow R&D, mobile roots, the rest of the stack.
 3. **Selected work** (ink) — three stacked sticky cards with real screenshots: Infinity Gym, DMS Platform, Tempo. Earlier mobile work as a compact list.
 4. **How I work** (paper) — four steps: Model, Contract, Interface, Ship.
 5. **Experience** (ink) — three dated roles plus education, then skills and languages.
-6. **Contact** (orange) — "Let's work together", email, GitHub, LinkedIn.
+6. **Contact** (volt) — "Let's work together", email, GitHub, LinkedIn.
 
 Case study template:
 

@@ -7,11 +7,11 @@ import { locales, type Locale } from "@/content";
 type Props = {
   locale: Locale;
   label: string;
-  tone: "orange" | "dark" | "light";
+  tone: "volt" | "dark" | "light";
 };
 
 const tones = {
-  orange: { current: "text-on-orange", other: "text-on-orange-soft hover:text-on-orange" },
+  volt: { current: "text-on-volt", other: "text-on-volt-soft hover:text-on-volt" },
   dark: { current: "text-on-dark", other: "text-on-dark-soft hover:text-accent-on-dark" },
   light: { current: "text-on-light", other: "text-on-light-soft hover:text-accent-on-light" },
 };

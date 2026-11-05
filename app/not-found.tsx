@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-dvh flex-col justify-center bg-orange px-[clamp(16px,4vw,56px)] py-16 text-on-orange">
+    <main className="flex min-h-dvh flex-col justify-center bg-volt px-[clamp(16px,4vw,56px)] py-16 text-on-volt">
       <script dangerouslySetInnerHTML={{ __html: 'document.documentElement.lang="en"' }} />
       <h1 className="text-[clamp(6rem,24vw,20rem)] font-extrabold uppercase leading-[0.84] tracking-[-0.02em]">404</h1>
       <p className="mt-6 max-w-[40ch] text-lg font-medium">

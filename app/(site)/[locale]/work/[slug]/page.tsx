@@ -115,7 +115,7 @@ export default async function CaseStudyPage({ params }: Props) {
           {cover ? (
             <div className={frame}>
               {project.kind === "mobile" ? (
-                <div className="grid grid-cols-2 gap-[clamp(8px,2vw,24px)] bg-orange p-[clamp(16px,4vw,56px)] md:grid-cols-4">
+                <div className="grid grid-cols-2 gap-[clamp(8px,2vw,24px)] bg-volt p-[clamp(16px,4vw,56px)] md:grid-cols-4">
                   {project.shots.slice(0, 4).map((shot, i) => (
                     <Shot
                       key={shot.src}
@@ -128,7 +128,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   ))}
                 </div>
               ) : (
-                <div className="bg-orange p-[clamp(16px,4vw,56px)]">
+                <div className="bg-volt p-[clamp(16px,4vw,56px)]">
                   <Shot shot={cover} kind="web" alt={cover.alt[locale]} priority />
                 </div>
               )}
@@ -229,12 +229,12 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </article>
 
-        <nav aria-label={labels.next} className="bg-orange text-on-orange">
+        <nav aria-label={labels.next} className="bg-volt text-on-volt">
           <Link
             href={`/${locale}/work/${next.slug}`}
             className={`${frame} group flex flex-col gap-2 py-[clamp(48px,7vw,96px)]`}
           >
-            <span className="label text-on-orange-soft">{labels.next}</span>
+            <span className="label text-on-volt-soft">{labels.next}</span>
             <span className="display flex items-end justify-between gap-6 text-[clamp(3.5rem,11vw,10rem)]">
               {nextCopy.name}
               <Arrow className="mb-[0.08em] text-[0.5em] transition-transform duration-200 group-hover:translate-x-2" />

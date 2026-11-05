@@ -46,61 +46,68 @@ function Hero({ locale }: { locale: Locale }) {
   const { hero } = getDictionary(locale);
 
   return (
-    <section className="relative isolate overflow-hidden bg-orange text-on-orange">
-      {portrait ? (
-        <Image
-          src={portrait.src}
-          width={portrait.width}
-          height={portrait.height}
-          alt={hero.portraitAlt}
-          priority
-          sizes="(min-width: 768px) 50vw, 100vw"
-          className="absolute inset-y-0 right-0 -z-10 h-full w-full object-cover object-top opacity-90 mix-blend-multiply md:w-[56%]"
-        />
-      ) : null}
-
+    <section className="bg-volt text-on-volt">
       <div className={`${frame} flex min-h-dvh flex-col pb-[clamp(20px,3vw,40px)] pt-3`}>
-        <Header locale={locale} tone="orange" />
+        <Header locale={locale} tone="volt" />
 
-        <dl className="mt-6 grid grid-cols-2 gap-4 sm:max-w-md">
-          <div>
-            <dt className="label text-on-orange-soft">{hero.basedLabel}</dt>
-            <dd className="mt-1 font-medium">{hero.location}</dd>
+        <div className="mt-6 grid flex-1 gap-8 md:grid-cols-12 md:gap-6">
+          <div className="flex flex-col md:col-span-7">
+            <dl className="grid grid-cols-2 gap-4 sm:max-w-md">
+              <div>
+                <dt className="label text-on-volt-soft">{hero.basedLabel}</dt>
+                <dd className="mt-1 font-medium">{hero.location}</dd>
+              </div>
+              <div>
+                <dt className="label text-on-volt-soft">{hero.timeLabel}</dt>
+                <dd className="mt-1 font-medium">
+                  <LocalTime />
+                </dd>
+              </div>
+            </dl>
+
+            <div className="flex flex-1 flex-col justify-center py-10">
+              <h1 className="display text-[clamp(4.5rem,26vw,14rem)] md:text-[min(14rem,15.5vw)]">
+                <RiseText lines={[hero.firstName, hero.lastName]} />
+              </h1>
+              <p className="display mt-4 text-[clamp(1.5rem,3vw,2.5rem)] leading-none">{hero.role}</p>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2 sm:items-end">
+              <p className="max-w-[36ch] text-lg font-medium leading-snug">{hero.statement}</p>
+              <div>
+                <p className="label text-on-volt-soft">{hero.disciplinesLabel}</p>
+                <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-medium">
+                  {hero.disciplines.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-          <div>
-            <dt className="label text-on-orange-soft">{hero.timeLabel}</dt>
-            <dd className="mt-1 font-medium">
-              <LocalTime />
-            </dd>
+
+          <div className="flex flex-col gap-4 md:col-span-5">
+            {portrait ? (
+              <div className="relative aspect-[4/5] bg-ink md:aspect-auto md:min-h-0 md:flex-1">
+                <Image
+                  src={portrait.src}
+                  fill
+                  alt={hero.portraitAlt}
+                  priority
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover object-[50%_12%]"
+                />
+              </div>
+            ) : (
+              <div className="flex-1" />
+            )}
+            <a
+              href="mailto:itsfiroos@gmail.com"
+              className="label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2"
+            >
+              {hero.cta}
+              <Arrow direction="up-right" className="text-accent-on-dark" />
+            </a>
           </div>
-        </dl>
-
-        <div className="flex flex-1 flex-col justify-center py-10">
-          <h1 className="display text-[clamp(4.5rem,26vw,14rem)]">
-            <RiseText lines={[hero.firstName, hero.lastName]} />
-          </h1>
-          <p className="display mt-4 text-[clamp(1.5rem,3vw,2.5rem)] leading-none">{hero.role}</p>
-        </div>
-
-        <div className="grid gap-8 md:grid-cols-12 md:items-end">
-          <p className="max-w-[36ch] text-lg font-medium leading-snug md:col-span-5">{hero.statement}</p>
-
-          <div className="md:col-span-4 md:col-start-7">
-            <p className="label text-on-orange-soft">{hero.disciplinesLabel}</p>
-            <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-medium md:flex-col md:gap-0">
-              {hero.disciplines.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <a
-            href="mailto:itsfiroos@gmail.com"
-            className="label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2 md:col-span-2 md:col-start-11"
-          >
-            {hero.cta}
-            <Arrow direction="up-right" className="text-accent-on-dark" />
-          </a>
         </div>
       </div>
     </section>
@@ -184,14 +191,26 @@ function Work({ locale }: { locale: Locale }) {
                       </div>
                     </dl>
 
-                    <Link
-                      href={href}
-                      className="label mt-8 inline-flex min-h-12 w-fit items-center gap-4 bg-on-dark px-5 text-ink transition-colors duration-200 hover:bg-orange md:mt-auto"
-                    >
-                      {work.open}
-                      <span className="sr-only">: {copy.name}</span>
-                      <Arrow />
-                    </Link>
+                    <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-auto">
+                      <Link
+                        href={href}
+                        className="label inline-flex min-h-12 w-fit items-center gap-4 bg-on-dark px-5 text-ink transition-colors duration-200 hover:bg-volt"
+                      >
+                        {work.open}
+                        <span className="sr-only">: {copy.name}</span>
+                        <Arrow />
+                      </Link>
+                      {project.liveUrl ? (
+                        <a
+                          href={project.liveUrl}
+                          className="label inline-flex min-h-11 items-center gap-2 text-on-dark-soft underline decoration-ink-line underline-offset-4 transition-colors duration-200 hover:text-accent-on-dark"
+                        >
+                          {work.live}
+                          <span className="sr-only">: {copy.name}</span>
+                          <Arrow direction="up-right" />
+                        </a>
+                      ) : null}
+                    </div>
                   </div>
 
                   <div className="md:col-span-7">
@@ -356,7 +375,7 @@ function Contact({ locale }: { locale: Locale }) {
   const { contact, hero } = getDictionary(locale);
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="bg-orange text-on-orange">
+    <section id="contact" aria-labelledby="contact-title" className="bg-volt text-on-volt">
       <div className={`${frame} ${sectionSpace}`}>
         <h2 id="contact-title" className="display text-[clamp(4.5rem,15vw,15rem)]">
           {contact.heading.map((line) => (
@@ -372,7 +391,7 @@ function Contact({ locale }: { locale: Locale }) {
           <div className="md:col-span-7 md:justify-self-end">
             <a
               href={`mailto:${contact.email}`}
-              className="group inline-flex max-w-full items-center gap-4 border-b-2 border-on-orange pb-2 text-[clamp(1.5rem,4vw,3.25rem)] font-semibold leading-none tracking-[-0.02em] transition-colors duration-200 hover:border-ink hover:text-ink"
+              className="group inline-flex max-w-full items-center gap-4 border-b-2 border-on-volt pb-2 text-[clamp(1.5rem,4vw,3.25rem)] font-semibold leading-none tracking-[-0.02em] transition-colors duration-200 hover:border-ink hover:text-ink"
             >
               <span className="break-all">{contact.email}</span>
               <Arrow direction="up-right" className="transition-transform duration-200 group-hover:translate-x-1" />
@@ -382,14 +401,14 @@ function Contact({ locale }: { locale: Locale }) {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="label inline-flex min-h-11 items-center gap-2 underline decoration-on-orange-soft underline-offset-4 transition-colors duration-200 hover:decoration-on-orange"
+                    className="label inline-flex min-h-11 items-center gap-2 underline decoration-on-volt-soft underline-offset-4 transition-colors duration-200 hover:decoration-on-volt"
                   >
                     {link.label}
                     <Arrow direction="up-right" />
                   </a>
                 </li>
               ))}
-              <li className="label inline-flex min-h-11 items-center text-on-orange-soft">
+              <li className="label inline-flex min-h-11 items-center text-on-volt-soft">
                 {hero.location}
                 {" · "}
                 <LocalTime />

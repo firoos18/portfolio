@@ -7,18 +7,18 @@
   --paper: #ece8e2;
   --paper-2: #dfd9d0;
   --paper-line: #b9b1a6;
-  --orange: #ee5f28;
-  --orange-line: #b8441a;
+  --volt: #c6f432;
+  --volt-line: #8fb31c;
 
   --on-dark: #f3efe9;
   --on-dark-soft: #a39d95;
   --on-light: #0d0e10;
   --on-light-soft: #5a544d;
-  --on-orange: #0d0e10;
-  --on-orange-soft: #3b1607;
+  --on-volt: #0d0e10;
+  --on-volt-soft: #3a4a00;
 
-  --accent-on-dark: #ee5f28;
-  --accent-on-light: #ad3c0c;
+  --accent-on-dark: #c6f432;
+  --accent-on-light: #4f6b00;
 }
 
 @theme inline {
@@ -28,14 +28,14 @@
   --color-paper: var(--paper);
   --color-paper-2: var(--paper-2);
   --color-paper-line: var(--paper-line);
-  --color-orange: var(--orange);
-  --color-orange-line: var(--orange-line);
+  --color-volt: var(--volt);
+  --color-volt-line: var(--volt-line);
   --color-on-dark: var(--on-dark);
   --color-on-dark-soft: var(--on-dark-soft);
   --color-on-light: var(--on-light);
   --color-on-light-soft: var(--on-light-soft);
-  --color-on-orange: var(--on-orange);
-  --color-on-orange-soft: var(--on-orange-soft);
+  --color-on-volt: var(--on-volt);
+  --color-on-volt-soft: var(--on-volt-soft);
   --color-accent-on-dark: var(--accent-on-dark);
   --color-accent-on-light: var(--accent-on-light);
   --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
@@ -56,12 +56,12 @@
     font-size: 1.0625rem;
     line-height: 1.6;
     text-rendering: optimizeLegibility;
-    caret-color: var(--orange);
+    caret-color: var(--volt);
     overflow-x: clip;
   }
 
   ::selection {
-    background: var(--orange);
+    background: var(--volt);
     color: var(--ink);
   }
 
