@@ -55,7 +55,7 @@ Case study template:
 | E-signature platform | Confirmed; covered in Experience, no longer a case study | LinkedIn export |
 | Tempo case study | Confirmed | `~/Documents/Personal/tempo` |
 | DMS Platform case study | Confirmed | `~/Documents/Personal/DMS` |
-| Infinity Gym case study | Confirmed: owner is part of drunkcode.dev; member-app authorship still to confirm | `~/Documents/Infinity` (drunkcode-dev org) |
+| Infinity Gym case study | Confirmed: built at drunkcode.dev (owner co-founded it with friends); owner directed the omp agent that built the member app | `~/Documents/Infinity` (drunkcode-dev org) |
 | Earlier mobile work (SILAB, Teman Tanam, Sehatin, Rentzy) | Confirmed | old `works.json`, GitHub |
 | German A1 | Confirmed by request | user |
 | Current CV file | **Absent**; link removed until a current file exists | — |

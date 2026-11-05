@@ -30,8 +30,9 @@ export const id: Dictionary = {
     timeLabel: "Waktu lokal",
     disciplinesLabel: "Bidang",
     disciplines: ["Antarmuka", "API", "Data", "Infrastruktur", "Mobile"],
+    motto: "Saya percaya pada proses.",
     statement:
-      "Saya membangun sistem dari antarmuka sampai klaster tempat sistem itu berjalan, dan mencatat keputusan yang menyatukan keduanya.",
+      "Hampir lima tahun berlatih di gym mengajarkan bahwa progres datang dari terus hadir, dan saya membangun perangkat lunak dengan cara yang sama: dari antarmuka sampai klaster tempat ia berjalan.",
     cta: "Kirim email",
     portraitAlt: "Potret Naufal Firoos",
   },
@@ -40,9 +41,11 @@ export const id: Dictionary = {
     lead: "Saya membangun sistem ketika antarmuka, API, dan model data harus sepakat. Belakangan saya juga me-review apa yang ditulis agen AI sebelum ada yang dirilis.",
     paragraphs: [
       "Di Berijalan Technocenter saya mengerjakan platform tanda tangan digital: alur penandatanganan kontrak dari awal sampai akhir, verifikasi identitas, SSO dan MFA perusahaan, serta aplikasi React Native untuk surveyor lapangan yang mengambil foto dan lokasi di lokasi kerja.",
-      "Saat ini saya sedang melakukan R&D tentang alur kerja pengembangan berbasis AI. Agen menyusun kode, test, dan screenshot; saya menulis brief, menetapkan batasan, membaca setiap diff, dan memutuskan apa yang di-merge. Tujuannya bukan mengetik lebih sedikit, melainkan menjaga standar arsitektur, keamanan, dan aksesibilitas yang sama ketika jumlah kode terus bertambah. Portofolio ini termasuk bagian dari pekerjaan itu.",
+      "Saat ini saya sedang melakukan R&D tentang alur kerja pengembangan berbasis AI dengan Claude Code dan omp. Tujuannya satu rantai yang tersambung, dari perencanaan dan manajemen proyek sampai implementasi dan pengujian end-to-end, tempat agen menyusun draf dan saya me-review di setiap serah terima: saya menulis brief, menetapkan batasan, membaca setiap diff, dan memutuskan apa yang di-merge. Tujuannya bukan mengetik lebih sedikit, melainkan menjaga standar arsitektur, keamanan, dan aksesibilitas yang sama ketika jumlah kode terus bertambah. Aplikasi member Infinity Gym dan portofolio ini sama-sama dibangun dengan cara itu.",
+      "Bersama teman-teman saya menjalankan drunkcode.dev, sebuah studio perangkat lunak kecil. Di sanalah platform Infinity Gym dibangun, dan di sana pula saya mengerjakan proyek klien.",
       "Sebelumnya saya menempuh jalur mobile: Flutter dan Kotlin di Bangkit Academy dan IDCamp. Mobile mengajarkan saya memperlakukan antarmuka sebagai rangkaian keadaan yang dilalui seseorang, bukan kumpulan komponen yang ditempel di halaman. Kebiasaan itu terbawa ke Next.js dan React.",
       "Di luar pekerjaan saya membangun sisa stack-nya: layanan .NET dan PostgreSQL, alat trading Python, dan homelab k3s yang dikelola Argo CD. Studi kasus di bawah adalah tentang sambungan antar bagian itu: bagaimana membership menjadi state machine, bagaimana email gagal menjadi percobaan ulang, bagaimana deploy menjadi sebuah commit.",
+      "Di luar layar, saya sudah berlatih secara konsisten hampir lima tahun, dan saya sedang belajar bahasa Jerman. Keduanya berjalan dengan aturan yang sama seperti pekerjaan: sesi kecil, diulang, dan diukur terhadap diri saya tahun lalu, bukan terhadap orang lain.",
     ],
   },
   work: {
@@ -77,7 +80,7 @@ export const id: Dictionary = {
   },
   process: {
     heading: "Cara saya bekerja",
-    intro: "Urutan yang sama di setiap proyek, entah layar pertamanya sudah ada atau belum.",
+    intro: "Urutan yang sama di setiap proyek, entah layar pertamanya sudah ada atau belum, dan entah kodenya ditulis manusia atau agen.",
     steps: [
       {
         title: "Model",
@@ -90,6 +93,10 @@ export const id: Dictionary = {
       {
         title: "Antarmuka",
         body: "Bangun layar di atas kontrak itu. Saat API tertinggal, klien berjalan dengan layanan mock berbentuk sama, jadi menggantinya cukup mengubah isi fungsi.",
+      },
+      {
+        title: "Review",
+        body: "Agen kini menyusun banyak bagian kode. Setiap perubahan dibaca terhadap brief, kontrak, dan test sebelum di-merge; tidak ada yang dirilis berdasarkan kepercayaan saja.",
       },
       {
         title: "Rilis",
@@ -183,6 +190,8 @@ export const id: Dictionary = {
           "GitOps",
           "Aksesibilitas",
           "Pengembangan dan review berbantuan AI",
+          "Claude Code",
+          "omp",
         ],
       },
     ],
@@ -197,7 +206,7 @@ export const id: Dictionary = {
   },
   contact: {
     heading: ["Mari bekerja", "bersama"],
-    body: "Email adalah cara tercepat menghubungi saya. Kirim masalah, batasan, dan tenggatnya; saya akan membalas dengan apa yang bisa saya kerjakan.",
+    body: "Saya terbuka untuk peran full-time dan proyek freelance, sendiri maupun bersama drunkcode.dev. Email adalah cara tercepat menghubungi saya: kirim masalah, batasan, dan tenggatnya, dan saya akan membalas dengan apa yang bisa saya kerjakan.",
     email: "itsfiroos@gmail.com",
     links: [
       { label: "GitHub", href: "https://github.com/firoos18" },
@@ -246,14 +255,14 @@ export const id: Dictionary = {
       name: "Infinity Gym",
       category: "Platform · API, admin, aplikasi member",
       summary: "Manajemen gym: API .NET, CMS admin, aplikasi member mobile-first, dan landing page dua bahasa.",
-      role: "Full-stack developer di drunkcode.dev",
+      role: "Co-founder dan developer, drunkcode.dev",
       problem:
         "Sebuah gym mengelola membership, cuti membership, kelas, personal training, loker, pembayaran, dan check-in. Staf butuh satu permukaan admin untuk semuanya, dan member butuh satu aplikasi di ponsel, bukan meja resepsionis dan thread chat.",
       constraints: [
         "Satu model domain untuk member, langganan, pembayaran, kehadiran, dan training, bahkan ketika API belum membukanya.",
         "Sesi harus bisa dicabut: keluar atau mengganti password mengakhiri akses di semua perangkat, bukan saat token kedaluwarsa.",
         "Menu admin digerakkan oleh izin, jadi staf hanya melihat yang diizinkan perannya.",
-        "Aplikasi member harus mencakup setiap alur di desain sebelum API-nya tersedia.",
+        "Aplikasi member harus mencakup setiap alur di desain sebelum API-nya tersedia, dan dibangun oleh agen AI, sehingga setiap perubahan perlu di-review terhadap desain dan kontrak API.",
       ],
       system: [
         {
@@ -294,9 +303,14 @@ export const id: Dictionary = {
           body: "Layanan aplikasi member mengembalikan bentuk respons API dari store bersama di browser, sehingga layar dan state bisa selesai sebelum endpoint-nya ada.",
           tradeoff: "Belum ada yang tersimpan; pekerjaan integrasi masih di depan.",
         },
+        {
+          title: "Dibangun agen, di-review manusia",
+          body: "Saya mengarahkan omp, sebuah agen AI untuk coding, membangun aplikasi member dari frame desain: saya menulis brief per modul, me-review setiap perubahan, dan menjaganya tetap sesuai bentuk respons API dan state di desain.",
+          tradeoff: "Review menjadi titik sempit, dan brief harus presisi; brief yang kabur menghasilkan layar yang meyakinkan tapi salah.",
+        },
       ],
       status:
-        "Dibangun bersama tim drunkcode.dev; dalam pengembangan. Auth, menu, dan member sudah berjalan di API; langganan, pembayaran, kehadiran, dan training ada sebagai entitas dan seed data; aplikasi member berjalan dengan layanan mock. Repositori privat.",
+        "Dibangun di drunkcode.dev; dalam pengembangan. Auth, menu, dan member sudah berjalan di API; langganan, pembayaran, kehadiran, dan training ada sebagai entitas dan seed data; aplikasi member berjalan dengan layanan mock. Repositori privat.",
       evidence: [{ label: "Repositori privat" }],
     },
     "dms-platform": {

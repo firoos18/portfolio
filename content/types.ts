@@ -185,6 +185,7 @@ export type Dictionary = {
     timeLabel: string;
     disciplinesLabel: string;
     disciplines: string[];
+    motto: string;
     statement: string;
     cta: string;
     portraitAlt: string;

@@ -30,8 +30,9 @@ export const en: Dictionary = {
     timeLabel: "Local time",
     disciplinesLabel: "Disciplines",
     disciplines: ["Interface", "API", "Data", "Infrastructure", "Mobile"],
+    motto: "I believe in process.",
     statement:
-      "I build systems from the interface down to the cluster they run on, and I write down the decisions that hold them together.",
+      "Almost five years of training taught me that progress comes from showing up, and I build software the same way: from the interface down to the cluster it runs on.",
     cta: "Email me",
     portraitAlt: "Portrait of Naufal Firoos",
   },
@@ -40,9 +41,11 @@ export const en: Dictionary = {
     lead: "I build systems where the interface, the API, and the data model have to agree. Lately I also review what AI agents write before any of it ships.",
     paragraphs: [
       "At Berijalan Technocenter I work on a digital e-signature platform: contract signing end to end, identity verification, company SSO and MFA, and a React Native app for field surveyors who capture photos and locations on site.",
-      "Right now I am doing R&D on an AI-driven development workflow. Agents draft the code, the tests, and the screenshots; I write the brief, set the constraints, read every diff, and decide what merges. The point is not to type less. It is to keep the same bar for architecture, security, and accessibility while the amount of code keeps going up. This portfolio is part of that work.",
+      "Right now I am doing R&D on an AI-driven development workflow with Claude Code and omp. The goal is one connected chain, from planning and project management through implementation to end-to-end testing, where agents do the drafting and I review at every handoff: I write the brief, set the constraints, read every diff, and decide what merges. The point is not to type less. It is to keep the same bar for architecture, security, and accessibility while the amount of code keeps going up. The Infinity Gym member app and this portfolio were both built this way.",
+      "With friends I run drunkcode.dev, a small software studio. It is where the Infinity Gym platform is built, and where I take on client work.",
       "Before that I trained as a mobile developer: Flutter and Kotlin at Bangkit Academy and IDCamp. Mobile taught me to treat an interface as a sequence of states a person moves through, not a set of components placed on a page. That habit carried into Next.js and React.",
       "Outside work I build the rest of the stack: .NET and PostgreSQL services, Python trading tools, and a k3s homelab managed by Argo CD. The case studies below are about the seams between those parts: how a membership becomes a state machine, how a failed email becomes a retry, how a deploy becomes a commit.",
+      "Away from the screen I have trained consistently for almost five years, and I am learning German. Both run on the same rule as the work: small sessions, repeated, measured against who I was last year rather than against anyone else.",
     ],
   },
   work: {
@@ -77,7 +80,7 @@ export const en: Dictionary = {
   },
   process: {
     heading: "How I work",
-    intro: "The same order on every project, whether the first screen exists yet or not.",
+    intro: "The same order on every project, whether the first screen exists yet or not, and whether a person or an agent wrote the code.",
     steps: [
       {
         title: "Model",
@@ -90,6 +93,10 @@ export const en: Dictionary = {
       {
         title: "Interface",
         body: "Build screens against that contract. When the API lags, the client runs on mocked services with the same shapes, so swapping them is a body change.",
+      },
+      {
+        title: "Review",
+        body: "Agents draft much of the code now. Every change is read against the brief, the contract, and the tests before it merges; nothing ships on trust.",
       },
       {
         title: "Ship",
@@ -183,6 +190,8 @@ export const en: Dictionary = {
           "GitOps",
           "Accessibility",
           "AI-assisted development and review",
+          "Claude Code",
+          "omp",
         ],
       },
     ],
@@ -197,7 +206,7 @@ export const en: Dictionary = {
   },
   contact: {
     heading: ["Let's work", "together"],
-    body: "Email is the fastest way to reach me. Send the problem, the constraints, and the timeline; I will reply with what I can do.",
+    body: "I am open to full-time roles and to freelance projects, on my own or with drunkcode.dev. Email is the fastest way to reach me: send the problem, the constraints, and the timeline, and I will reply with what I can do.",
     email: "itsfiroos@gmail.com",
     links: [
       { label: "GitHub", href: "https://github.com/firoos18" },
@@ -246,14 +255,14 @@ export const en: Dictionary = {
       name: "Infinity Gym",
       category: "Platform · API, admin, member app",
       summary: "Gym management: a .NET API, an admin CMS, a mobile-first member app, and a bilingual landing page.",
-      role: "Full-stack developer at drunkcode.dev",
+      role: "Co-founder and developer, drunkcode.dev",
       problem:
         "A gym runs memberships, freezes, classes, personal training, lockers, payments, and check-in. Staff need one admin surface for all of it, and members need one app on their phone instead of a front desk and a chat thread.",
       constraints: [
         "One domain model for members, subscriptions, payments, attendance, and training, even where the API does not expose it yet.",
         "Sessions must be revocable: signing out or changing a password ends access everywhere, not when a token expires.",
         "The admin menu is driven by permissions, so staff only see what their role allows.",
-        "The member app had to cover every flow in the design before the API existed for it.",
+        "The member app had to cover every flow in the design before the API existed for it, and it was built by an AI coding agent, so every change needed review against the design and the API contract.",
       ],
       system: [
         {
@@ -294,9 +303,14 @@ export const en: Dictionary = {
           body: "The member app's services return the API's response shapes from a shared in-browser store, so screens and states can be finished before the endpoints exist.",
           tradeoff: "Nothing persists yet; the integration work is still ahead.",
         },
+        {
+          title: "Agent-built, human-reviewed",
+          body: "I directed omp, an AI coding agent, to build the member app from the design frames: I wrote the briefs module by module, reviewed every change, and held it to the API's response shapes and the design's states.",
+          tradeoff: "Review becomes the bottleneck, and the brief has to be precise; a vague brief produces confident, wrong screens.",
+        },
       ],
       status:
-        "Built with the drunkcode.dev team; in development. Auth, menus, and members are live in the API; subscriptions, payments, attendance, and training exist as entities and seed data; the member app runs on mocked services. Private repositories.",
+        "Built at drunkcode.dev; in development. Auth, menus, and members are live in the API; subscriptions, payments, attendance, and training exist as entities and seed data; the member app runs on mocked services. Private repositories.",
       evidence: [{ label: "Private repositories" }],
     },
     "dms-platform": {

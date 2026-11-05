@@ -107,7 +107,10 @@ function Hero({ locale }: { locale: Locale }) {
             </div>
 
             <div className="grid gap-8 sm:grid-cols-2 sm:items-end">
-              <p className="max-w-[36ch] text-lg font-medium leading-snug">{hero.statement}</p>
+              <div>
+                <p className="display text-[clamp(2rem,3.4vw,3rem)]">{hero.motto}</p>
+                <p className="mt-3 max-w-[40ch] font-medium leading-snug">{hero.statement}</p>
+              </div>
               <div>
                 <p className="label text-on-volt-soft">{hero.disciplinesLabel}</p>
                 <ul className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-medium">
@@ -329,11 +332,11 @@ function Process({ locale }: { locale: Locale }) {
           <p className="max-w-[40ch] text-on-light-soft md:col-span-4 md:col-start-9">{process.intro}</p>
         </div>
 
-        <ol className="mt-[clamp(48px,7vw,96px)] grid border-t border-on-light md:grid-cols-4">
+        <ol className="mt-[clamp(48px,7vw,96px)] grid border-t border-on-light lg:grid-cols-5">
           {process.steps.map((step, index) => (
             <li
               key={step.title}
-              className="border-b border-paper-line py-6 md:border-b-0 md:border-l md:px-6 md:first:border-l-0 md:first:pl-0"
+              className="border-b border-paper-line py-6 lg:border-b-0 lg:border-l lg:px-5 lg:first:border-l-0 lg:first:pl-0"
             >
               <p className="display tabnum text-[clamp(3rem,5vw,4.5rem)] text-accent-on-light">{index + 1}.</p>
               <h3 className="display mt-6 text-3xl">{step.title}</h3>
