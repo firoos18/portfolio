@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, locales, portrait, projects, type Locale } from "@/content";
+import { cv } from "@/content/cv";
 import { Arrow } from "@/components/Arrow";
 import { Header } from "@/components/Header";
 import { LocalTime } from "@/components/LocalTime";
@@ -108,7 +109,7 @@ function Hero({ locale }: { locale: Locale }) {
 
             <div className="grid gap-8 sm:grid-cols-2 sm:items-end">
               <div>
-                <p className="display text-[clamp(2rem,3.4vw,3rem)]">{hero.motto}</p>
+                <p className="display text-[clamp(2rem,3.4vw,3rem)] leading-[0.95]">{hero.motto}</p>
                 <p className="mt-3 max-w-[40ch] font-medium leading-snug">{hero.statement}</p>
               </div>
               <div>
@@ -137,13 +138,25 @@ function Hero({ locale }: { locale: Locale }) {
             ) : (
               <div className="flex-1" />
             )}
-            <a
-              href="mailto:itsfiroos@gmail.com"
-              className="label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2"
-            >
-              {hero.cta}
-              <Arrow direction="up-right" className="text-accent-on-dark" />
-            </a>
+            <div className="grid grid-cols-2 gap-2">
+              <a
+                href="mailto:itsfiroos@gmail.com"
+                className="label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2"
+              >
+                {hero.cta}
+                <Arrow direction="up-right" className="text-accent-on-dark" />
+              </a>
+              <a
+                href={`/${locale}/cv.pdf`}
+                download="Naufal-Firoos-CV.pdf"
+                className="label inline-flex min-h-12 items-center justify-between gap-4 border border-on-volt px-5 transition-colors duration-200 hover:bg-on-volt hover:text-volt"
+              >
+                <span>
+                  {cv[locale].download} <span className="text-on-volt-soft">{cv[locale].downloadHint}</span>
+                </span>
+                <Arrow direction="right" className="rotate-90" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -477,6 +490,16 @@ function Contact({ locale }: { locale: Locale }) {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={`/${locale}/cv.pdf`}
+                  download="Naufal-Firoos-CV.pdf"
+                  className="label inline-flex min-h-11 items-center gap-2 underline decoration-on-volt-soft underline-offset-4 transition-colors duration-200 hover:decoration-on-volt"
+                >
+                  {cv[locale].download} ({cv[locale].downloadHint})
+                  <Arrow direction="right" className="rotate-90" />
+                </a>
+              </li>
               <li className="label inline-flex min-h-11 items-center text-on-volt-soft">
                 {hero.location}
                 {" · "}

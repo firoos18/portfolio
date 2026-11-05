@@ -29,6 +29,7 @@ app/
       articles/             article index and [slug] pages (+ og.png route)
       feed.xml/route.ts     RSS per locale
       og.png/route.ts       home share image
+      cv.pdf/route.ts       one-page ATS CV per locale (lib/cv-document.tsx, content/cv.ts)
   sitemap.ts, robots.ts   static SEO files
 components/               shared UI (server components unless marked "use client")
 content/                  typed dictionaries: profile, projects, experience, skills

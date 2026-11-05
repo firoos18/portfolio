@@ -58,7 +58,7 @@ Case study template:
 | Infinity Gym case study | Confirmed: built at drunkcode.dev (owner co-founded it with friends); owner directed the omp agent that built the member app | `~/Documents/Infinity` (drunkcode-dev org) |
 | Earlier mobile work (SILAB, Teman Tanam, Sehatin, Rentzy) | Confirmed | old `works.json`, GitHub |
 | German A1 | Confirmed by request | user |
-| Current CV file | **Absent**; link removed until a current file exists | — |
+| CV | Generated at build from site content: `/<locale>/cv.pdf`, one page, ATS-friendly (`lib/cv-document.tsx`, `content/cv.ts`) | site dictionaries |
 | Case-study screenshots | Optional; design works without images | — |
 
 Relevance filter: only roles, projects, and skills that help a hirer or client judge capability. Lab-assistant roles, high school, and course certificates are omitted. Berijalan's three internal role phases are combined into one tenure line.
@@ -107,7 +107,7 @@ Do not invent metrics, clients, or outcomes. Bericuan is testnet with one live s
 
 ## 7. Open decisions
 
-- CV: no current file; link is removed rather than shipping the 2024 version.
+- CV: generated from the same content as the site, so it never drifts. Bullets stay to confirmed facts; add metrics in `content/cv.ts` when the owner has them.
 - Photography: no portrait; the design works without one. A portrait can be added later as a tipped-in plate.
 - Domain: `byros.dev`. Deploy target: not chosen yet (Vercel or Cloudflare Pages; see `docs/n8n-articles.md`).
 
