@@ -27,6 +27,7 @@ Regenerate the importable JSON after editing `scripts/n8n-workflow.mjs`: `npm ru
 - **Picking rule:** a trend only qualifies if it connects honestly to your confirmed work (the `PROFILE` block in the script). It skips topics already covered, celebrity news, promotions, price predictions, and rumours.
 - **Sources:** Claude must read at least two sources with web search and list them under `## Sources` / `## Sumber`. They are also listed in the PR body with a "why now" line.
 - **Personal claims:** only from `PROFILE`. No invented lifts, returns, anecdotes, or numbers; anything unconfirmed becomes `[CHECK: ...]`, which CI refuses to publish.
+- **Excluded projects:** Bericuan, Infinity Gym, and DMS are never named (the `EXCLUDED` list in the script). Drafts may still write about the technology behind them. If a name slips through, the PR title starts with `[rename]` and the body lists the names to rewrite.
 - **Safety notes added automatically:** quant posts end with a not-financial-advice line; gym posts end with a not-medical-advice line (both languages).
 - **Keep `PROFILE` current.** When something new is true (a new project, a German level, a training milestone you are happy to share), add it there and run `npm run n8n`; otherwise the drafts cannot mention it.
 - **Web search** must be allowed for your API organisation (Claude Console → settings). If a run stops with "paused mid-research", run it again.

@@ -21,17 +21,21 @@ Languages: write the English article, then an Indonesian article with exactly th
 Fields: slug is lowercase-kebab-case English, at most 60 characters. description is 120 to 160 characters in each language and works as a search snippet. tags are 2 to 5 lowercase single words or short hyphenated terms.`;
 
 // Facts already confirmed on the site or in the repositories. Personal statements may only use these.
+// Bericuan, Infinity Gym, and DMS stay out of the articles by name; the technology behind them may be used.
+const EXCLUDED = ["Bericuan", "Infinity Gym", "DMS"];
 const PROFILE = `Confirmed facts about Naufal (the only personal facts you may use):
 - Full-stack developer in Yogyakarta, Indonesia. Full Stack Developer at Berijalan Technocenter since Feb 2025: a digital e-signature platform (Next.js, Express.js, PostgreSQL, Docker, identity verification, SSO, MFA) and a React Native + NestJS field-survey app.
-- Co-founded drunkcode.dev, a small software studio, with friends. Built there: Infinity Gym, a gym management platform (.NET 10 modular monolith, PostgreSQL, revocable sessions in Redis, Next.js 16 admin CMS). He directed omp, an AI coding agent, to build the member app and reviewed every change.
+- Co-founded drunkcode.dev, a small software studio, with friends.
 - Tempo: time tracking, approvals, and invoicing (.NET 10, PostgreSQL, transactional outbox for email, Next.js 15), deployed to his k3s homelab.
-- DMS Platform: public site, CMS, and learning platform (.NET 10, PostgreSQL 17, MinIO, Next.js 16).
-- Bericuan: his own multi-strategy crypto futures engine for Binance USDT-M, Python standard library only, event-driven. Runs on testnet with one live strategy; a strategy must pass a 6-layer validity gate first. His research found every M5 scalping archetype he tested negative after fees, and of 10 newly screened strategy families none passed the gate. It is research and testnet only, not a money-making claim.
+- Technology he has worked with on his own and studio projects (talk about the technique, never the project): .NET 10 modular monoliths, PostgreSQL, JWT in HttpOnly cookies with revocable sessions in Redis, Next.js 16 admin CMSs with token-based design systems, MinIO for media, TipTap content sanitized on save and on render, and directing an AI coding agent (omp) to build a mobile-first app from design frames while reviewing every change.
+- Quant side: he builds trading research tooling in Python (event-driven, standard library only) and tests against exchange testnets. He treats fees and strict validity checks as the bar a strategy must pass before anything else. Do not state results, returns, win rates, or strategy counts.
 - Runs a k3s homelab managed with Argo CD.
 - Doing R&D on an AI-driven development workflow with Claude Code and omp: agents draft, he reviews at every handoff from planning to end-to-end testing.
-- Has trained in the gym consistently for almost five years and believes in process. Learning German (A1). Mobile roots: Flutter and Kotlin (Bangkit Academy, IDCamp).`;
+- Has trained in the gym consistently for almost five years and believes in process. Learning German (A1). Mobile roots: Flutter and Kotlin (Bangkit Academy, IDCamp).
 
-const MANUAL_RULES = `Facts: use only the facts, numbers, names, and code details given in the request. Never invent metrics, clients, employers, dates, quotes, or outcomes. If the notes are thin, write a shorter article rather than filling it in. Mark anything you are unsure of with [CHECK: ...] so the reviewer sees it.`;
+Never name these projects or repositories: ${EXCLUDED.join(", ")}. Describe the technique instead ("a gym management platform I worked on", "a trading research engine I am building").`;
+
+const MANUAL_RULES = `Facts: use only the facts, numbers, names, and code details given in the request. Never invent metrics, clients, employers, dates, quotes, or outcomes. If the notes are thin, write a shorter article rather than filling it in. Mark anything you are unsure of with [CHECK: ...] so the reviewer sees it.\n\nNever name these projects even if the notes do: Bericuan, Infinity Gym, DMS Platform. Write about the technology and the decision instead.`;
 
 const TREND_RULES = `Task: pick ONE topic from this week's candidate headlines in three areas (gym and training, software and AI tooling, quant and algorithmic trading) and write an article that connects it to Naufal's own experience.
 
@@ -204,6 +208,8 @@ const file = (a, lang) => [
 const b64 = (s) => Buffer.from(s, 'utf8').toString('base64');
 const sources = (draft.sources || []).map((s) => '- [' + s.title + '](' + s.url + ')');
 const checks = (draft.en.body + '\\n' + draft.id.body).match(/\\[CHECK:[^\\]]*\\]/g) || [];
+const allText = [draft.en.title, draft.en.description, draft.en.body, draft.id.title, draft.id.description, draft.id.body].join('\\n');
+const named = ${JSON.stringify(EXCLUDED)}.filter((n) => allText.toLowerCase().includes(n.toLowerCase()));
 
 const body = [
   (category === 'manual' ? 'Drafted by Claude (' + res.model + ') from the n8n article form.' : 'Drafted by Claude (' + res.model + ') from the weekly trend scan. Category: **' + category + '**.'),
@@ -213,16 +219,18 @@ const body = [
   'Review before merging:',
   '- [ ] Every claim about the trend matches the linked sources',
   '- [ ] Every personal statement is true and mine to share',
+  '- [ ] No mention of Bericuan, Infinity Gym, or DMS',
   '- [ ] EN and ID say the same thing',
   '- [ ] Title and description read well in search results',
   '- [ ] No [CHECK: ...] markers left (CI fails if there are)',
   ...(checks.length ? ['', 'Markers to resolve:', ...checks.map((c) => '- ' + c)] : []),
+  ...(named.length ? ['', '**Excluded project named, rewrite before merging:** ' + named.join(', ')] : []),
 ].join('\\n');
 
 return [{ json: {
   slug,
   branch: 'article/' + slug + '-' + Date.now().toString(36),
-  title: (category === 'manual' ? '' : '[' + category + '] ') + draft.en.title,
+  title: (named.length ? '[rename] ' : '') + (category === 'manual' ? '' : '[' + category + '] ') + draft.en.title,
   enPath: 'content/articles/en/' + slug + '.md',
   idPath: 'content/articles/id/' + slug + '.md',
   enContent: b64(file(draft.en, 'en')),
@@ -279,7 +287,7 @@ const nodes = [
         "Claude drafts EN + ID from your notes and opens a draft pull request. Nothing is published until you merge it.",
       formFields: {
         values: [
-          { fieldLabel: "Topic", requiredField: true, placeholderText: "Why Redis owns the session in Infinity Gym" },
+          { fieldLabel: "Topic", requiredField: true, placeholderText: "Why Redis owns the session" },
           {
             fieldLabel: "Facts and notes",
             fieldType: "textarea",
