@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "npx --yes serve out",
     "lint": "eslint",
-    "images": "node scripts/images.mjs"
+    "images": "node scripts/images.mjs",
+    "n8n": "node scripts/n8n-workflow.mjs"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.9.0",
