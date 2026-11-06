@@ -38,14 +38,11 @@ export const en: Dictionary = {
   },
   about: {
     heading: "About",
-    lead: "I build systems where the interface, the API, and the data model have to agree. Lately I also review what AI agents write before any of it ships.",
+    lead: "I build systems where the interface, the API, and the data model have to agree, and I review what AI agents write before any of it ships.",
     paragraphs: [
-      "At Berijalan Technocenter I work on a digital e-signature platform: contract signing end to end, identity verification, company SSO and MFA, and a React Native app for field surveyors who capture photos and locations on site.",
-      "Right now I am doing R&D on an AI-driven development workflow with Claude Code and omp. The goal is one connected chain, from planning and project management through implementation to end-to-end testing, where agents do the drafting and I review at every handoff: I write the brief, set the constraints, read every diff, and decide what merges. The point is not to type less. It is to keep the same bar for architecture, security, and accessibility while the amount of code keeps going up. The Infinity Gym member app and this portfolio were both built this way.",
-      "With friends I run drunkcode.dev, a small software studio. It is where the Infinity Gym platform is built, and where I take on client work.",
-      "Before that I trained as a mobile developer: Flutter and Kotlin at Bangkit Academy and IDCamp. Mobile taught me to treat an interface as a sequence of states a person moves through, not a set of components placed on a page. That habit carried into Next.js and React.",
-      "Outside work I build the rest of the stack: .NET and PostgreSQL services, Python trading tools, and a k3s homelab managed by Argo CD. The case studies below are about the seams between those parts: how a membership becomes a state machine, how a failed email becomes a retry, how a deploy becomes a commit.",
-      "Away from the screen I have trained consistently for almost five years, and I am learning German. Both run on the same rule as the work: small sessions, repeated, measured against who I was last year rather than against anyone else.",
+      "By day I am a full-stack developer at Berijalan Technocenter, working on a digital e-signature platform and a field-survey app. With friends I also run drunkcode.dev, a small software studio.",
+      "My R&D is an AI-driven workflow with Claude Code and omp: agents draft, from planning to end-to-end tests, and I review every handoff. The aim is more output at the same bar for architecture, security, and accessibility.",
+      "I started in mobile with Flutter and Kotlin, and now run .NET, PostgreSQL, and a k3s homelab. Off screen: almost five years of training and German lessons, on the same rule as the work. Small sessions, repeated.",
     ],
   },
   work: {

@@ -38,14 +38,11 @@ export const id: Dictionary = {
   },
   about: {
     heading: "Tentang",
-    lead: "Saya membangun sistem ketika antarmuka, API, dan model data harus sepakat. Belakangan saya juga me-review apa yang ditulis agen AI sebelum ada yang dirilis.",
+    lead: "Saya membangun sistem ketika antarmuka, API, dan model data harus sepakat, dan saya me-review apa yang ditulis agen AI sebelum ada yang dirilis.",
     paragraphs: [
-      "Di Berijalan Technocenter saya mengerjakan platform tanda tangan digital: alur penandatanganan kontrak dari awal sampai akhir, verifikasi identitas, SSO dan MFA perusahaan, serta aplikasi React Native untuk surveyor lapangan yang mengambil foto dan lokasi di lokasi kerja.",
-      "Saat ini saya sedang melakukan R&D tentang alur kerja pengembangan berbasis AI dengan Claude Code dan omp. Tujuannya satu rantai yang tersambung, dari perencanaan dan manajemen proyek sampai implementasi dan pengujian end-to-end, tempat agen menyusun draf dan saya me-review di setiap serah terima: saya menulis brief, menetapkan batasan, membaca setiap diff, dan memutuskan apa yang di-merge. Tujuannya bukan mengetik lebih sedikit, melainkan menjaga standar arsitektur, keamanan, dan aksesibilitas yang sama ketika jumlah kode terus bertambah. Aplikasi member Infinity Gym dan portofolio ini sama-sama dibangun dengan cara itu.",
-      "Bersama teman-teman saya menjalankan drunkcode.dev, sebuah studio perangkat lunak kecil. Di sanalah platform Infinity Gym dibangun, dan di sana pula saya mengerjakan proyek klien.",
-      "Sebelumnya saya menempuh jalur mobile: Flutter dan Kotlin di Bangkit Academy dan IDCamp. Mobile mengajarkan saya memperlakukan antarmuka sebagai rangkaian keadaan yang dilalui seseorang, bukan kumpulan komponen yang ditempel di halaman. Kebiasaan itu terbawa ke Next.js dan React.",
-      "Di luar pekerjaan saya membangun sisa stack-nya: layanan .NET dan PostgreSQL, alat trading Python, dan homelab k3s yang dikelola Argo CD. Studi kasus di bawah adalah tentang sambungan antar bagian itu: bagaimana membership menjadi state machine, bagaimana email gagal menjadi percobaan ulang, bagaimana deploy menjadi sebuah commit.",
-      "Di luar layar, saya sudah berlatih secara konsisten hampir lima tahun, dan saya sedang belajar bahasa Jerman. Keduanya berjalan dengan aturan yang sama seperti pekerjaan: sesi kecil, diulang, dan diukur terhadap diri saya tahun lalu, bukan terhadap orang lain.",
+      "Sehari-hari saya full-stack developer di Berijalan Technocenter, mengerjakan platform tanda tangan digital dan aplikasi survei lapangan. Bersama teman-teman saya juga menjalankan drunkcode.dev, sebuah studio perangkat lunak kecil.",
+      "R&D saya adalah alur kerja berbasis AI dengan Claude Code dan omp: agen menyusun draf, dari perencanaan sampai pengujian end-to-end, dan saya me-review setiap serah terima. Tujuannya hasil lebih banyak dengan standar arsitektur, keamanan, dan aksesibilitas yang sama.",
+      "Saya mulai dari mobile dengan Flutter dan Kotlin, dan kini menjalankan .NET, PostgreSQL, dan homelab k3s. Di luar layar: hampir lima tahun berlatih dan belajar bahasa Jerman, dengan aturan yang sama seperti pekerjaan. Sesi kecil, diulang.",
     ],
   },
   work: {

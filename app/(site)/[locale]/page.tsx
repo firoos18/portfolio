@@ -180,12 +180,12 @@ function About({ locale }: { locale: Locale }) {
           <p data-reveal className="text-[clamp(1.6rem,3.2vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.015em]">
             {about.lead}
           </p>
-          <div className="mt-12 grid gap-6 text-on-light-soft md:grid-cols-2 md:gap-x-10">
+          <div className="mt-12 grid gap-6 text-on-light-soft xl:grid-cols-3 xl:gap-x-8">
             {about.paragraphs.map((paragraph, index) => (
               <p
                 key={paragraph.slice(0, 24)}
                 data-reveal
-                style={{ "--d": index % 2 } as React.CSSProperties}
+                style={{ "--d": index } as React.CSSProperties}
                 className="max-w-[60ch]"
               >
                 {paragraph}
