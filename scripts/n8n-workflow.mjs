@@ -24,7 +24,7 @@ Fields: slug is lowercase-kebab-case English, at most 60 characters. description
 // Bericuan, Infinity Gym, and DMS stay out of the articles by name; the technology behind them may be used.
 const EXCLUDED = ["Bericuan", "Infinity Gym", "DMS"];
 const PROFILE = `Confirmed facts about Naufal (the only personal facts you may use):
-- Full-stack developer in Yogyakarta, Indonesia. Full Stack Developer at Berijalan Technocenter since Feb 2025: a digital e-signature platform (Next.js, Express.js, PostgreSQL, Docker, identity verification, SSO, MFA) and a React Native + NestJS field-survey app.
+- Full-stack developer in Yogyakarta, Indonesia. Full Stack Developer at Berijalan Technocenter since Feb 2025, on Next.js, NestJS, and Express.js projects in TypeScript and JavaScript, and .NET projects in C#. Never describe what he builds there beyond that.
 - Co-founded drunkcode.dev, a small software studio, with friends.
 - Tempo: time tracking, approvals, and invoicing (.NET 10, PostgreSQL, transactional outbox for email, Next.js 15), deployed to his k3s homelab.
 - Technology he has worked with on his own and studio projects (talk about the technique, never the project): .NET 10 modular monoliths, PostgreSQL, JWT in HttpOnly cookies with revocable sessions in Redis, Next.js 16 admin CMSs with token-based design systems, MinIO for media, TipTap content sanitized on save and on render, and directing an AI coding agent (omp) to build a mobile-first app from design frames while reviewing every change.

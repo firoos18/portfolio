@@ -38,10 +38,8 @@ export const cv: Record<Locale, CvCopy> = {
       "Full-stack developer in Yogyakarta, Indonesia, building systems end to end: Next.js and React interfaces, .NET and Node.js APIs, PostgreSQL data models, and Docker and Kubernetes deployments. Co-founder of drunkcode.dev, a small software studio. Currently doing R&D on an AI-driven development workflow with Claude Code and omp, with human review at every handoff from planning to end-to-end testing.",
     bullets: {
       "Berijalan Technocenter": [
-        "Build a digital e-signature platform with Next.js, Express.js, PostgreSQL, and Docker, covering contract signing end to end.",
-        "Integrated third-party identity verification alongside company SSO and MFA.",
-        "Built a React Native and NestJS field-survey app with photo capture, geolocation, and push notifications.",
-        "Migrated a legacy application to Next.js and Express.js using atomic design.",
+        "Full-stack development on Next.js, NestJS, and Express.js projects in TypeScript and JavaScript.",
+        "Full-stack development on .NET projects in C#.",
       ],
       IDCamp: ["Completed the Flutter learning path through Dicoding: three courses with five-star and four-star assessments."],
       "Bangkit Academy": ["Trained in Android development with Kotlin; built the capstone Teman Tanam, a crop-advisory app."],
@@ -95,10 +93,8 @@ export const cv: Record<Locale, CvCopy> = {
       "Full-stack developer di Yogyakarta, Indonesia, yang membangun sistem dari ujung ke ujung: antarmuka Next.js dan React, API .NET dan Node.js, model data PostgreSQL, serta deployment Docker dan Kubernetes. Co-founder drunkcode.dev, sebuah studio perangkat lunak kecil. Saat ini melakukan R&D tentang alur kerja pengembangan berbasis AI dengan Claude Code dan omp, dengan review manusia di setiap serah terima dari perencanaan sampai pengujian end-to-end.",
     bullets: {
       "Berijalan Technocenter": [
-        "Membangun platform tanda tangan digital dengan Next.js, Express.js, PostgreSQL, dan Docker, mencakup penandatanganan kontrak dari awal sampai akhir.",
-        "Mengintegrasikan verifikasi identitas pihak ketiga bersama SSO dan MFA perusahaan.",
-        "Membangun aplikasi survei lapangan React Native dan NestJS dengan foto, geolokasi, dan push notification.",
-        "Memigrasikan aplikasi lama ke Next.js dan Express.js dengan atomic design.",
+        "Pengembangan full-stack pada proyek Next.js, NestJS, dan Express.js dengan TypeScript dan JavaScript.",
+        "Pengembangan full-stack pada proyek .NET dengan C#.",
       ],
       IDCamp: ["Menyelesaikan jalur belajar Flutter melalui Dicoding: tiga kursus dengan penilaian bintang lima dan empat."],
       "Bangkit Academy": ["Belajar pengembangan Android dengan Kotlin; membangun capstone Teman Tanam, aplikasi pendamping petani."],

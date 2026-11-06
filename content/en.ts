@@ -40,7 +40,7 @@ export const en: Dictionary = {
     heading: "About",
     lead: "I build systems where the interface, the API, and the data model have to agree, and I review what AI agents write before any of it ships.",
     paragraphs: [
-      "By day I am a full-stack developer at Berijalan Technocenter, working on a digital e-signature platform and a field-survey app. With friends I also run drunkcode.dev, a small software studio.",
+      "By day I am a full-stack developer at Berijalan Technocenter, on Next.js, NestJS, and Express.js projects in TypeScript and JavaScript, and .NET projects in C#. With friends I also run drunkcode.dev, a small software studio.",
       "My R&D is an AI-driven workflow with Claude Code and omp: agents draft, from planning to end-to-end tests, and I review every handoff. The aim is more output at the same bar for architecture, security, and accessibility.",
       "I started in mobile with Flutter and Kotlin, and now run .NET, PostgreSQL, and a k3s homelab. Off screen: almost five years of training and German lessons, on the same rule as the work. Small sessions, repeated.",
     ],
@@ -108,7 +108,7 @@ export const en: Dictionary = {
         period: "Feb 2025 – Present",
         title: "Full Stack Developer",
         org: "Berijalan Technocenter",
-        note: "Digital e-signature platform with Next.js, Express.js, PostgreSQL, and Docker; identity verification, SSO, and MFA. Built a React Native and NestJS field-survey app with photo capture, geolocation, and push notifications. Earlier: legacy migration to Next.js and Express, atomic design.",
+        note: "Full-stack developer on Next.js, NestJS, and Express.js projects in TypeScript and JavaScript, and .NET projects in C#.",
       },
       {
         period: "Oct 2023 – Apr 2024",

@@ -40,7 +40,7 @@ export const id: Dictionary = {
     heading: "Tentang",
     lead: "Saya membangun sistem ketika antarmuka, API, dan model data harus sepakat, dan saya me-review apa yang ditulis agen AI sebelum ada yang dirilis.",
     paragraphs: [
-      "Sehari-hari saya full-stack developer di Berijalan Technocenter, mengerjakan platform tanda tangan digital dan aplikasi survei lapangan. Bersama teman-teman saya juga menjalankan drunkcode.dev, sebuah studio perangkat lunak kecil.",
+      "Sehari-hari saya full-stack developer di Berijalan Technocenter, menangani proyek Next.js, NestJS, dan Express.js dengan TypeScript dan JavaScript, serta proyek .NET dengan C#. Bersama teman-teman saya juga menjalankan drunkcode.dev, sebuah studio perangkat lunak kecil.",
       "R&D saya adalah alur kerja berbasis AI dengan Claude Code dan omp: agen menyusun draf, dari perencanaan sampai pengujian end-to-end, dan saya me-review setiap serah terima. Tujuannya hasil lebih banyak dengan standar arsitektur, keamanan, dan aksesibilitas yang sama.",
       "Saya mulai dari mobile dengan Flutter dan Kotlin, dan kini menjalankan .NET, PostgreSQL, dan homelab k3s. Di luar layar: hampir lima tahun berlatih dan belajar bahasa Jerman, dengan aturan yang sama seperti pekerjaan. Sesi kecil, diulang.",
     ],
@@ -108,7 +108,7 @@ export const id: Dictionary = {
         period: "Feb 2025 – Sekarang",
         title: "Full Stack Developer",
         org: "Berijalan Technocenter",
-        note: "Platform tanda tangan digital dengan Next.js, Express.js, PostgreSQL, dan Docker; verifikasi identitas, SSO, dan MFA. Membangun aplikasi survei lapangan React Native dan NestJS dengan foto, geolokasi, dan push notification. Sebelumnya: migrasi aplikasi lama ke Next.js dan Express, atomic design.",
+        note: "Full-stack developer yang menangani proyek Next.js, NestJS, dan Express.js dengan TypeScript dan JavaScript, serta proyek .NET dengan C#.",
       },
       {
         period: "Okt 2023 – Apr 2024",
