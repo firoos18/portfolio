@@ -32,7 +32,7 @@ app/
       og.png/route.ts       home share image
       cv.pdf/route.ts       one-page ATS CV per locale (lib/cv-document.tsx, content/cv.ts)
   sitemap.ts, robots.ts   static SEO files
-components/               shared UI (server components unless marked "use client")
+components/               shared UI (server components unless marked "use client"); Motion.tsx is the motion island
 content/                  typed dictionaries: profile, projects, experience, skills
 content/articles/{en,id}/ Markdown articles, same slug in both locales
 lib/                      site URL + SEO helpers, article loader, share-image renderer
@@ -69,7 +69,7 @@ For any interface change:
 - Visual world: poster-scale type on volt / ink / paper bands, inspired by the "Matteo" template on jiro.build (see `DESIGN.md`). Keep it. Do not add a second visual language.
 - 1px rules, square corners, no shadows, no gradients; depth comes from the band colours.
 - One fixed palette, no theme toggle; `color-scheme: light` for form controls.
-- Motion: one authored moment (hero letter rise). Sticky work cards are layout, not animation. Everything else is instant or a 200ms state change. Honor `prefers-reduced-motion`. Do not add a Framer Motion dependency for what CSS already does.
+- Motion follows drunkcode.dev (see `DESIGN.md` → Motion): hero letter rise, Lenis smooth scroll, progress rule, `data-reveal` scroll reveals, marquee, glitch titles, wipe buttons, pointer cursor. It lives in `components/Motion.tsx` and the end of `globals.css`. Never reveal-hide the hero. Honor `prefers-reduced-motion`. Lenis is the only motion dependency; do not add Framer Motion or GSAP for what CSS already does.
 - No testimonials, awards, or statistics, even though the reference template has them.
 - WCAG 2.2 AA. Body text ≥ 4.5:1, large text ≥ 3:1. Keyboard reachable, visible focus, semantic landmarks.
 

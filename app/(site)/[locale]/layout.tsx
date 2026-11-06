@@ -3,7 +3,10 @@ import { Archivo, Big_Shoulders } from "next/font/google";
 import { notFound } from "next/navigation";
 import { getDictionary, isLocale, locales } from "@/content";
 import { Footer } from "@/components/Footer";
+import { Motion } from "@/components/Motion";
+import { motionBootScript } from "@/lib/motion-boot";
 import { OWNER, SITE_URL, alternatesFor, ogLocale } from "@/lib/site";
+import "lenis/dist/lenis.css";
 import "../../globals.css";
 
 const display = Big_Shoulders({
@@ -80,7 +83,11 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={locale} className={`${display.variable} ${sans.variable}`}>
+    // The boot script adds the `motion` class before paint, so React must not fight over it.
+    <html lang={locale} className={`${display.variable} ${sans.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: motionBootScript }} />
+      </head>
       <body className="flex min-h-dvh flex-col">
         <a href="#main" className="skip-link">
           {getDictionary(locale).nav.skip}
@@ -88,6 +95,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <div id="top" />
         <div className="flex-1">{children}</div>
         <Footer locale={locale} />
+        <Motion />
       </body>
     </html>
   );

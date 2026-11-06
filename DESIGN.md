@@ -9,7 +9,7 @@ Visual system and direction contract for the portfolio. `PRODUCT.md` owns produc
 - Reference: the owner's chosen inspiration, the "Matteo" motion-artist portfolio template on jiro.build (giant condensed uppercase type, dark and light bands, stacked work cards, big closing call to action). This site borrows the structure and attitude, not the template's orange, assets, copy, or code. The palette was moved to volt lime on purpose so the site does not read as the template.
 - Scene: a recruiter's laptop or phone, between other tabs. The page has to be recognisable at a glance and readable at speed.
 
-Dials: **ENERGY 5/5** (poster-scale type, saturated volt lime), **RHYTHM 4/5** (volt / paper / ink bands alternate), **MOTION 2/5** (one authored letter rise, sticky card stack, 200ms state changes).
+Dials: **ENERGY 5/5** (poster-scale type, saturated volt lime), **RHYTHM 4/5** (volt / paper / ink bands alternate), **MOTION 4/5** (letter rise, smooth scroll, scroll reveals, marquee, cursor, after drunkcode.dev).
 
 ## Direction contract
 
@@ -69,15 +69,25 @@ Measured contrast: on-dark/ink 16.9, on-dark-soft/ink 7.2, on-dark-soft/ink-2 6.
 
 ## Motion
 
-- One authored moment: the hero name's letters rise out of a clipped line on load (`.rise-letter`, 900ms, expo-out, 45ms stagger). Screen readers get the plain name.
+Motion language follows drunkcode.dev (the studio the owner co-founded), translated into this palette: no gradients, square corners, volt on ink. All of it lives in `components/Motion.tsx` and the motion block at the end of `app/globals.css`.
+
+- Hero: the name's letters rise out of a clipped line on load (`.rise-letter`, 900ms, expo-out, 45ms stagger). Screen readers get the plain name.
+- Smooth scroll: Lenis (`lerp 0.1`). In-page anchors glide with Lenis, then move focus to the target. The skip link stays native.
+- Scroll progress: 3px volt rule on an ink track, fixed to the top edge.
+- Scroll reveals: `data-reveal` rises 44px and settles from 0.985 scale (opacity 700ms, transform 900ms, expo-out); `data-reveal="left"` slides 18px in from the left for rows. `--d` staggers siblings by 70ms. Never on the hero, so first paint and LCP are not delayed.
+- Marquee: motto and disciplines on an ink band under the hero, 32s loop, pauses on hover, `aria-hidden` (every word is already in the hero).
+- Work titles glitch once on hover (`.glitch` with `data-text`): volt and paper slices, 450ms, two steps.
+- Primary buttons wipe a flat fill across on hover and focus (`.wipe`, `--wipe` sets the colour, 450ms).
+- Pointer cursor on fine pointers only: an 8px volt dot and a 30px trailing square, both edged in ink so they read on volt; the square grows to 56px over links.
+- Page change: later in-app navigations fade up 10px over 450ms. The landing page does not.
 - Sticky card stacking is layout, not animation.
-- Everything else: colour or transform changes at 200ms.
-- `prefers-reduced-motion`: letters render in place, smooth scrolling off, transitions near-instant.
+- `prefers-reduced-motion`: no smooth scroll, no reveals (content is visible from the start), no cursor, no marquee movement, no glitch or page fade; the letters render in place.
+- Reveal targets are hidden only when the boot script adds `.motion` before paint, and it removes the class after 3s if the motion island never mounts, so content never depends on JavaScript.
 
 ## States
 
 - Focus-visible: 2px `currentColor` outline, 3px offset, on every interactive element; skip link first in tab order.
-- Hover: colour change or volt fill on dark buttons; no transforms on text.
+- Hover: colour change, volt wipe on primary buttons, a one-shot glitch on work titles; no other transforms on text.
 - Selection: volt background, ink text. Caret volt. Scrollbar themed from on-dark-soft over ink.
 
 ## Assets

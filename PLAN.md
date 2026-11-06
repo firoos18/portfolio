@@ -101,7 +101,7 @@ Do not invent metrics, clients, or outcomes. Bericuan is testnet with one live s
 - No horizontal overflow at 320px; no layout shift from fonts.
 - Keyboard: skip link, visible focus, language switch and station links operable.
 - Contrast: body ≥ 4.5:1; large text ≥ 3:1; focus ring ≥ 3:1 against adjacent colors.
-- Reduced motion: no traverse animation, no smooth scrolling.
+- Reduced motion: no traverse animation, no smooth scrolling, no reveals, no cursor.
 - Build output is fully static; no runtime API calls.
 - No invented facts.
 

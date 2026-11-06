@@ -6,6 +6,7 @@ import { cv } from "@/content/cv";
 import { Arrow } from "@/components/Arrow";
 import { Header } from "@/components/Header";
 import { LocalTime } from "@/components/LocalTime";
+import { Marquee } from "@/components/Marquee";
 import { RiseText } from "@/components/RiseText";
 import { ArticleList } from "@/components/ArticleList";
 import { Shot } from "@/components/Shot";
@@ -65,6 +66,7 @@ export default async function Home({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(structured) }} />
       <Hero locale={locale} />
+      <Marquee items={[dict.hero.motto.replace(/\.$/, ""), ...dict.hero.disciplines]} />
       <main id="main">
         <About locale={locale} />
         <Work locale={locale} />
@@ -142,10 +144,10 @@ function Hero({ locale }: { locale: Locale }) {
             <div className="grid grid-cols-2 gap-2">
               <a
                 href="mailto:itsfiroos@gmail.com"
-                className="label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2"
+                className="wipe group label inline-flex min-h-12 items-center justify-between gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 [--wipe:var(--paper)] hover:text-ink"
               >
                 {hero.cta}
-                <Arrow direction="up-right" className="text-accent-on-dark" />
+                <Arrow direction="up-right" className="text-accent-on-dark transition-colors duration-200 group-hover:text-ink" />
               </a>
               <a
                 href={`/${locale}/cv.pdf`}
@@ -171,16 +173,21 @@ function About({ locale }: { locale: Locale }) {
   return (
     <section id="about" aria-labelledby="about-title" className={`bg-paper text-on-light ${sectionSpace}`}>
       <div className={`${frame} grid gap-10 md:grid-cols-12`}>
-        <h2 id="about-title" className="display text-[clamp(3rem,7vw,6rem)] md:col-span-4">
+        <h2 id="about-title" data-reveal className="display text-[clamp(3rem,7vw,6rem)] md:col-span-4">
           {about.heading}
         </h2>
         <div className="md:col-span-8">
-          <p className="text-[clamp(1.6rem,3.2vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.015em]">
+          <p data-reveal className="text-[clamp(1.6rem,3.2vw,2.75rem)] font-medium leading-[1.12] tracking-[-0.015em]">
             {about.lead}
           </p>
           <div className="mt-12 grid gap-6 text-on-light-soft md:grid-cols-2 md:gap-x-10">
-            {about.paragraphs.map((paragraph) => (
-              <p key={paragraph.slice(0, 24)} className="max-w-[60ch]">
+            {about.paragraphs.map((paragraph, index) => (
+              <p
+                key={paragraph.slice(0, 24)}
+                data-reveal
+                style={{ "--d": index % 2 } as React.CSSProperties}
+                className="max-w-[60ch]"
+              >
                 {paragraph}
               </p>
             ))}
@@ -199,10 +206,12 @@ function Work({ locale }: { locale: Locale }) {
     <section id="work" aria-labelledby="work-title" className={`bg-ink text-on-dark ${sectionSpace}`}>
       <div className={frame}>
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
-          <h2 id="work-title" className="display text-[clamp(4rem,12vw,11rem)] md:col-span-8">
+          <h2 id="work-title" data-reveal className="display text-[clamp(4rem,12vw,11rem)] md:col-span-8">
             {work.heading}
           </h2>
-          <p className="max-w-[44ch] text-on-dark-soft md:col-span-4">{work.intro}</p>
+          <p data-reveal style={{ "--d": 1 } as React.CSSProperties} className="max-w-[44ch] text-on-dark-soft md:col-span-4">
+            {work.intro}
+          </p>
         </div>
 
         <ol className="mt-[clamp(48px,7vw,96px)] flex flex-col gap-6 md:gap-10">
@@ -217,11 +226,11 @@ function Work({ locale }: { locale: Locale }) {
                 className="stack-card border border-ink-line bg-ink-2"
                 style={{ "--i": index } as React.CSSProperties}
               >
-                <article className="grid gap-8 p-[clamp(20px,3vw,40px)] md:min-h-[78vh] md:grid-cols-12">
+                <article data-reveal className="grid gap-8 p-[clamp(20px,3vw,40px)] md:min-h-[78vh] md:grid-cols-12">
                   <div className="flex flex-col md:col-span-5">
                     <p className="label text-accent-on-dark">{copy.category}</p>
                     <h3 className="display mt-3 text-[clamp(3rem,7vw,6.5rem)]">
-                      <Link href={href} className="transition-colors duration-200 hover:text-accent-on-dark">
+                      <Link href={href} data-text={copy.name} className="glitch transition-colors duration-200 hover:text-accent-on-dark">
                         {copy.name}
                       </Link>
                     </h3>
@@ -245,7 +254,7 @@ function Work({ locale }: { locale: Locale }) {
                     <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 md:mt-auto">
                       <Link
                         href={href}
-                        className="label inline-flex min-h-12 w-fit items-center gap-4 bg-on-dark px-5 text-ink transition-colors duration-200 hover:bg-volt"
+                        className="wipe label inline-flex min-h-12 w-fit items-center gap-4 bg-on-dark px-5 text-ink"
                       >
                         {work.open}
                         <span className="sr-only">: {copy.name}</span>
@@ -294,8 +303,13 @@ function Work({ locale }: { locale: Locale }) {
         <div className="mt-[clamp(64px,9vw,128px)] grid gap-6 border-t border-ink-line pt-6 md:grid-cols-12">
           <h3 className="label text-on-dark-soft md:col-span-3">{work.earlierHeading}</h3>
           <ul className="grid gap-x-10 sm:grid-cols-2 md:col-span-9">
-            {work.earlier.map((item) => (
-              <li key={item.name} className="border-b border-ink-line">
+            {work.earlier.map((item, index) => (
+              <li
+                key={item.name}
+                data-reveal="left"
+                style={{ "--d": index } as React.CSSProperties}
+                className="border-b border-ink-line"
+              >
                 <a
                   href={item.href}
                   className="group flex min-h-14 items-center justify-between gap-4 py-3 transition-colors duration-200 hover:text-accent-on-dark"
@@ -340,16 +354,24 @@ function Process({ locale }: { locale: Locale }) {
     <section id="process" aria-labelledby="process-title" className={`bg-paper text-on-light ${sectionSpace}`}>
       <div className={frame}>
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
-          <h2 id="process-title" className="display text-[clamp(4rem,10vw,9rem)] md:col-span-7">
+          <h2 id="process-title" data-reveal className="display text-[clamp(4rem,10vw,9rem)] md:col-span-7">
             {process.heading}
           </h2>
-          <p className="max-w-[40ch] text-on-light-soft md:col-span-4 md:col-start-9">{process.intro}</p>
+          <p
+            data-reveal
+            style={{ "--d": 1 } as React.CSSProperties}
+            className="max-w-[40ch] text-on-light-soft md:col-span-4 md:col-start-9"
+          >
+            {process.intro}
+          </p>
         </div>
 
         <ol className="mt-[clamp(48px,7vw,96px)] grid border-t border-on-light lg:grid-cols-5">
           {process.steps.map((step, index) => (
             <li
               key={step.title}
+              data-reveal
+              style={{ "--d": index } as React.CSSProperties}
               className="border-b border-paper-line py-6 lg:border-b-0 lg:border-l lg:px-5 lg:first:border-l-0 lg:first:pl-0"
             >
               <p className="display tabnum text-[clamp(3rem,5vw,4.5rem)] text-accent-on-light">{index + 1}.</p>
@@ -373,13 +395,17 @@ function Experience({ locale }: { locale: Locale }) {
   return (
     <section id="experience" aria-labelledby="experience-title" className={`bg-ink text-on-dark ${sectionSpace}`}>
       <div className={frame}>
-        <h2 id="experience-title" className="display text-[clamp(4rem,12vw,11rem)]">
+        <h2 id="experience-title" data-reveal className="display text-[clamp(4rem,12vw,11rem)]">
           {experience.heading}
         </h2>
 
         <ul className="mt-[clamp(40px,6vw,80px)] border-t border-on-dark">
-          {rows.map((row) => (
-            <li key={row.org} className="grid gap-3 border-b border-ink-line py-6 md:grid-cols-12 md:gap-6">
+          {rows.map((row, index) => (
+            <li
+              key={row.org}
+              data-reveal="left"
+              style={{ "--d": index } as React.CSSProperties}
+              className="grid gap-3 border-b border-ink-line py-6 md:grid-cols-12 md:gap-6">
               <p className="label tabnum text-on-dark-soft md:col-span-3 md:pt-2">
                 {"educationLabel" in row ? `${row.educationLabel} · ` : null}
                 {row.period}
@@ -397,8 +423,13 @@ function Experience({ locale }: { locale: Locale }) {
           <div className="md:col-span-8">
             <h2 className="display text-[clamp(2.5rem,5vw,4rem)]">{skills.heading}</h2>
             <dl className="mt-6 grid gap-6 sm:grid-cols-2">
-              {skills.groups.map((group) => (
-                <div key={group.label} className="border-t border-ink-line pt-3">
+              {skills.groups.map((group, index) => (
+                <div
+                  key={group.label}
+                  data-reveal
+                  style={{ "--d": index % 2 } as React.CSSProperties}
+                  className="border-t border-ink-line pt-3"
+                >
                   <dt className="label text-on-dark-soft">{group.label}</dt>
                   <dd className="mt-2">{group.items.join(", ")}</dd>
                 </div>
@@ -432,14 +463,14 @@ function Writing({ locale }: { locale: Locale }) {
     <section aria-labelledby="writing-title" className={`bg-paper text-on-light ${sectionSpace}`}>
       <div className={frame}>
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
-          <h2 id="writing-title" className="display text-[clamp(4rem,12vw,11rem)] md:col-span-8">
+          <h2 id="writing-title" data-reveal className="display text-[clamp(4rem,12vw,11rem)] md:col-span-8">
             {articles.heading}
           </h2>
           <div className="md:col-span-4">
             <p className="max-w-[44ch] text-on-light-soft">{articles.intro}</p>
             <Link
               href={`/${locale}/articles/`}
-              className="label mt-4 inline-flex min-h-12 items-center gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:bg-ink-2"
+              className="wipe label mt-4 inline-flex min-h-12 items-center gap-4 bg-ink px-5 text-on-dark transition-colors duration-200 hover:text-ink"
             >
               {articles.all}
               <Arrow />
@@ -461,8 +492,8 @@ function Contact({ locale }: { locale: Locale }) {
     <section id="contact" aria-labelledby="contact-title" className="bg-volt text-on-volt">
       <div className={`${frame} ${sectionSpace}`}>
         <h2 id="contact-title" className="display text-[clamp(4.5rem,15vw,15rem)]">
-          {contact.heading.map((line) => (
-            <span key={line} className="block">
+          {contact.heading.map((line, index) => (
+            <span key={line} data-reveal style={{ "--d": index } as React.CSSProperties} className="block">
               {line}
             </span>
           ))}

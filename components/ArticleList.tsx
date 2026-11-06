@@ -30,8 +30,13 @@ export function ArticleList({ locale, articles, labels, tone }: Props) {
 
   return (
     <ol className={`border-t ${tone === "dark" ? "border-on-dark" : "border-on-light"}`}>
-      {articles.map((article) => (
-        <li key={article.slug} className={`border-b ${rule}`}>
+      {articles.map((article, index) => (
+        <li
+          key={article.slug}
+          data-reveal="left"
+          style={{ "--d": Math.min(index, 4) } as React.CSSProperties}
+          className={`border-b ${rule}`}
+        >
           <Link
             href={`/${locale}/articles/${article.slug}/`}
             className={`group grid gap-3 py-6 transition-colors duration-200 md:grid-cols-12 md:gap-6 ${hover}`}
